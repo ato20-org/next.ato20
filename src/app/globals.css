@@ -133,12 +133,44 @@
   }
 }
 
+/* --- Flutuação dos dados --------------------------------------------------
+   Deriva lenta dos dados do fundo. Fica no CSS, e não no laço que segue o
+   mouse, porque ali ela obrigaria o requestAnimationFrame a rodar pra sempre;
+   aqui é transform composto, e o laço continua morrendo com o mouse parado.
+
+   Cada dado recebe duração, atraso e amplitude próprios: com os mesmos valores
+   os quatro derivariam em bloco, que é o oposto de flutuar. Atraso negativo
+   começa a animação no meio, o que desencontra sem esperar. */
+
+.flutua {
+  animation: flutuar var(--flutuar-duracao, 14s) ease-in-out
+    var(--flutuar-atraso, 0s) infinite alternate;
+}
+
+@keyframes flutuar {
+  from {
+    transform: translate3d(0, 0, 0) rotate(calc(var(--flutuar-giro, 2deg) * -1));
+  }
+  to {
+    transform: translate3d(
+        var(--flutuar-x, 6px),
+        var(--flutuar-y, 14px),
+        0
+      )
+      rotate(var(--flutuar-giro, 2deg));
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .cortinas {
     display: none;
   }
 
   .revelar {
+    animation: none;
+  }
+
+  .flutua {
     animation: none;
   }
 }

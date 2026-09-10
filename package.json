@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start --port 3011",
     "lint": "eslint",
-    "gerar:marcas": "node scripts/gerar-marcas.mjs"
+    "gerar:marcas": "node scripts/gerar-marcas.mjs",
+    "gerar:dados": "node scripts/gerar-dados.mjs"
   },
   "dependencies": {
     "lucide-react": "^1.43.0",

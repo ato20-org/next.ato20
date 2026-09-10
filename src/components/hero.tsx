@@ -4,6 +4,7 @@ import { Heart, Network, Smartphone } from "lucide-react";
 
 import marca from "@/assets/marca-ato20.png";
 import { Download } from "@/components/download";
+import { FundoDeDados } from "@/components/fundo-de-dados";
 import { MarcaGithub } from "@/components/marcas";
 import { REPO_URL } from "@/lib/projeto";
 
@@ -22,7 +23,10 @@ const PRINCIPIOS = [
 export function Hero() {
   return (
     <section className="relative isolate overflow-hidden">
-      <div className="grade pointer-events-none absolute inset-0 -z-10" aria-hidden />
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="grade absolute inset-0" aria-hidden />
+        <FundoDeDados />
+      </div>
 
       <header className="mx-auto flex w-full max-w-3xl items-center justify-between px-6 py-6">
         <span className="flex items-center gap-2.5">
