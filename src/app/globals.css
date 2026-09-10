@@ -45,3 +45,100 @@
   mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 20%, transparent 75%);
   opacity: 0.5;
 }
+
+/* --- Abertura de cortinas -------------------------------------------------
+   O conteúdo já está montado atrás; as cortinas só saem da frente. Elas nunca
+   capturam clique, e somem do compositor quando terminam. */
+
+.cortinas {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.cortina {
+  width: 50%;
+  height: 100%;
+  animation-duration: 1250ms;
+  animation-delay: 200ms;
+  animation-fill-mode: forwards;
+}
+
+/* O pano fica pendurado no varão: a origem é o topo, na borda de fora.
+   No eixo Y ela manda no `skewX` — é o que prende a parte de cima e faz só a
+   barra correr. No eixo X ela manda no `scaleX`, e por isso fica na borda
+   externa: o pano junta pra fora, como cortina puxada por abraçadeira. */
+.cortina-esquerda {
+  transform-origin: 0 0;
+  animation-name: abrir-cortina-esquerda;
+}
+
+.cortina-direita {
+  transform-origin: 100% 0;
+  animation-name: abrir-cortina-direita;
+}
+
+/* A metade direita é a esquerda espelhada. O espelho fica no SVG, e não no
+   container, senão ele se misturaria com o transform da animação. */
+.cortina-direita svg {
+  transform: scaleX(-1);
+}
+
+/* O `skewX` é o movimento principal: ele inclina a borda interna e abre o vão
+   em losango a partir do centro do topo, em vez de arrastar dois retângulos
+   pros lados. As pregas inclinam junto, que é o que se vê no pano de verdade.
+   O `translateX` só entra no fim, pra tirar o pano da tela. */
+@keyframes abrir-cortina-esquerda {
+  0% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0.45, 0, 0.75, 0.35);
+  }
+  42% {
+    transform: skewX(-21deg) scaleX(0.94);
+    animation-timing-function: cubic-bezier(0.2, 0.45, 0.12, 1);
+  }
+  100% {
+    transform: translateX(-104%) skewX(-11deg) scaleX(0.52);
+    visibility: hidden;
+  }
+}
+
+@keyframes abrir-cortina-direita {
+  0% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0.45, 0, 0.75, 0.35);
+  }
+  42% {
+    transform: skewX(21deg) scaleX(0.94);
+    animation-timing-function: cubic-bezier(0.2, 0.45, 0.12, 1);
+  }
+  100% {
+    transform: translateX(104%) skewX(11deg) scaleX(0.52);
+    visibility: hidden;
+  }
+}
+
+/* O conteúdo entra junto com a abertura, não depois dela. */
+.revelar {
+  animation: revelar 900ms cubic-bezier(0.16, 1, 0.3, 1) 450ms backwards;
+}
+
+@keyframes revelar {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cortinas {
+    display: none;
+  }
+
+  .revelar {
+    animation: none;
+  }
+}

@@ -44,7 +44,7 @@ export function Hero() {
         </a>
       </header>
 
-      <div className="mx-auto w-full max-w-3xl px-6 pt-16 pb-24 sm:pt-24 sm:pb-32">
+      <div className="revelar mx-auto w-full max-w-3xl px-6 pt-16 pb-24 sm:pt-24 sm:pb-32">
         <h1 className="text-5xl font-semibold tracking-tight text-balance sm:text-6xl">
           ATO20
           <span className="mt-3 block text-2xl font-normal text-muted-foreground sm:text-3xl">

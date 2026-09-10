@@ -1,9 +1,13 @@
+import { Cortinas } from "@/components/cortinas";
 import { Hero } from "@/components/hero";
 
 export default function Home() {
   return (
-    <main className="min-h-dvh">
-      <Hero />
-    </main>
+    <>
+      <Cortinas />
+      <main className="min-h-dvh">
+        <Hero />
+      </main>
+    </>
   );
 }
