@@ -1,34 +1,26 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# next.ato20
 
-## Getting Started
+Landing page do [ATO20](https://github.com/valb-mig/ato20) — a IDE para RPG de mesa.
 
-First, run the development server:
+Next.js 16 (App Router, Turbopack) + Tailwind CSS 4. Tema escuro travado e a
+mesma dupla de fontes do app (Geist / Geist Mono), pra a landing parecer a
+ferramenta.
+
+## Rodando
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Sobe em http://localhost:3011. A porta está fixa no `package.json` (`dev` e
+`start`) porque o app do ATO20 ocupa a 3000, e os dois rodam juntos.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Estado
 
-## Learn More
+- [x] Hero: frase, download com detecção de sistema, link do repositório
+- [ ] Builds reais (hoje os botões de download são mockup, sem release publicada)
+- [ ] Demais seções
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Os artefatos de download estão em [`src/lib/plataformas.ts`](src/lib/plataformas.ts).
+Quando a primeira release sair, é só marcar `disponivel: true` e apontar a URL.
