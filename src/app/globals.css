@@ -174,3 +174,23 @@
     animation: none;
   }
 }
+
+/* --- ASCII da marca -------------------------------------------------------
+   O desenho tem 129 colunas. Numa monoespaçada o avanço é ~0.6em, então o
+   corpo do texto que faz o desenho caber exatamente na coluna é
+   100cqi / (129 * 0.6). Assim ele acompanha o layout sem media query.
+
+   A entrelinha é menor que 1 porque a célula do ASCII original é mais alta que
+   larga; com 1 o desenho sai esticado. */
+
+.ascii {
+  container-type: inline-size;
+}
+
+.ascii pre {
+  margin: 0;
+  font-family: var(--font-mono), monospace;
+  font-size: calc(100cqi / 77.4);
+  line-height: 0.95;
+  white-space: pre;
+}
