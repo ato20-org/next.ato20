@@ -194,3 +194,30 @@
   line-height: 0.95;
   white-space: pre;
 }
+
+/* --- Lançamento do dado ---------------------------------------------------
+   O valor já foi sorteado quando o dado nasce; a animação só o traz até a mesa.
+   Em CSS, e não recalculando a projeção por quadro: o giro é da peça inteira. */
+
+.dado-lancado {
+  animation: lancar-dado 520ms cubic-bezier(0.2, 1.05, 0.35, 1) backwards;
+}
+
+@keyframes lancar-dado {
+  from {
+    opacity: 0;
+    transform: scale(0.3) rotate(-230deg);
+  }
+  60% {
+    opacity: 1;
+  }
+  to {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dado-lancado {
+    animation: none;
+  }
+}

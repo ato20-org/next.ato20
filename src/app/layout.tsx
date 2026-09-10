@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
+import { Saquinho } from "@/components/saquinho";
+
 import "./globals.css";
 
 // Mesma dupla de fontes do app: a landing tem que parecer a ferramenta.
@@ -36,7 +38,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="pt-BR" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body>{children}</body>
+      <body>
+        {children}
+        {/* Fora do `children`: o saquinho é do site, não de uma página. */}
+        <Saquinho />
+      </body>
     </html>
   );
 }
