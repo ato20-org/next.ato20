@@ -1,7 +1,8 @@
 Prints usados no README, na ordem em que aparecem:
 
-- `operador.png` — a tela do mestre, dentro do aplicativo
-- `assistir.png` — o palco, como vai na TV
-- `plateia.png` — o celular do jogador
+- `operador.webp` — a tela do mestre, dentro do aplicativo
+- `assistir.webp` — o palco, aberto no navegador, ao lado do Operador
+- `plateia.webp` — o celular do jogador
 
-Ainda não capturados.
+Capturados em PNG e convertidos para webp (4,5 MB -> 580 KB), porque o README
+carrega os três de uma vez.

@@ -38,21 +38,25 @@ A tela do mestre, dentro do aplicativo: monta cenas, arrasta imagens, esconde re
 decide o que entra no ar. A cena **em edição** e a cena **no ar** são separadas — é isso que
 permite preparar a próxima enquanto a mesa segue na atual.
 
-![O Operador](docs/capturas/operador.png)
+![O Operador](docs/capturas/operador.webp)
 
 ### Assistir
 
 Só o palco, sem controle. Vai na TV atrás do mestre, aberta no navegador de qualquer aparelho
-da casa.
+da casa. Abaixo ela aparece sobre o Operador, que é como se confere o enquadramento: o que o
+mestre move de um lado a mesa vê do outro, dez vezes por segundo.
 
-![A tela Assistir](docs/capturas/assistir.png)
+![A tela Assistir](docs/capturas/assistir.webp)
 
 ### Plateia
 
-O celular de cada jogador, com a ficha, as notas e os anexos dele. Entra lendo o QR do
-Operador — ninguém instala nada além do mestre.
+O celular de cada jogador: o palco em cima, e embaixo o personagem dele — ficha, retrato,
+inventário, anotações e os arquivos que ele mesmo anexa. Entra lendo o QR do Operador, e
+ninguém instala nada além do mestre.
 
-![A Plateia](docs/capturas/plateia.png)
+<div align="center">
+  <img src="docs/capturas/plateia.webp" alt="A Plateia" width="320">
+</div>
 
 ## Sobre esta landing
 
