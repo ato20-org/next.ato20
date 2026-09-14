@@ -58,23 +58,6 @@ ninguém instala nada além do mestre.
   <img src="docs/capturas/plateia.webp" alt="A Plateia" width="320">
 </div>
 
-## Sobre esta landing
-
-Next.js 16 (App Router, Turbopack) + Tailwind CSS 4. Tema escuro travado e a mesma dupla de
-fontes do app (Geist / Geist Mono), para a landing parecer a ferramenta.
-
-```bash
-pnpm install
-pnpm dev
-```
-
-Sobe em http://localhost:3011. A porta está fixa no `package.json` (`dev` e `start`) porque o
-app do ATO20 ocupa a 3000, e os dois rodam juntos.
-
-Os artefatos de download estão em [`src/lib/plataformas.ts`](src/lib/plataformas.ts). Hoje os
-botões são mockup, porque ainda não há release publicada — quando a primeira sair, é marcar
-`disponivel: true` e apontar a URL.
-
 ## Licença
 
 [MIT](LICENSE). Use, modifique e distribua.
