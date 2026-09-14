@@ -32,30 +32,30 @@ na rede local.
 
 ## Três telas
 
-### Operador
+### Mestre
 
 A tela do mestre, dentro do aplicativo: monta cenas, arrasta imagens, esconde regiões e
 decide o que entra no ar. A cena **em edição** e a cena **no ar** são separadas — é isso que
 permite preparar a próxima enquanto a mesa segue na atual.
 
-![O Operador](docs/capturas/operador.webp)
+![O Mestre](docs/capturas/mestre.webp)
 
-### Assistir
+### Espectador
 
 Só o palco, sem controle. Vai na TV atrás do mestre, aberta no navegador de qualquer aparelho
-da casa. Abaixo ela aparece sobre o Operador, que é como se confere o enquadramento: o que o
+da casa. Abaixo ela aparece sobre o Mestre, que é como se confere o enquadramento: o que o
 mestre move de um lado a mesa vê do outro, dez vezes por segundo.
 
-![A tela Assistir](docs/capturas/assistir.webp)
+![A tela Espectador](docs/capturas/espectador.webp)
 
-### Plateia
+### Jogador
 
 O celular de cada jogador: o palco em cima, e embaixo o personagem dele — ficha, retrato,
-inventário, anotações e os arquivos que ele mesmo anexa. Entra lendo o QR do Operador, e
+inventário, anotações e os arquivos que ele mesmo anexa. Entra lendo o QR do Mestre, e
 ninguém instala nada além do mestre.
 
 <div align="center">
-  <img src="docs/capturas/plateia.webp" alt="A Plateia" width="320">
+  <img src="docs/capturas/jogador.webp" alt="A Jogador" width="320">
 </div>
 
 ## Licença

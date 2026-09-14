@@ -38,7 +38,7 @@ import {
 /**
  * Mockup da visão do mestre.
  *
- * É ilustração, não captura: o Operador só roda dentro do aplicativo — ele
+ * É ilustração, não captura: o Mestre só roda dentro do aplicativo — ele
  * checa a marca do Tauri e recusa uma aba de navegador —, então não há como
  * fotografá-lo daqui. A estrutura segue a do app: barra de abas com a mesa no
  * ar, coluna de cenas com as camadas embaixo, palco com as ferramentas, coluna
@@ -487,13 +487,13 @@ export function DemoMestre({ cena = "Taverna do Javali" }: { cena?: string }) {
             </span>
           </Dica>
           <Dica
-            titulo="Abrir Assistir"
+            titulo="Abrir Espectador"
             detalhe="A tela da mesa, nesta máquina ou em outra."
             lado="baixo"
           >
             <span className="flex items-center gap-1 rounded border border-border px-1.5 py-1">
               <SquareArrowOutUpRight className="size-3" strokeWidth={1.75} />
-              Abrir Assistir
+              Abrir Espectador
             </span>
           </Dica>
         </span>
@@ -600,7 +600,7 @@ export function DemoMestre({ cena = "Taverna do Javali" }: { cena?: string }) {
           <div className="absolute top-1.5 right-1.5 flex items-center gap-1">
             <Dica
               titulo="Jogadores na mesa"
-              detalhe="Quem entrou pela tela Assistir, do próprio celular."
+              detalhe="Quem entrou pela tela Espectador, do próprio celular."
               lado="baixo"
             >
               <Pilula>
