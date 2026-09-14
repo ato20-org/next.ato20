@@ -6,6 +6,7 @@ import { Dices, X } from "lucide-react";
 import { DadoSolido } from "@/components/dado-solido";
 import { TIPOS, valorDaRolagem, type FacesDado, type TipoDado } from "@/lib/dados-tipos";
 import { arremessar, avancar, pintar, type Dado } from "@/lib/dado-arremesso";
+import { avancarSuccao, pintarBuraco, sugar, type Sugado } from "@/lib/dado-succao";
 
 /** Raio de referência do dado na tela, em pixel. Cada tipo ajusta em cima. */
 const RAIO = 26;
@@ -60,11 +61,17 @@ export function Saquinho() {
   const [quantos, setQuantos] = useState(0);
   const [soma, setSoma] = useState(0);
   const [historico, setHistorico] = useState<Rolagem[]>([]);
+  /** Só para o botão reagir enquanto engole; a animação em si mora em ref. */
+  const [sugando, setSugando] = useState(false);
   const painel = useId();
 
   const tela = useRef<HTMLCanvasElement>(null);
+  const botao = useRef<HTMLButtonElement>(null);
   const dados = useRef<Dado[]>([]);
   const naMao = useRef<NaMao | null>(null);
+  /** Os dados a caminho do saquinho, e o poço que os puxa. */
+  const sugados = useRef<Sugado[]>([]);
+  const buraco = useRef({ x: 0, y: 0, forca: 0, fase: 0 });
   /** Acorda o laço. Fica em ref porque quem o define é o efeito da tela. */
   const acordar = useRef<() => void>(() => {});
 
@@ -117,6 +124,30 @@ export function Saquinho() {
       if (mao) {
         vivo = true;
         pintar(ctx, mao.dado);
+      }
+
+      const poco = buraco.current;
+
+      if (sugados.current.length > 0) {
+        vivo = true;
+        sugados.current = sugados.current.filter((sugado) =>
+          avancarSuccao(sugado, poco.x, poco.y, largura, altura, dt),
+        );
+        for (const sugado of sugados.current) pintar(ctx, sugado.dado);
+        if (sugados.current.length === 0) setSugando(false);
+      }
+
+      // O poço abre e fecha em rampa, e não de um quadro pro outro: aparecer
+      // pronto entregaria que ele é um desenho, não uma coisa que acontece.
+      const escancarado = sugados.current.length > 0 ? 1 : 0;
+      poco.forca += (escancarado - poco.forca) * Math.min(1, dt * 14);
+      poco.fase += (2.4 + poco.forca * 7) * dt;
+
+      if (poco.forca > 0.01) {
+        vivo = true;
+        pintarBuraco(ctx, poco.x, poco.y, poco.forca, poco.fase);
+      } else {
+        poco.forca = 0;
       }
 
       if (vivo) {
@@ -274,8 +305,33 @@ export function Saquinho() {
     acordar.current();
   }
 
+  /**
+   * Recolhe a mesa. Os dados não somem: o saquinho abre um poço e os engole.
+   *
+   * A contagem zera na hora, antes da animação terminar — quem clicou já
+   * decidiu, e o painel esperando o último dado cair pareceria travado.
+   *
+   * O painel também fecha: ele ocupa justamente o canto para onde os dados
+   * correm, e a tela dos dados fica por baixo dele. De painel aberto, o fim da
+   * sucção — que é a parte que se quer ver — acontece escondido.
+   */
   function recolher() {
+    const engolidos = dados.current;
     dados.current = [];
+
+    const alvo = botao.current?.getBoundingClientRect();
+    const suave = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (alvo && suave && engolidos.length > 0) {
+      const x = alvo.left + alvo.width / 2;
+      const y = alvo.top + alvo.height / 2;
+      buraco.current.x = x;
+      buraco.current.y = y;
+      sugados.current = [...sugados.current, ...engolidos.map((dado) => sugar(dado, x, y))];
+      setSugando(true);
+      setAberto(false);
+    }
+
     recontar();
     acordar.current();
   }
@@ -359,12 +415,17 @@ export function Saquinho() {
         ) : null}
 
         <button
+          ref={botao}
           type="button"
           aria-label="Saquinho de dados"
           aria-expanded={aberto}
           aria-controls={aberto ? painel : undefined}
           onClick={() => setAberto((estava) => !estava)}
-          className="relative grid size-11 place-items-center rounded-full border border-border bg-background/85 text-muted-foreground backdrop-blur transition-colors hover:border-foreground/30 hover:text-foreground"
+          className={`relative grid size-11 place-items-center rounded-full border bg-background/85 backdrop-blur transition-[color,border-color,transform] duration-200 hover:border-foreground/30 hover:text-foreground ${
+            sugando
+              ? "scale-90 border-foreground/50 text-foreground"
+              : "border-border text-muted-foreground"
+          }`}
         >
           <Dices className="size-5" strokeWidth={1.75} />
           {quantos > 0 ? (
