@@ -1,26 +1,76 @@
-# next.ato20
+<div align="center">
 
-Landing page do [ATO20](https://github.com/valb-mig/ato20) — a IDE para RPG de mesa.
+<img src="src/assets/marca-ato20.png" alt="ATO20" width="160">
 
-Next.js 16 (App Router, Turbopack) + Tailwind CSS 4. Tema escuro travado e a
-mesma dupla de fontes do app (Geist / Geist Mono), pra a landing parecer a
-ferramenta.
+# ATO20
 
-## Rodando
+**A sua IDE para RPG de mesa.**
+
+![License](https://img.shields.io/badge/license-MIT-22c55e?style=flat-square)
+![Next.js](https://img.shields.io/badge/Next.js-16.3-000000?style=flat-square&logo=nextdotjs)
+![React](https://img.shields.io/badge/React-19.2-61DAFB?style=flat-square&logo=react&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
+
+Este repositório é a **landing page**. O aplicativo mora em [`ato20`](https://github.com/ato20-org/ato20).
+
+</div>
+
+---
+
+## O que é o ATO20
+
+Ferramenta para desenvolver suas histórias e controlar suas cenas de RPG de mesa. Feita para
+mesas **presenciais ou em LAN**: o mestre monta a próxima cena no notebook enquanto a mesa
+continua vendo a atual na TV, e cada jogador acompanha pelo próprio celular.
+
+Aplicativo de desktop. Sem servidor, sem conta, sem login — uma campanha é uma pasta no seu
+disco, e quem serve as telas dos jogadores é um daemon que roda dentro do próprio aplicativo,
+na rede local.
+
+**Open source e gratuito** — uma contribuição para a comunidade de RPG.
+
+## Três telas
+
+### Operador
+
+A tela do mestre, dentro do aplicativo: monta cenas, arrasta imagens, esconde regiões e
+decide o que entra no ar. A cena **em edição** e a cena **no ar** são separadas — é isso que
+permite preparar a próxima enquanto a mesa segue na atual.
+
+![O Operador](docs/capturas/operador.png)
+
+### Assistir
+
+Só o palco, sem controle. Vai na TV atrás do mestre, aberta no navegador de qualquer aparelho
+da casa.
+
+![A tela Assistir](docs/capturas/assistir.png)
+
+### Plateia
+
+O celular de cada jogador, com a ficha, as notas e os anexos dele. Entra lendo o QR do
+Operador — ninguém instala nada além do mestre.
+
+![A Plateia](docs/capturas/plateia.png)
+
+## Sobre esta landing
+
+Next.js 16 (App Router, Turbopack) + Tailwind CSS 4. Tema escuro travado e a mesma dupla de
+fontes do app (Geist / Geist Mono), para a landing parecer a ferramenta.
 
 ```bash
 pnpm install
 pnpm dev
 ```
 
-Sobe em http://localhost:3011. A porta está fixa no `package.json` (`dev` e
-`start`) porque o app do ATO20 ocupa a 3000, e os dois rodam juntos.
+Sobe em http://localhost:3011. A porta está fixa no `package.json` (`dev` e `start`) porque o
+app do ATO20 ocupa a 3000, e os dois rodam juntos.
 
-## Estado
+Os artefatos de download estão em [`src/lib/plataformas.ts`](src/lib/plataformas.ts). Hoje os
+botões são mockup, porque ainda não há release publicada — quando a primeira sair, é marcar
+`disponivel: true` e apontar a URL.
 
-- [x] Hero: frase, download com detecção de sistema, link do repositório
-- [ ] Builds reais (hoje os botões de download são mockup, sem release publicada)
-- [ ] Demais seções
+## Licença
 
-Os artefatos de download estão em [`src/lib/plataformas.ts`](src/lib/plataformas.ts).
-Quando a primeira release sair, é só marcar `disponivel: true` e apontar a URL.
+[MIT](LICENSE). Use, modifique e distribua.
