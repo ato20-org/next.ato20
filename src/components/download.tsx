@@ -6,6 +6,7 @@ import Link from "next/link";
 
 import { ArrowUpRight, Download as IconeBaixar, Terminal } from "lucide-react";
 
+import { ComandoDeDownload } from "@/components/comando-de-download";
 import {
   MarcaAndroid,
   MarcaApple,
@@ -141,6 +142,13 @@ export function Download({ simples = false }: { simples?: boolean } = {}) {
             </a>
           ))}
         </p>
+      ) : null}
+
+      {/* Embaixo do botão, e não no lugar dele: o comando é o caminho de quem
+          já mora no terminal, e o botão é o de todo mundo. No fecho não entra,
+          pela mesma razão que a lista de formatos não entra. */}
+      {arquivo && escolhida && !simples ? (
+        <ComandoDeDownload plataforma={escolhida} url={arquivo.url} />
       ) : null}
 
       {simples ? null : (
