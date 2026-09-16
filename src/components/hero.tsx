@@ -25,7 +25,7 @@ export function Hero() {
           </h1>
 
           <p className="mt-7 font-mono text-sm text-muted-foreground">
-            <span className="text-accent">{"//"}</span> não é um VTT
+            <span className="text-accent">{"//"}</span> VTT para jogo presencial
           </p>
 
           <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground text-pretty">

@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 });
 
 const DESCRICAO =
-  "O ATO20 é a IDE para mestrar RPG de mesa. Não é um VTT: é pra mestrar em LAN, presencialmente, com os seus amigos. Open source.";
+  "O ATO20 é a IDE para mestrar RPG de mesa. Um VTT para jogo presencial: roda em LAN, na sua casa, com os seus amigos. Open source.";
 
 export const metadata: Metadata = {
   title: "ATO20 — a IDE para RPG de mesa",
