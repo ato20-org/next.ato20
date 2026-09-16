@@ -9,6 +9,7 @@
     "lint": "eslint",
     "gerar:marcas": "node scripts/gerar-marcas.mjs",
     "gerar:dados": "node scripts/gerar-dados.mjs",
+    "gerar:releases": "node scripts/gerar-releases.mjs",
     "gerar:ascii": "node scripts/gerar-ascii.mjs"
   },
   "dependencies": {

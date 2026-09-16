@@ -1,45 +1,99 @@
+import { ULTIMA_RELEASE, type ArquivoDeRelease } from "@/lib/releases";
+
 export type PlataformaId = "linux" | "windows" | "macos" | "android" | "ios";
+
+export type PrevisaoId = "em-breve" | "mais-pra-frente";
+
+/** O texto da tag que acompanha cada plataforma enquanto não há build. */
+export const PREVISOES: Record<PrevisaoId, string> = {
+  "em-breve": "em breve",
+  "mais-pra-frente": "mais pra frente",
+};
 
 export type Plataforma = {
   id: PlataformaId;
   nome: string;
-  /** Nome do artefato que a release vai publicar. Hoje é mockup: não existe build. */
+  /**
+   * Final do nome do arquivo principal da plataforma dentro da release. É por
+   * ele que a disponibilidade é descoberta: se a release trouxe o arquivo, a
+   * plataforma está no ar — não existe um interruptor pra esquecer de virar.
+   */
+  principal: string;
+  /** Outros formatos da mesma plataforma, na ordem em que devem aparecer. */
+  alternativos: string[];
+  /** Nome planejado, mostrado enquanto a release ainda não publica o arquivo. */
   artefato: string;
-  disponivel: boolean;
+  /** Prazo relativo: separa o que vem primeiro do que ainda vai demorar. */
+  previsao: PrevisaoId;
 };
 
 export const PLATAFORMAS: Record<PlataformaId, Plataforma> = {
   linux: {
     id: "linux",
     nome: "Linux",
-    artefato: "ato20_0.1.0_amd64.AppImage",
-    disponivel: false,
+    // O AppImage é o padrão porque roda sem instalar nada.
+    principal: "amd64.AppImage",
+    alternativos: [".deb", ".rpm"],
+    artefato: "ato20_amd64.AppImage",
+    previsao: "em-breve",
   },
   windows: {
     id: "windows",
     nome: "Windows",
-    artefato: "ato20_0.1.0_x64-setup.exe",
-    disponivel: false,
+    principal: "x64-setup.exe",
+    alternativos: [".msi"],
+    artefato: "ato20_x64-setup.exe",
+    previsao: "em-breve",
   },
   macos: {
     id: "macos",
     nome: "macOS",
-    artefato: "ato20_0.1.0_universal.dmg",
-    disponivel: false,
+    principal: ".dmg",
+    alternativos: [],
+    artefato: "ato20_universal.dmg",
+    // Assinar e empacotar .dmg pede um Mac, e ainda não há um por aqui.
+    previsao: "mais-pra-frente",
   },
   android: {
     id: "android",
     nome: "Android",
-    artefato: "ato20_0.1.0.apk",
-    disponivel: false,
+    principal: ".apk",
+    alternativos: [],
+    artefato: "ato20.apk",
+    // O mobile sai depois do desktop: a interface precisa ser refeita.
+    previsao: "mais-pra-frente",
   },
   ios: {
     id: "ios",
     nome: "iOS",
+    // O iOS não sai como arquivo: quando existir, é TestFlight.
+    principal: "",
+    alternativos: [],
     artefato: "TestFlight",
-    disponivel: false,
+    previsao: "mais-pra-frente",
   },
 };
+
+function acharNaRelease(sufixo: string): ArquivoDeRelease | null {
+  if (!sufixo) return null;
+
+  return (
+    ULTIMA_RELEASE?.arquivos.find((arquivo) => arquivo.nome.endsWith(sufixo)) ??
+    null
+  );
+}
+
+/** O arquivo que o botão de download entrega, se a release já publicou um. */
+export function arquivoPrincipal(id: PlataformaId): ArquivoDeRelease | null {
+  return acharNaRelease(PLATAFORMAS[id].principal);
+}
+
+/** Os outros formatos da mesma plataforma que a release trouxe. */
+export function arquivosAlternativos(id: PlataformaId): ArquivoDeRelease[] {
+  return PLATAFORMAS[id].alternativos
+    .map(acharNaRelease)
+    .filter((arquivo): arquivo is ArquivoDeRelease => arquivo !== null);
+}
 
 export const ORDEM_PLATAFORMAS: PlataformaId[] = [
   "linux",
