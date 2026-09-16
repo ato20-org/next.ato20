@@ -3,6 +3,14 @@ import { ChevronDown, Clapperboard, LayoutGrid, Maximize2, Minus, Settings, X } 
 
 import marca from "@/assets/marca-ato20.png";
 import { DemoMestre } from "@/components/demo-mestre";
+import { ULTIMA_RELEASE } from "@/lib/releases";
+
+/**
+ * A versão que a barra mostra sai da release publicada, e não de um número
+ * escrito aqui: assim a ilustração envelhece junto com o aplicativo em vez de
+ * virar mentira na próxima tag.
+ */
+const VERSAO = ULTIMA_RELEASE?.tag.replace(/^v/, "").replace(/-.*$/, "");
 
 /**
  * Moldura da demo: a mesma barra fina que o aplicativo desenha por conta
@@ -13,15 +21,30 @@ import { DemoMestre } from "@/components/demo-mestre";
  * menu de abas e o código da mesa — o que os jogadores digitam pra entrar. No
  * meio fica o que está sendo editado, e à direita os botões da janela.
  */
-export function JanelaDemo({ cena, codigo = "VGMBWH" }: { cena?: string; codigo?: string }) {
+export function JanelaDemo({
+  cena,
+  campanha = "Crônicas do Javali",
+  codigo = "VGMBWH",
+}: {
+  cena?: string;
+  campanha?: string;
+  codigo?: string;
+}) {
   return (
-    <figure className="m-0 overflow-x-auto overflow-y-hidden rounded-xl border border-border bg-muted/40 shadow-2xl shadow-black/60 backdrop-blur-sm">
+    <figure className="m-0 overflow-hidden rounded-xl border border-border bg-muted/40 shadow-2xl shadow-black/60 backdrop-blur-sm">
       <div className="relative flex h-8 min-w-240 items-center gap-2 border-b border-border px-2.5">
+        {VERSAO ? (
+          <span className="font-mono text-[10px] text-muted-foreground/70">
+            {VERSAO}
+          </span>
+        ) : null}
         <Image src={marca} alt="" className="h-3.5 w-auto opacity-80" />
         <span className="font-mono text-xs font-medium">ATO20</span>
 
+        {/* O nome da campanha aberta, e não o do sistema de regras: é o que a
+            janela É. */}
         <span className="flex items-center gap-0.5 text-xs text-muted-foreground">
-          Brutal
+          {campanha}
           <ChevronDown className="size-3" strokeWidth={1.75} />
         </span>
         <span className="flex items-center gap-1 text-xs text-muted-foreground">
@@ -51,10 +74,6 @@ export function JanelaDemo({ cena, codigo = "VGMBWH" }: { cena?: string; codigo?
       </div>
 
       <DemoMestre cena={cena} />
-
-      <figcaption className="min-w-240 border-t border-border px-3 py-2 font-mono text-xs text-muted-foreground">
-        ilustração da visão do mestre
-      </figcaption>
     </figure>
   );
 }

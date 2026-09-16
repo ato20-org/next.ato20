@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
+import { FundoDeDados } from "@/components/fundo-de-dados";
 import { Saquinho } from "@/components/saquinho";
 
 import "./globals.css";
@@ -39,6 +40,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="pt-BR" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body>
+        {/* Fora do `children`: o fundo é do site, e acompanha a rolagem de
+            qualquer página. */}
+        <FundoDeDados />
         {children}
         {/* Fora do `children`: o saquinho é do site, não de uma página. */}
         <Saquinho />

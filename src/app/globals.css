@@ -133,6 +133,62 @@
   }
 }
 
+/* --- Entrada dos blocos ---------------------------------------------------
+   Cada bloco aparece quando entra na viewport. Quem conta o progresso é a
+   própria rolagem, via `view()`, e não um IntersectionObserver: sem listener,
+   sem estado no React, e o navegador resolve no compositor.
+
+   Reaproveita os quadros do `.revelar` do hero pra o movimento ser o mesmo nos
+   dois casos. A faixa termina cedo (`cover 22%`) porque o bloco tem que estar
+   inteiro em pé quando chega na altura de leitura — animação que ainda está
+   correndo enquanto a pessoa lê vira distração.
+
+   Sem suporte a `animation-timeline`, o `@supports` deixa tudo parado e
+   visível, que é o estado final de qualquer jeito. */
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .surgir {
+      animation: revelar linear both;
+      animation-timeline: view();
+      animation-range: entry 8% cover 22%;
+    }
+  }
+}
+
+/* --- Fundo de dados -------------------------------------------------------
+   A camada é fixa na viewport, e não presa ao hero: assim os dados acompanham
+   a página inteira em vez de sumirem na primeira rolagem.
+
+   Por cima disso, ela deriva devagar pra cima conforme a página desce. Quem
+   conta o progresso é a própria rolagem, via `scroll()`, e não um listener:
+   o navegador anima isso no compositor, sem quadro nenhum de JavaScript. Onde
+   `animation-timeline` não existe, a camada simplesmente fica parada — o
+   `@supports` evita que a animação rode no relógio e desloque tudo de uma vez. */
+
+.fundo-de-dados {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .fundo-de-dados {
+      animation: derivar-no-scroll linear;
+      animation-timeline: scroll(root block);
+    }
+  }
+}
+
+@keyframes derivar-no-scroll {
+  to {
+    transform: translate3d(0, -14vh, 0);
+  }
+}
+
 /* --- Flutuação dos dados --------------------------------------------------
    Deriva lenta dos dados do fundo. Fica no CSS, e não no laço que segue o
    mouse, porque ali ela obrigaria o requestAnimationFrame a rodar pra sempre;
@@ -191,6 +247,31 @@
   margin: 0;
   font-family: var(--font-mono), monospace;
   font-size: calc(100cqi / 77.4);
+  line-height: 0.95;
+  white-space: pre;
+}
+
+/* --- Itens em ASCII -------------------------------------------------------
+   Poção, espada e machado entram de marca-d'água atrás das seções. Mesma conta
+   de corpo do ASCII da marca — o avanço de uma monoespaçada é ~0.6em —, só que
+   o número de colunas vem por variável, porque cada desenho tem o seu.
+
+   A máscara radial apaga as pontas: sem ela o desenho terminaria num corte reto
+   na borda da seção, que é o oposto de marca-d'água. */
+
+.marca-ascii {
+  container-type: inline-size;
+  color: var(--foreground);
+  /* Bem acima dos 5% dos dados do fundo: aqueles são traço contínuo, e este é
+     texto fino e cheio de vão — no mesmo valor ele simplesmente some. */
+  opacity: 0.12;
+  mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, #000 45%, transparent 85%);
+}
+
+.marca-ascii pre {
+  margin: 0;
+  font-family: var(--font-mono), monospace;
+  font-size: calc(100cqi / (var(--ascii-colunas) * 0.6));
   line-height: 0.95;
   white-space: pre;
 }

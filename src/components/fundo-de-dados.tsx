@@ -33,7 +33,12 @@ type Item = {
 };
 
 /* O dado maior deriva devagar e pouco; os pequenos, mais rápido e mais longe —
-   é o mesmo truque de profundidade da força do mouse. */
+   é o mesmo truque de profundidade da força do mouse.
+
+   Os tamanhos são contidos fora do xl: a camada é fixa e atravessa a página
+   inteira, então um dado que emoldurava bem a coluna do hero passa por cima do
+   texto das outras seções em tela estreita. A ideia é que só um pedaço entre
+   pela borda — dado grande e centralizado deixa de ser textura. */
 const DADOS: Item[] = [
   {
     poliedro: D20,
@@ -41,7 +46,7 @@ const DADOS: Item[] = [
     // No celular o d20 é maior que a tela e as arestas cruzavam o título.
     // Em xl ele desce pra faixa vazia embaixo: lá em cima ele cruzava o título.
     posicao:
-      "-right-28 top-16 hidden w-[34rem] sm:block xl:top-auto xl:-right-20 xl:-bottom-44 xl:w-[30rem]",
+      "-right-20 top-24 hidden w-[17rem] sm:block md:-right-28 md:w-[22rem] xl:top-auto xl:-right-20 xl:-bottom-44 xl:w-[30rem]",
     opacidade: "opacity-[0.07]",
     deriva: { duracao: "19s", atraso: "-4s", x: "-8px", y: "16px", giro: "1.5deg" },
   },
@@ -50,7 +55,7 @@ const DADOS: Item[] = [
     forca: 14,
     // Em xl desce mais, pra ficar embaixo do ASCII em vez de atravessá-lo.
     posicao:
-      "-left-24 -bottom-20 w-[16rem] sm:-left-32 sm:w-[28rem] xl:-left-24 xl:-bottom-36 xl:w-[24rem]",
+      "-left-16 -bottom-16 w-[11rem] sm:-left-24 sm:w-[16rem] md:w-[20rem] xl:-left-24 xl:-bottom-36 xl:w-[24rem]",
     opacidade: "opacity-[0.05]",
     deriva: { duracao: "23s", atraso: "-11s", x: "10px", y: "-14px", giro: "-2deg" },
   },
@@ -65,26 +70,27 @@ const DADOS: Item[] = [
   {
     poliedro: D6,
     forca: 16,
-    posicao: "right-6 bottom-8 hidden w-[7rem] sm:block xl:hidden",
+    posicao: "right-4 bottom-8 hidden w-[5rem] sm:block md:w-[6rem] xl:hidden",
     opacidade: "opacity-[0.05]",
     deriva: { duracao: "13s", atraso: "-2s", x: "-12px", y: "-18px", giro: "-2.5deg" },
   },
 ];
 
 /**
- * Dados soltos no fundo do hero. É decoração: ficam nas margens que a coluna de
+ * Dados soltos no fundo do site. É decoração: ficam nas margens que a coluna de
  * texto não ocupa, em opacidade baixa, e vários sangram pra fora da tela — dado
  * inteiro e centralizado pareceria ilustração, não textura.
+ *
+ * A camada é fixa e mora no layout, não no hero: os dados seguem a rolagem
+ * pela página toda. Quem cuida da posição e da deriva é `.fundo-de-dados`, em
+ * `globals.css`.
  *
  * São dois movimentos somados: a deriva lenta vive no CSS, no contêiner, e o
  * giro que segue o mouse redesenha o traçado do sólido lá dentro.
  */
 export function FundoDeDados() {
   return (
-    <div
-      className="pointer-events-none absolute inset-0 overflow-hidden text-foreground"
-      aria-hidden
-    >
+    <div className="fundo-de-dados text-foreground" aria-hidden>
       {DADOS.map(({ poliedro, forca, posicao, opacidade, deriva }) => (
         <div
           key={posicao}
