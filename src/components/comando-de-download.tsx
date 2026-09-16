@@ -84,13 +84,16 @@ export function ComandoDeDownload({
   }
 
   return (
-    <div className="mt-4 flex items-center gap-3 rounded-lg border border-border bg-muted/40 px-3 py-2">
-      <span className="shrink-0 font-mono text-[0.65rem] tracking-wide text-muted-foreground uppercase">
+    <div className="mt-4 flex max-w-full items-center gap-2 overflow-hidden rounded-lg border border-border bg-muted/40 py-2 pr-1 pl-3 sm:gap-3 sm:pr-2">
+      {/* Some no celular: lá a largura toda é do comando, e o rótulo é a
+          informação mais dispensável dos três. */}
+      <span className="hidden shrink-0 font-mono text-[0.65rem] tracking-wide text-muted-foreground uppercase sm:inline">
         {receita.rotulo}
       </span>
-      {/* A rolagem é do bloco: quebrar um comando em duas linhas convida a
-          copiar só metade dele. */}
-      <code className="flex-1 overflow-x-auto font-mono text-xs whitespace-nowrap">
+      {/* `min-w-0` é o que faz a rolagem existir: sem ele o `flex-1` mantém
+          `min-width: auto`, o código se recusa a encolher abaixo do próprio
+          texto, e quem transborda é a página inteira em vez deste bloco. */}
+      <code className="min-w-0 flex-1 overflow-x-auto font-mono text-xs whitespace-nowrap">
         {receita.comando}
       </code>
       <button

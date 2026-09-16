@@ -9,8 +9,14 @@ export function Hero() {
 
       <Cabecalho />
 
-      <div className="revelar mx-auto grid w-full max-w-3xl gap-16 px-6 pt-12 pb-20 sm:pt-16 sm:pb-24 xl:max-w-7xl xl:grid-cols-[minmax(0,1fr)_minmax(0,34rem)] xl:items-center xl:gap-12 xl:px-12">
-        <div>
+      {/* A coluna vai escrita como `minmax(0,1fr)` também fora do xl. Sem
+          template, a coluna implícita é `auto`, que quer dizer max-content: um
+          filho que não quebra linha -- o comando de download é um -- estica a
+          coluna além do `max-w-3xl`, e o `overflow-hidden` da seção corta o
+          hero inteiro em vez de o navegador mostrar que algo saiu do lugar. É
+          a mesma razão pela qual o template do xl já nasceu com `minmax(0,…)`. */}
+      <div className="revelar mx-auto grid w-full max-w-3xl grid-cols-[minmax(0,1fr)] gap-16 px-6 pt-12 pb-20 sm:pt-16 sm:pb-24 xl:max-w-7xl xl:grid-cols-[minmax(0,1fr)_minmax(0,34rem)] xl:items-center xl:gap-12 xl:px-12">
+        <div className="min-w-0">
           <h1 className="text-5xl font-semibold tracking-tight text-balance sm:text-6xl">
             ATO20
             <span className="mt-3 block text-2xl font-normal text-muted-foreground sm:text-3xl">
