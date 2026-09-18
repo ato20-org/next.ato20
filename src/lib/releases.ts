@@ -22,6 +22,41 @@ export type Release = {
 /** Da mais nova pra mais velha, que é como a API devolve. */
 export const RELEASES: Release[] = [
   {
+    "tag": "v0.1.2",
+    "nome": "ATO20 v0.1.2",
+    "publicadaEm": "2026-09-18T17:19:42Z",
+    "prerelease": false,
+    "pagina": "https://github.com/ato20-org/ato20/releases/tag/v0.1.2",
+    "notas": "Uma correção de bastidor. Se você usa o AppImage ou o instalador do Windows, ela não muda nada para você.\n\n## Correções\n\n**A página da loja anunciava as novidades da versão anterior**\nDetalhe de bastidor, e só aparece para quem instalar pela loja: o arquivo que descreve o ATO20 para o Flathub ficou uma versão atrás na 0.1.1, então a loja mostrava o que mudou na 0.1.0. Nada muda para quem baixou o AppImage ou o instalador do Windows.\n\n---\n\n**Linux** — `.AppImage` roda sem instalar, e na primeira abertura ele mesmo põe o atalho no menu (rofi, wofi e afins). Basta dar permissão de execução: `chmod +x ato20_*.AppImage`. `.deb` e `.rpm` para quem prefere instalar pelo gerenciador.\n\n**Windows** — `.msi` ou o instalador `.exe`. Os dois saem SEM assinatura de código, então o SmartScreen vai avisar: \"Mais informações\" e \"Executar mesmo assim\".",
+    "arquivos": [
+      {
+        "nome": "ato20-0.1.2-1.x86_64.rpm",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.1.2/ato20-0.1.2-1.x86_64.rpm",
+        "bytes": 15358716
+      },
+      {
+        "nome": "ato20_0.1.2_amd64.AppImage",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.1.2/ato20_0.1.2_amd64.AppImage",
+        "bytes": 102951416
+      },
+      {
+        "nome": "ato20_0.1.2_amd64.deb",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.1.2/ato20_0.1.2_amd64.deb",
+        "bytes": 15433386
+      },
+      {
+        "nome": "ato20_0.1.2_x64-setup.exe",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.1.2/ato20_0.1.2_x64-setup.exe",
+        "bytes": 10475134
+      },
+      {
+        "nome": "ato20_0.1.2_x64_en-US.msi",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.1.2/ato20_0.1.2_x64_en-US.msi",
+        "bytes": 13662278
+      }
+    ]
+  },
+  {
     "tag": "v0.1.1",
     "nome": "ATO20 v0.1.1",
     "publicadaEm": "2026-09-18T16:47:55Z",
