@@ -21,7 +21,7 @@
 import { execFileSync } from "node:child_process";
 import { writeFileSync } from "node:fs";
 
-const REPOSITORIO = "ato20-org/desktop.ato20";
+const REPOSITORIO = "ato20-org/ato20";
 const API = `https://api.github.com/repos/${REPOSITORIO}/releases?per_page=30`;
 const DESTINO = "src/lib/releases.ts";
 
