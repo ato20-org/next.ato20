@@ -22,6 +22,41 @@ export type Release = {
 /** Da mais nova pra mais velha, que é como a API devolve. */
 export const RELEASES: Release[] = [
   {
+    "tag": "v0.1.3",
+    "nome": "ATO20 v0.1.3",
+    "publicadaEm": "2026-09-18T18:26:58Z",
+    "prerelease": false,
+    "pagina": "https://github.com/ato20-org/ato20/releases/tag/v0.1.3",
+    "notas": "O ATO20 ganha o próprio ícone. É a única mudança — e ela aparece na barra de tarefas, no atalho e no menu.\n\n## Correções\n\n**O ATO20 passa a ter o próprio ícone na barra de tarefas e no atalho**\nAté aqui todo pacote — AppImage, instalador do Windows, .deb e .rpm — saía com o ícone padrão da ferramenta que empacota o aplicativo, dois anéis ciano e amarelo. Agora é a marca do ATO20: a tenda com o d20, sobre fundo escuro.\n\n---\n\n**Linux** — `.AppImage` roda sem instalar, e na primeira abertura ele mesmo põe o atalho no menu (rofi, wofi e afins). Basta dar permissão de execução: `chmod +x ato20_*.AppImage`. `.deb` e `.rpm` para quem prefere instalar pelo gerenciador.\n\n**Windows** — `.msi` ou o instalador `.exe`. Os dois saem SEM assinatura de código, então o SmartScreen vai avisar: \"Mais informações\" e \"Executar mesmo assim\".",
+    "arquivos": [
+      {
+        "nome": "ato20-0.1.3-1.x86_64.rpm",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.1.3/ato20-0.1.3-1.x86_64.rpm",
+        "bytes": 15350661
+      },
+      {
+        "nome": "ato20_0.1.3_amd64.AppImage",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.1.3/ato20_0.1.3_amd64.AppImage",
+        "bytes": 102947320
+      },
+      {
+        "nome": "ato20_0.1.3_amd64.deb",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.1.3/ato20_0.1.3_amd64.deb",
+        "bytes": 15425232
+      },
+      {
+        "nome": "ato20_0.1.3_x64-setup.exe",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.1.3/ato20_0.1.3_x64-setup.exe",
+        "bytes": 10410686
+      },
+      {
+        "nome": "ato20_0.1.3_x64_en-US.msi",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.1.3/ato20_0.1.3_x64_en-US.msi",
+        "bytes": 13645894
+      }
+    ]
+  },
+  {
     "tag": "v0.1.2",
     "nome": "ATO20 v0.1.2",
     "publicadaEm": "2026-09-18T17:19:42Z",
