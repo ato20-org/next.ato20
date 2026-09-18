@@ -11,11 +11,13 @@ import type { PlataformaId } from "@/lib/plataformas";
  * botão.
  *
  * A URL fixa a TAG da release, e não usa o atalho `releases/latest/download/`
- * do GitHub: esse atalho ignora pré-lançamento, e enquanto o ATO20 for alpha
- * ele responde 404 em todas as versões. Como a URL vem do `releases.ts`, que
- * nasce do `gerar:releases`, a tag se atualiza sozinha a cada versão — o que
- * seria o motivo de querer o `latest` está resolvido na geração, e não na hora
- * da visita.
+ * do GitHub. Até a 0.0.6 o motivo era outro -- o atalho ignora pré-lançamento,
+ * e toda release era alpha --, mas ele continua valendo pela razão mais chata:
+ * `latest` resolve a RELEASE, não o nome do arquivo, e o nome carrega o número
+ * da versão dentro (`ato20_0.1.0_amd64.AppImage`). Como a URL vem do
+ * `releases.ts`, que nasce do `gerar:releases`, a tag se atualiza sozinha a
+ * cada versão — o que seria o motivo de querer o `latest` está resolvido na
+ * geração, e não na hora da visita.
  *
  * Só Linux e Windows têm comando, porque só eles têm arquivo. As outras
  * plataformas nem chegam aqui: quem monta o componente já não tem `arquivo`.

@@ -38,8 +38,8 @@ export function Fechamento() {
             strokeWidth={1.75}
           />
           <span>
-            alpha: espere coisa quebrada, e problemas de portabilidade e de
-            desempenho. O{" "}
+            beta: dá pra jogar com ele, e ainda há aresta — principalmente de
+            portabilidade e de desempenho. O{" "}
             <a
               href={AUTOR_URL}
               target="_blank"
