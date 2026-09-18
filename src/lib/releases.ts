@@ -22,6 +22,41 @@ export type Release = {
 /** Da mais nova pra mais velha, que é como a API devolve. */
 export const RELEASES: Release[] = [
   {
+    "tag": "v0.1.0",
+    "nome": "ATO20 v0.1.0",
+    "publicadaEm": "2026-09-18T12:34:10Z",
+    "prerelease": false,
+    "pagina": "https://github.com/ato20-org/desktop.ato20/releases/tag/v0.1.0",
+    "notas": "Primeira beta. Da 0.0.6 para cá são cem commits, e — o que importa mais — **o aplicativo instalado volta a avisar quando sai versão nova**.\n\n## Novidades\n\n**O aplicativo passa a avisar sozinho quando existe versão nova**\nAté aqui toda versão saiu marcada como pré-lançamento, e o endereço que o aplicativo consulta ignora pré-lançamento — quem baixou a 0.0.1 ficou na 0.0.1 sem nunca saber que havia seis versões depois. Desta em diante o aviso chega sozinho.\n\n**A campanha ganha quadros: uma folha sem chão para o mestre pensar**\nO quadro fica na aba ao lado de Cenas, com pastas dentro de pastas. Nele você escreve texto direto na folha, liga as coisas com setas — de ponta solta ou grudada no que você mover — e mistura post-it, imagem, dado e cartão no mesmo lugar. Pôr o quadro no ar mostra a folha inteira na TV e no celular.\n\n**Documento: um cartão de Markdown com prévia ao vivo**\nVocê escreve de um lado e vê formatado do outro. No começo da linha, # dá título, ## subtítulo e - item de lista; @, / e > chamam referência, comando e citação, tanto na nota quanto no cartão.\n\n**A aba Arquivos põe quadros, notas e imagens na mesma árvore de pastas**\nQualquer arquivo entra no acervo agora, e a aba Imagens virou Biblioteca. A nota passou a ser arquivo da campanha: o cartão no quadro só aponta para ela, então a mesma nota pode aparecer em dois quadros sem virar duas cópias. Arrastar a nota da árvore até o quadro funciona como com imagem.\n\n**Ctrl+K abre uma paleta de comandos**\nEla acha janela, cena, livro, imagem e atalho pelo nome, sem você ter de lembrar em que painel aquilo estava.\n\n**Dá para jogar dados por notação, como \"2d6\", sem pegar no saquinho**\n\n**O saquinho ganha o d% de dezenas e a moeda de cara ou coroa**\nO celular do jogador também pede os dois, e a mesa passa a ler \"Coroa\" e \"d%\" em vez de \"2\" e \"d2\".\n\n**A régua virou medidor que fica no mapa, com círculo, cone e retângulo**\nAntes a medida sumia quando você soltava o mouse. Agora ela fica posta na cena, e a forma diz o que você está medindo.\n\n**A estante mostra os livros com capa, em caixa 2.5D, e o clique abre o PDF**\nHá também um comando para abrir o livro no leitor de PDF da máquina. A capa fica guardada depois da primeira vez, então a estante não pisca ao reabrir.\n\n**A cena guarda um handout: imagens do acervo que você manda à mesa uma a uma**\nA bolinha recebe imagens arrastadas e as leva à TV; o que já está na mesa volta para a manga pela mesma bolinha ou pelo menu. O painel ganhou título e uma caixinha de + que escolhe imagens do computador.\n\n**A janela \"Mesa\" mostra o que a TV está vendo, em miniatura, na sua tela**\n\n**Girar pelos cantos do gizmo, como no Figma**\nO botão de rotacionar saiu. A roda do mouse redimensiona a imagem na mão e Shift gira; as setas do teclado andam cinco de cada vez, e com Shift giram a seleção. Segurando a alça da câmera, a roda dá zoom nela.\n\n**Dá para afastar até 50%, com vazio em volta do mapa**\n\n**A cena nasce sem câmera, e a mesa vê tudo até a primeira entrar**\nAntes a cena nova já vinha com um enquadramento que você não escolheu. O botão \"Mesa\" também saiu da barra de cima.\n\n**A lista de personagens separa Players em cima e NPCs embaixo**\n\n**A ficha mostra quem está jogando com ela, e o diálogo do jogador diz há quanto tempo**\nDá para entregar o personagem a outra pessoa dali, e tirar alguém da mesa passa a pedir confirmação. A nota fechada do personagem fica guardada.\n\n**A porta mudou: botões no alto, \"Encontrar campanha\" e o mapa da cena ao fundo do cartão**\nA estante ganhou botão e aceita arquivo solto, \"O que mudou\" virou botão ao lado das Configurações, e a estante vazia virou um alvo tracejado em vez de um espaço em branco.\n\n**Esc larga a ferramenta, e um X na barra faz o mesmo**\n\n**O palco vazio mostra a marca e os atalhos principais**\n\n**A tela diz qual pasta da campanha sumiu, em vez de abrir uma mesa vazia**\n\n## Correções\n\n**Apagar a pasta da campanha com a mesa aberta virava mesa vazia, e a gravação recriava a pasta pela metade**\n\n**No leitor, dar zoom deixava a folha branca por um instante**\nA página que você está lendo passa na frente das vizinhas, e trocar de página depressa não deixa mais um desenho cancelado na tela.\n\n**A máscara escura da câmera cobria o post-it e os controles do mestre**\n\n**O clique fora do mapa tinha deixado de valer**\nA borda saiu e o vazio em volta ganhou pontos.\n\n**O token achatava ao encolher, em vez de parar no piso**\n\n**O d% nascia sem valor, e a soma da mesa dava NaN**\n\n**A ficha só via quem entrou na mesa depois de reabrir o programa**\n\n**O diálogo de Configurações prendia o foco e matava a barra da janela**\n\n**O rótulo da câmera não cabia quando a moldura ficava pequena na tela**\n\n**No quadro, o dado caía puxado para o plano, e não onde a mão soltou**\n\n**No quadro, o texto novo nascia invisível e sem foco**\n\n**A bancada já arrumada não ganhava a aba Quadros ao lado de Cenas**\n\n**O arquivo da extensão se chama manifest.json, e não manifesto.json**\n\n---\n\n**Linux** — `.AppImage` roda sem instalar, e na primeira abertura ele mesmo põe o atalho no menu (rofi, wofi e afins). Basta dar permissão de execução: `chmod +x ato20_*.AppImage`. `.deb` e `.rpm` para quem prefere instalar pelo gerenciador.\n\n**Windows** — `.msi` ou o instalador `.exe`. Os dois saem SEM assinatura de código, então o SmartScreen vai avisar: \"Mais informações\" e \"Executar mesmo assim\".",
+    "arquivos": [
+      {
+        "nome": "ato20-0.1.0-1.x86_64.rpm",
+        "url": "https://github.com/ato20-org/desktop.ato20/releases/download/v0.1.0/ato20-0.1.0-1.x86_64.rpm",
+        "bytes": 15371333
+      },
+      {
+        "nome": "ato20_0.1.0_amd64.AppImage",
+        "url": "https://github.com/ato20-org/desktop.ato20/releases/download/v0.1.0/ato20_0.1.0_amd64.AppImage",
+        "bytes": 102984184
+      },
+      {
+        "nome": "ato20_0.1.0_amd64.deb",
+        "url": "https://github.com/ato20-org/desktop.ato20/releases/download/v0.1.0/ato20_0.1.0_amd64.deb",
+        "bytes": 15446296
+      },
+      {
+        "nome": "ato20_0.1.0_x64-setup.exe",
+        "url": "https://github.com/ato20-org/desktop.ato20/releases/download/v0.1.0/ato20_0.1.0_x64-setup.exe",
+        "bytes": 10479069
+      },
+      {
+        "nome": "ato20_0.1.0_x64_en-US.msi",
+        "url": "https://github.com/ato20-org/desktop.ato20/releases/download/v0.1.0/ato20_0.1.0_x64_en-US.msi",
+        "bytes": 13680283
+      }
+    ]
+  },
+  {
     "tag": "v0.0.6-alpha",
     "nome": "ATO20 v0.0.6 alpha",
     "publicadaEm": "2026-09-16T14:25:26Z",
