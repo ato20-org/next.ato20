@@ -22,6 +22,41 @@ export type Release = {
 /** Da mais nova pra mais velha, que é como a API devolve. */
 export const RELEASES: Release[] = [
   {
+    "tag": "v0.2.0",
+    "nome": "ATO20 v0.2.0",
+    "publicadaEm": "2026-09-23T19:36:12Z",
+    "prerelease": false,
+    "pagina": "https://github.com/ato20-org/ato20/releases/tag/v0.2.0",
+    "notas": "## Novidades\n\n**O painel de sons virou uma mesa de som.** Antes era uma trilha por vez. Agora vários sons tocam juntos — a chuva por baixo, a taverna por cima, o trovão disparado na hora —, cada um com a sua barra de volume. O teclado numérico vira os pads: aperte a tecla e o som sai, sem procurar nada na tela. Trocar de ambiente faz fade em vez de cortar.\n\n**Os sons ganharam tipo, nome próprio, busca e macros.** Cada som diz se é ambiente ou disparo, os pads têm cor, e uma macro acende um conjunto inteiro de uma vez. O volume geral saiu de dentro da campanha e virou um botão na barra da janela, onde a mão o acha no meio da sessão.\n\n**A cena lembra que ambiente ela acende.** Abrir a taverna acende o som da taverna.\n\n**Dá para desenhar no mapa, e não só no quadro.** Formas geométricas, setas que curvam e texto solto valem nos dois, com a régua de ferramentas na borda. E você escolhe o que a mesa vê: o desenho pode ficar só para você.\n\n**A área escondida pode ser quadrada, redonda ou desenhada à mão.** Ela também gira, e os vértices se editam depois — a caverna deixa de ser um retângulo em cima de um desenho que não é retangular.\n\n**O token de personagem ganhou um contorno que diz de quem ele é.**\n\n**O personagem pode ter várias aparências.** Além da padrão, quantas você quiser: Ferido, Lobo, Encapuzado. Cada uma guarda o próprio retrato e a própria miniatura, e trocar troca os dois de uma vez — inclusive o token que já está no mapa, em todas as cenas. Dá para trocar pela ficha, pelo menu da lista de personagens ou pelo menu do token.\n\n**Ctrl+V põe imagem de fora no mapa, no quadro e no acervo.** Print de tela, recorte de editor ou imagem copiada do navegador. Com o painel de imagens em foco, a figura só entra no acervo; em qualquer outro lugar, ela também aparece no centro do que você está vendo.\n\n**Os retratos podem andar em grupo.** Uma união com moldura colorida, nome, ordem própria e o canto da tela onde ela fica.\n\n**A ficha em PDF abre dentro do aplicativo**, num leitor próprio, e não numa janela do navegador embutida. O mesmo leitor serve qualquer documento da campanha.\n\n**O item do inventário do jogador ganhou quadro de foto.**\n\n**Criar personagem pede o nome antes, e F2 renomeia.** Desistir no meio não deixa mais um \"Novo personagem\" para trás. A linha ganhou menu no botão direito.\n\n**Renomear ficou previsível em toda a tela.** Clicar fora grava, Enter grava, Escape desiste. Vale para o personagem, a aparência e o grupo de retratos.\n\n**Os painéis vazios explicam o que fazer, e as abas fecham no X** — ou no botão do meio do mouse. Áreas virou uma aba dentro de Mapas.\n\n**O Ctrl+Z ficou mais seguro.** Ele não apaga cena, quadro nem nota — para isso existe a pergunta de confirmação. E dentro de um texto ele desfaz por palavra.\n\n## Correções\n\n**O mapa parava de tremer ao dar zoom, e o gizmo parava de borrar.** Aquele salto para o centro ao aproximar, e as alças que incham quando você afasta o mapa. A roda também ficou mais parecida com a de um mouse de verdade.\n\n**O disparo de som toca o arquivo inteiro, e a trilha reacende sem piscar.**\n\n**A lixeira do acervo passou a ver o som que não está tocando.**\n\n**O X de uma janela que está atrás deixou de pedir dois cliques.**",
+    "arquivos": [
+      {
+        "nome": "ato20-0.2.0-1.x86_64.rpm",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.2.0/ato20-0.2.0-1.x86_64.rpm",
+        "bytes": 15468899
+      },
+      {
+        "nome": "ato20_0.2.0_amd64.AppImage",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.2.0/ato20_0.2.0_amd64.AppImage",
+        "bytes": 103668216
+      },
+      {
+        "nome": "ato20_0.2.0_amd64.deb",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.2.0/ato20_0.2.0_amd64.deb",
+        "bytes": 15543868
+      },
+      {
+        "nome": "ato20_0.2.0_x64-setup.exe",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.2.0/ato20_0.2.0_x64-setup.exe",
+        "bytes": 10586613
+      },
+      {
+        "nome": "ato20_0.2.0_x64_en-US.msi",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.2.0/ato20_0.2.0_x64_en-US.msi",
+        "bytes": 13756488
+      }
+    ]
+  },
+  {
     "tag": "v0.1.4",
     "nome": "ATO20 v0.1.4",
     "publicadaEm": "2026-09-18T18:45:57Z",
