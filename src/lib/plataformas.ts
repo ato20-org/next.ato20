@@ -4,10 +4,15 @@ export type PlataformaId = "linux" | "windows" | "macos" | "android" | "ios";
 
 export type PrevisaoId = "em-breve" | "mais-pra-frente";
 
-/** O texto da tag que acompanha cada plataforma enquanto não há build. */
+/**
+ * O texto que acompanha cada plataforma enquanto não há build.
+ *
+ * "Planejado", e não "em desenvolvimento": promete que a plataforma está no
+ * caminho, e não que já tem gente trabalhando nela hoje.
+ */
 export const PREVISOES: Record<PrevisaoId, string> = {
   "em-breve": "em breve",
-  "mais-pra-frente": "mais pra frente",
+  "mais-pra-frente": "planejado",
 };
 
 export type Plataforma = {
@@ -21,6 +26,11 @@ export type Plataforma = {
   principal: string;
   /** Outros formatos da mesma plataforma, na ordem em que devem aparecer. */
   alternativos: string[];
+  /**
+   * Como o arquivo principal se chama para quem não é do meio: a linha embaixo
+   * do botão diz "AppImage", e não `ato20_0.7.0_amd64.AppImage`.
+   */
+  formato: string;
   /** Nome planejado, mostrado enquanto a release ainda não publica o arquivo. */
   artefato: string;
   /** Prazo relativo: separa o que vem primeiro do que ainda vai demorar. */
@@ -34,6 +44,7 @@ export const PLATAFORMAS: Record<PlataformaId, Plataforma> = {
     // O AppImage é o padrão porque roda sem instalar nada.
     principal: "amd64.AppImage",
     alternativos: [".deb", ".rpm"],
+    formato: "AppImage",
     artefato: "ato20_amd64.AppImage",
     previsao: "em-breve",
   },
@@ -42,6 +53,7 @@ export const PLATAFORMAS: Record<PlataformaId, Plataforma> = {
     nome: "Windows",
     principal: "x64-setup.exe",
     alternativos: [".msi"],
+    formato: "instalador .exe",
     artefato: "ato20_x64-setup.exe",
     previsao: "em-breve",
   },
@@ -50,6 +62,7 @@ export const PLATAFORMAS: Record<PlataformaId, Plataforma> = {
     nome: "macOS",
     principal: ".dmg",
     alternativos: [],
+    formato: ".dmg",
     artefato: "ato20_universal.dmg",
     // Assinar e empacotar .dmg pede um Mac, e ainda não há um por aqui.
     previsao: "mais-pra-frente",
@@ -59,6 +72,7 @@ export const PLATAFORMAS: Record<PlataformaId, Plataforma> = {
     nome: "Android",
     principal: ".apk",
     alternativos: [],
+    formato: ".apk",
     artefato: "ato20.apk",
     // O mobile sai depois do desktop: a interface precisa ser refeita.
     previsao: "mais-pra-frente",
@@ -69,6 +83,7 @@ export const PLATAFORMAS: Record<PlataformaId, Plataforma> = {
     // O iOS não sai como arquivo: quando existir, é TestFlight.
     principal: "",
     alternativos: [],
+    formato: "TestFlight",
     artefato: "TestFlight",
     previsao: "mais-pra-frente",
   },
