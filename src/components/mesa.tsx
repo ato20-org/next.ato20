@@ -1,13 +1,12 @@
 import Image from "next/image";
 
 import fundo from "@/assets/fundo-ascii.png";
-import { Captura } from "@/components/captura";
 import { JanelaDemo } from "@/components/janela-demo";
-
-import mestre from "../../docs/capturas/mestre.webp";
+import { Video } from "@/components/video";
 
 /**
- * Seção logo abaixo do hero, com o ASCII de uma mesa de RPG ao fundo.
+ * A interface inteira, perto do fim da página, com o ASCII de uma mesa de RPG
+ * ao fundo.
  *
  * O desenho fica em tamanho nativo e sangra pelas laterais em vez de ser
  * escalado pra caber: reduzido, os caracteres se fundem e o ASCII vira textura
@@ -60,14 +59,14 @@ export function Mesa() {
           {/* A ilustração tem 960px de largura fixa: ela desenha a janela
               inteira do aplicativo, com as duas colunas do dock e o tocador, e
               abaixo de 960 isso só caberia rolando de lado ou espremido até
-              virar borrão. Em tela estreita entra a captura de verdade, que o
-              toque amplia — é a mesma tela, e é a que dá pra ler no celular. */}
+              virar borrão. Em tela estreita entra o aplicativo de verdade, da
+              lista de campanhas até a mesa aberta. */}
           <div className="xl:hidden">
-            <Captura
-              imagem={mestre}
-              alt="A visão Mestre do ATO20"
-              sizes="100vw"
-              className="w-full"
+            <Video
+              nome="intro"
+              alt="Da lista de campanhas à mesa: o mestre abre a Floresta Brutal, o mapa aparece com os tokens e a luz, e a câmera se afasta até o recorte que a janela do espectador vê"
+              largura={1226}
+              altura={666}
             />
           </div>
 

@@ -44,7 +44,7 @@ const ETAPAS: Etapa[] = [
     verbo: "mestrar",
     titulo: "A mesa.",
     linha: "Abra a sessão e passe o código: a mesa inteira entra.",
-    marcas: ["código", "TV", "celulares"],
+    marcas: ["código", "espectador", "celulares"],
     // O d20 de traço é o mesmo do fundo do site: o ícone da última etapa é a
     // marca do projeto, e não um símbolo genérico de "jogar". Vem mais apagado
     // porque tem muito mais linha que uma pasta ou um crachá — no mesmo tom,

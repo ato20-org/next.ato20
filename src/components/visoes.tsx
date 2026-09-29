@@ -1,5 +1,6 @@
 import { Captura } from "@/components/captura";
 import { MarcaAscii } from "@/components/marca-ascii";
+import { Video } from "@/components/video";
 
 import espectador from "../../docs/capturas/espectador.webp";
 import jogador from "../../docs/capturas/jogador.webp";
@@ -35,13 +36,13 @@ export function Visoes() {
           <span className="text-accent">{"//"}</span> uma mesa, três telas
         </p>
         <h2 className="mt-4 max-w-2xl text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
-          A mesma sessão.
+          O mestre vê tudo.
           <br />
-          Cada um no seu lugar.
+          A mesa vê o que importa.
         </h2>
         <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground text-pretty">
-          Em LAN, sem servidor e sem conta: quem serve as telas é o próprio
-          aplicativo, na sua rede.
+          O mestre no aplicativo, a janela do espectador e os celulares no navegador. Quando
+          você põe a cena no ar, as três mudam juntas.
         </p>
       </div>
 
@@ -91,6 +92,22 @@ export function Visoes() {
             <Legenda nome="Jogador" papel="Vê o que precisa." />
           </figure>
         </div>
+      </div>
+
+      {/* O diagrama diz quem vê o quê; o vídeo mostra a sessão andando: o
+          jogador rola no celular, o dado cai no palco do mestre e entra na
+          lista de rolagens. */}
+      <div className="surgir mx-auto mt-16 max-w-4xl">
+        <p className="font-mono text-sm text-muted-foreground">
+          <span className="text-accent">{"//"}</span> no aplicativo
+        </p>
+        <Video
+          nome="sessao"
+          alt="O jogador rola um d20 pelo celular: o dado cai no palco do mestre e entra na lista de rolagens, enquanto o celular mostra a ficha do Bruno com condições, medidores e inventário"
+          largura={1280}
+          altura={698}
+          className="mt-4"
+        />
       </div>
     </section>
   );
