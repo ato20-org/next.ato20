@@ -22,6 +22,251 @@ export type Release = {
 /** Da mais nova pra mais velha, que é como a API devolve. */
 export const RELEASES: Release[] = [
   {
+    "tag": "v0.7.2",
+    "nome": "ATO20 v0.7.2",
+    "publicadaEm": "2026-09-29T21:51:04Z",
+    "prerelease": false,
+    "pagina": "https://github.com/ato20-org/ato20/releases/tag/v0.7.2",
+    "notas": "## Novidades\n\n- **A câmera criada pela tecla N nasce onde o mouse está apontando.** Com o tamanho da câmera selecionada. Com o mouse fora do mapa, numa coluna ou numa janela por cima, ela nasce onde nascia antes.\n\n## Correções\n\n- **Criar uma câmera pela tecla N não troca mais o que a mesa está vendo.** A câmera nova entrava no ar na hora e cortava a cena da mesa. Agora ela nasce só selecionada, a mesa continua na câmera que estava, e o T põe a nova no ar quando for a hora. O botão + da pílula continua criando já no ar.",
+    "arquivos": [
+      {
+        "nome": "ato20-0.7.2-1.x86_64.rpm",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.7.2/ato20-0.7.2-1.x86_64.rpm",
+        "bytes": 15744216
+      },
+      {
+        "nome": "ato20_0.7.2_amd64.AppImage",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.7.2/ato20_0.7.2_amd64.AppImage",
+        "bytes": 103913976
+      },
+      {
+        "nome": "ato20_0.7.2_amd64.deb",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.7.2/ato20_0.7.2_amd64.deb",
+        "bytes": 15818914
+      },
+      {
+        "nome": "ato20_0.7.2_x64-setup.exe",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.7.2/ato20_0.7.2_x64-setup.exe",
+        "bytes": 10816493
+      },
+      {
+        "nome": "ato20_0.7.2_x64_en-US.msi",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.7.2/ato20_0.7.2_x64_en-US.msi",
+        "bytes": 14059592
+      }
+    ]
+  },
+  {
+    "tag": "v0.7.1",
+    "nome": "ATO20 v0.7.1",
+    "publicadaEm": "2026-09-29T18:40:19Z",
+    "prerelease": false,
+    "pagina": "https://github.com/ato20-org/ato20/releases/tag/v0.7.1",
+    "notas": "## Correções\n\n- **O mapa ficava preto na janela do espectador depois de desfazer uma troca de fundo.** Trocar ou tirar o fundo apaga o mapa antigo da campanha, e o Ctrl+Z devolvia a cena para ele. A tela seguia mostrando a imagem guardada, e a janela do espectador ficava preta mais tarde. O Ctrl+Z não mexe mais no fundo: para voltar ao mapa anterior, troque de novo pelo menu da cena.\n- **A seção de um plugin desligado continuava no celular do jogador.** Com um botão que não fazia mais nada. Agora ela some quando o plugin é desligado ou desinstalado, e volta com o que estava guardado se ele voltar.",
+    "arquivos": [
+      {
+        "nome": "ato20-0.7.1-1.x86_64.rpm",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.7.1/ato20-0.7.1-1.x86_64.rpm",
+        "bytes": 15742820
+      },
+      {
+        "nome": "ato20_0.7.1_amd64.AppImage",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.7.1/ato20_0.7.1_amd64.AppImage",
+        "bytes": 103909880
+      },
+      {
+        "nome": "ato20_0.7.1_amd64.deb",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.7.1/ato20_0.7.1_amd64.deb",
+        "bytes": 15818224
+      },
+      {
+        "nome": "ato20_0.7.1_x64-setup.exe",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.7.1/ato20_0.7.1_x64-setup.exe",
+        "bytes": 10816848
+      },
+      {
+        "nome": "ato20_0.7.1_x64_en-US.msi",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.7.1/ato20_0.7.1_x64_en-US.msi",
+        "bytes": 14026824
+      }
+    ]
+  },
+  {
+    "tag": "v0.7.0",
+    "nome": "ATO20 v0.7.0",
+    "publicadaEm": "2026-09-29T15:13:34Z",
+    "prerelease": false,
+    "pagina": "https://github.com/ato20-org/ato20/releases/tag/v0.7.0",
+    "notas": "## Novidades\n\n- **A grade do mapa pode ser de hexágonos.** Em pé ou deitados, nas configurações da grade. O ímã encaixa o token no centro da casa, e a casa embaixo do token fica acesa.\n- **Configurações ganhou a seção Ajustes, com busca e editor JSON.** Tudo que o ATO20 e os plugins deixam ajustar, numa lista só, por máquina e por campanha — a campanha vence. O botão JSON edita o arquivo cru, como no VSCode, e o ícone ao lado o abre no seu editor. O zoom, o aviso de versão e os volumes passaram a morar nesse arquivo.\n- **Plugins podem mudar a interface: menus, ficha, janelas e ferramentas.** Um plugin põe opções no botão direito do token, da luz, da área escondida e das listas; acrescenta seções na ficha do personagem; troca o miolo de uma seção ou uma janela inteira pela dele (desligar o plugin devolve a de fábrica); e a ferramenta dele ganha ícone, pílula de opções e prévia no arrasto.\n- **Plugins alcançam medidores, condições e dados.** Um plugin lê o elenco inteiro, ajusta medidores em lote, liga condições na horda, rola dados de verdade no palco e recebe aviso quando algo muda. Cada plugin guarda o que é dele em cada personagem, com uma parte que só o mestre vê. É o que faltava para iniciativa, botão de ataque e habilidades existirem como plugin.\n- **O medidor pode ter o desenho do plugin, na TV e no celular.** Um coração que esvazia, uma barra que pulsa: o plugin traz um SVG com variáveis e a mesa inteira o desenha. Sem código do plugin rodando fora do seu computador; a TV que não tem o plugin mostra a barra de sempre.\n- **O plugin pode pôr uma seção com botões no celular do jogador.** Texto, valores e botões. Apertar manda a ação ao mestre, e é o plugin que decide o que ela faz; o resultado aparece na mesa. A ficha do jogador passou a se atualizar sozinha quando o mestre mexe nela.\n\n## Correções\n\n- **Um plugin com defeito não derruba mais a tela do mestre.** O erro aparece dentro do painel dele, com o motivo, e o resto continua. Escolher a ferramenta de um plugin passou a funcionar sem antes abrir um painel dele.\n- **O quadro não levava para a mesa o que um plugin guardou nele.** Cena de mapa já escondia; o quadro passava tudo. Agora os dois escondem.\n- **Postit e cartão passaram a aceitar o botão direito.**\n\nQuem escreve plugin: a seção **Extensões** do README descreve a API 2 inteira — manifesto, `api.janelas`, `api.config`, `api.personagens`, `api.dados`, `api.eventos`, os encaixes, o SVG de medidor e a seção do celular.",
+    "arquivos": [
+      {
+        "nome": "ato20-0.7.0-1.x86_64.rpm",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.7.0/ato20-0.7.0-1.x86_64.rpm",
+        "bytes": 15742242
+      },
+      {
+        "nome": "ato20_0.7.0_amd64.AppImage",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.7.0/ato20_0.7.0_amd64.AppImage",
+        "bytes": 103909880
+      },
+      {
+        "nome": "ato20_0.7.0_amd64.deb",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.7.0/ato20_0.7.0_amd64.deb",
+        "bytes": 15816864
+      },
+      {
+        "nome": "ato20_0.7.0_x64-setup.exe",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.7.0/ato20_0.7.0_x64-setup.exe",
+        "bytes": 10813364
+      },
+      {
+        "nome": "ato20_0.7.0_x64_en-US.msi",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.7.0/ato20_0.7.0_x64_en-US.msi",
+        "bytes": 14063688
+      }
+    ]
+  },
+  {
+    "tag": "v0.6.0",
+    "nome": "ATO20 v0.6.0",
+    "publicadaEm": "2026-09-29T00:15:43Z",
+    "prerelease": false,
+    "pagina": "https://github.com/ato20-org/ato20/releases/tag/v0.6.0",
+    "notas": "## Novidades\n\n**O personagem ganhou condições.** Envenenado, caído, abençoado: um selo com nome, ícone e cor, na ficha logo abaixo dos medidores. A campanha tem um cardápio delas, e \"Usar sugestões\" cria oito prontas. Uma condição escondida não sai do seu computador.\n\n**A condição muda a figura.** Aura, tingido, translúcido, tremendo ou apagado, no token e no retrato. Os selos aparecem sobre o token, no alto do retrato e no celular do dono, e se arrastam no layout do retrato como as outras peças.\n\n**Dá para envenenar a horda de uma vez.** O submenu Condições do botão direito vale para a seleção inteira.\n\n**A lanterna do token vira facho, e gira com a figura.** Aponte uma vez para onde o rosto do desenho olha; dali em diante, girar o token gira o facho.\n\n**O menu do token caiu para a metade das linhas.** O que é da cena — colar, selecionar tudo, câmera — mora no botão direito do vazio. Espelhar, Ordem e Câmera viraram submenus.",
+    "arquivos": [
+      {
+        "nome": "ato20-0.6.0-1.x86_64.rpm",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.6.0/ato20-0.6.0-1.x86_64.rpm",
+        "bytes": 15653466
+      },
+      {
+        "nome": "ato20_0.6.0_amd64.AppImage",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.6.0/ato20_0.6.0_amd64.AppImage",
+        "bytes": 103815672
+      },
+      {
+        "nome": "ato20_0.6.0_amd64.deb",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.6.0/ato20_0.6.0_amd64.deb",
+        "bytes": 15727574
+      },
+      {
+        "nome": "ato20_0.6.0_x64-setup.exe",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.6.0/ato20_0.6.0_x64-setup.exe",
+        "bytes": 10728493
+      },
+      {
+        "nome": "ato20_0.6.0_x64_en-US.msi",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.6.0/ato20_0.6.0_x64_en-US.msi",
+        "bytes": 13961288
+      }
+    ]
+  },
+  {
+    "tag": "v0.5.0",
+    "nome": "ATO20 v0.5.0",
+    "publicadaEm": "2026-09-29T00:07:20Z",
+    "prerelease": false,
+    "pagina": "https://github.com/ato20-org/ato20/releases/tag/v0.5.0",
+    "notas": "## Novidades\n\n**O mapa pode ficar escuro, e o escuro tem tom.** A régua de Escuridão fica nas Configurações do mapa, ao lado do sol, com os tons Breu, Noite, Caverna e Abismo, ou uma cor sua. A mesa vê o escuro inteiro; você vê mais fraco, para conseguir trabalhar dentro dele.\n\n**A tocha volta: a ferramenta Luz crava uma luz no mapa.** Seis climas prontos — chama, vela, lua, magia, veneno e sangue —, cor livre e intensidade. São dois alcances: onde dá para ler o mapa, e até onde se enxerga algum vulto.\n\n**O token pode carregar uma lanterna.** Pelo botão direito, em três alcances. Ela anda com o personagem, na TV e no celular também.\n\n**A parede corta a luz, e o token faz sombra e ganha volume nela.** Atrás de uma parede continua escuro. Cada token deita uma silhueta para longe de cada chama e fica mais claro do lado virado para ela: três tochas numa sala dão três vultos por goblin.\n\n**A luz liga e desliga, vira cone e tremula.** Desligada, ela guarda a cor e o alcance para quando voltar. O cone aponta e abre pelas alças. Os efeitos Fogo, Pulsando e Piscando valem também para a lanterna, e quem pediu menos movimento no sistema recebe a luz parada.\n\n**A imagem que se mexe anima também na TV e no celular.** GIF, WebP animado e APNG chegam inteiros à mesa, inclusive os que já estavam na campanha. Nas listas, um selo de play marca o que é animado, e passar o mouse anima.",
+    "arquivos": [
+      {
+        "nome": "ato20-0.5.0-1.x86_64.rpm",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.5.0/ato20-0.5.0-1.x86_64.rpm",
+        "bytes": 15610629
+      },
+      {
+        "nome": "ato20_0.5.0_amd64.AppImage",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.5.0/ato20_0.5.0_amd64.AppImage",
+        "bytes": 103778808
+      },
+      {
+        "nome": "ato20_0.5.0_amd64.deb",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.5.0/ato20_0.5.0_amd64.deb",
+        "bytes": 15684972
+      },
+      {
+        "nome": "ato20_0.5.0_x64-setup.exe",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.5.0/ato20_0.5.0_x64-setup.exe",
+        "bytes": 10699316
+      },
+      {
+        "nome": "ato20_0.5.0_x64_en-US.msi",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.5.0/ato20_0.5.0_x64_en-US.msi",
+        "bytes": 13903944
+      }
+    ]
+  },
+  {
+    "tag": "v0.4.0",
+    "nome": "ATO20 v0.4.0",
+    "publicadaEm": "2026-09-28T23:59:15Z",
+    "prerelease": false,
+    "pagina": "https://github.com/ato20-org/ato20/releases/tag/v0.4.0",
+    "notas": "## Novidades\n\n**O personagem ganhou medidores.** Vida, sanidade, munição, carga ou tocha: um número até um teto, com nome, cor e forma de barra, pontos ou porcentagem. Só o mestre escreve, pela ficha, onde a barra se arrasta para mudar o valor. A mesa e o dono do personagem leem, e um medidor escondido não sai do seu computador.\n\n**Os medidores aparecem ao lado do retrato, e podem ir para cima do token.** Na mesa, eles ficam numa coluna junto do retrato. Para o mapa de combate, um interruptor nas Configurações do mapa põe nome e medidores sobre a cabeça dos tokens.\n\n**A campanha ganhou uma janela de configuração.** Pelo menu da campanha. Nela ficam os medidores de fábrica, que todo personagem começa tendo, e o layout e a posição dos retratos, que saíram da janela de Retratos.\n\n**O retrato pode mostrar o nome.** Começa desligado, para não apresentar um PNJ antes da hora. Liga no layout dos retratos, e o nome se arrasta e cresce como as outras peças.\n\n## Correções\n\n**Ao abrir uma campanha, a TV e os celulares não apagam mais os retratos por alguns segundos.**",
+    "arquivos": [
+      {
+        "nome": "ato20-0.4.0-1.x86_64.rpm",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.4.0/ato20-0.4.0-1.x86_64.rpm",
+        "bytes": 15549402
+      },
+      {
+        "nome": "ato20_0.4.0_amd64.AppImage",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.4.0/ato20_0.4.0_amd64.AppImage",
+        "bytes": 103729656
+      },
+      {
+        "nome": "ato20_0.4.0_amd64.deb",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.4.0/ato20_0.4.0_amd64.deb",
+        "bytes": 15623590
+      },
+      {
+        "nome": "ato20_0.4.0_x64-setup.exe",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.4.0/ato20_0.4.0_x64-setup.exe",
+        "bytes": 10664436
+      },
+      {
+        "nome": "ato20_0.4.0_x64_en-US.msi",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.4.0/ato20_0.4.0_x64_en-US.msi",
+        "bytes": 13867080
+      }
+    ]
+  },
+  {
+    "tag": "v0.3.0",
+    "nome": "ATO20 v0.3.0",
+    "publicadaEm": "2026-09-28T23:49:52Z",
+    "prerelease": false,
+    "pagina": "https://github.com/ato20-org/ato20/releases/tag/v0.3.0",
+    "notas": "## Novidades\n\n**O mapa ganha sol e paredes.** O sol não acende nada: ele só diz para onde a sombra cai, e se aponta num céu visto de cima, nas Configurações do mapa. A parede tem altura, então a mureta e a torre jogam sombras diferentes. A sombra do token é a silhueta dele — o cajado, a capa e a montaria aparecem nela. A mesa vê a sombra, mas não as paredes que a fazem.\n\n**O jogador move e gira o token do próprio personagem pelo celular.** Dedo no meio anda com a peça; dedo no anel de fora a gira no lugar.\n\n**A grade virou configuração do mapa, com ímã de encaixe.** Com o ímã ligado, o token pousa no meio da casa, no arrasto do mestre e no dedo do jogador. Segure Alt para soltá-lo onde a mão largou. A casa ocupada por um personagem acende nas três telas.\n\n**Além de mapas, a campanha tem fundos.** Um fundo é a imagem de um cenário com figuras por cima, sem câmera, grade, névoa nem sol. O painel virou Cenas, com uma aba para mapas e outra para fundos.\n\n**A campanha ganhou capa.** É o que a TV mostra quando não há nada no ar. Escolha pelo menu do nome da campanha, que também importa a imagem.\n\n**As ferramentas do mapa ficam expostas na borda direita, e as áreas escondidas viraram um botão no palco.** Ponto, postit e régua de medir sem abrir a bolsa do rodapé; depois de medir, a régua volta para a seleção. As áreas ficam ao lado do índice de pontos, com quantas já foram reveladas.\n\n## Correções\n\n**Criar ou apagar uma cena não apaga mais as pastas e as notas de Arquivos.**\n\n**O botão direito no token mostra as ações dele.** Aparência, Opacidade e o resto sumiam do menu, porque o clique desfazia a seleção.\n\n**A TV e o celular seguem os volumes da mesa de som.** Cada categoria tocava no volume padrão, fosse qual fosse o fader. Se algum estiver baixo, a TV vai soar mais baixa que antes.\n\n**O retrato fica parado na TV e no celular enquanto a câmera anda.**\n\n**O contorno azul deixa de marcar o personagem de um jogador que saiu da mesa.** Ele aparecia como NPC na lista e como jogador no mapa ao mesmo tempo. Uma campanha que já tinha o problema se conserta ao abrir.",
+    "arquivos": [
+      {
+        "nome": "ato20-0.3.0-1.x86_64.rpm",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.3.0/ato20-0.3.0-1.x86_64.rpm",
+        "bytes": 15495387
+      },
+      {
+        "nome": "ato20_0.3.0_amd64.AppImage",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.3.0/ato20_0.3.0_amd64.AppImage",
+        "bytes": 103688696
+      },
+      {
+        "nome": "ato20_0.3.0_amd64.deb",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.3.0/ato20_0.3.0_amd64.deb",
+        "bytes": 15570432
+      },
+      {
+        "nome": "ato20_0.3.0_x64-setup.exe",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.3.0/ato20_0.3.0_x64-setup.exe",
+        "bytes": 10615822
+      },
+      {
+        "nome": "ato20_0.3.0_x64_en-US.msi",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v0.3.0/ato20_0.3.0_x64_en-US.msi",
+        "bytes": 13809736
+      }
+    ]
+  },
+  {
     "tag": "v0.2.0",
     "nome": "ATO20 v0.2.0",
     "publicadaEm": "2026-09-23T19:36:12Z",
