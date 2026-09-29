@@ -1,45 +1,52 @@
+import { Fragment } from "react";
+
 import {
-  AudioLines,
   ChevronDown,
   ChevronUp,
+  Circle,
   Clapperboard,
   Dices,
   EllipsisVertical,
-  Eraser,
+  ExternalLink,
   EyeOff,
-  Frame,
-  Grid3x3,
+  Files,
+  FolderClosed,
+  FolderPlus,
   GripVertical,
-  Hand,
-  Images,
   Layers,
+  LibraryBig,
+  Lightbulb,
   Link,
   LockOpen,
   MapPin,
-  Maximize,
   Minus,
   MousePointer2,
   Music,
   Paperclip,
   PanelLeftClose,
   PanelRightClose,
-  Pencil,
+  Pause,
   PersonStanding,
   Plus,
+  QrCode,
+  Radio,
   Repeat,
   Ruler,
   ScrollText,
+  Settings2,
+  Spline,
   Square,
-  SquareArrowOutUpRight,
-  SquareDashedBottom,
   StickyNote,
   Trash2,
+  Type,
   Upload,
   Users,
   Volume2,
   X,
   type LucideIcon,
 } from "lucide-react";
+
+import { Palco } from "@/components/palco-demo";
 
 /**
  * Mockup da visão do mestre.
@@ -49,21 +56,29 @@ import {
  * fotografá-lo daqui.
  *
  * A estrutura não é inventada: ela copia o layout de fábrica do dock
- * (`use-layout-store.ts`), que é o que qualquer pessoa vê ao abrir o aplicativo
- * pela primeira vez — à esquerda um grupo com quatro abas, à direita dois
- * grupos empilhados, o palco no meio, o tocador no rodapé. Os rótulos, os
- * ícones e as dicas saem das telas correspondentes do aplicativo.
+ * (`use-layout-store.ts`) da versão publicada, que é o que qualquer pessoa vê
+ * ao abrir o aplicativo pela primeira vez — à esquerda um grupo com quatro
+ * abas, à direita dois grupos empilhados, o palco no meio com as réguas nas
+ * bordas, e a trilha no rodapé quando há uma escolhida. Os rótulos, os ícones e
+ * as dicas saem das telas correspondentes do aplicativo; onde a dica do
+ * aplicativo diz "TV", aqui diz janela do espectador.
  *
- * Só os nomes de campanha, cena, camada, personagem e faixa são fictícios.
+ * A cena em edição não é a que está no ar, de propósito: é o que a página
+ * inteira promete — o mestre prepara a próxima enquanto a mesa vê a atual —, e
+ * é a única hora em que o "Colocar no ar" aparece.
+ *
+ * Quando o aplicativo mudar de cara, é aqui que a landing fica velha primeiro.
+ * Só os nomes de campanha, cena, câmera, camada, personagem e faixa são
+ * fictícios.
  */
 
 /** Ícone de cada aba, como em `iconeDaJanela` do aplicativo. */
 const ABAS = {
   Cenas: Clapperboard,
-  Áreas: EyeOff,
+  Arquivos: Files,
   Retratos: PersonStanding,
   Personagens: Users,
-  Imagens: Images,
+  Biblioteca: LibraryBig,
   Sons: Music,
   Camadas: Layers,
 } satisfies Record<string, LucideIcon>;
@@ -72,77 +87,57 @@ type NomeDeAba = keyof typeof ABAS;
 
 /** O que cada aba guarda, pra dica que abre ao passar o mouse. */
 const SOBRE: Record<NomeDeAba, string> = {
-  Cenas: "As cenas da campanha. A que está no ar não é a que você edita.",
-  Áreas: "As regiões cobertas da cena. A mesa vê preto sólido.",
+  Cenas: "Mapas e fundos da campanha. A que está no ar não é a que você edita.",
+  Arquivos: "Quadros e notas da campanha, na mesma árvore de pastas.",
   Retratos: "Os recortes de rosto que a mesa vê quando alguém fala.",
   Personagens: "Ficha, miniaturas e donos.",
-  Imagens: "A biblioteca de mapas, fichas e retratos da campanha.",
-  Sons: "As trilhas e efeitos da campanha.",
+  Biblioteca: "Imagens e arquivos da campanha.",
+  Sons: "Pads no teclado numérico, o que está tocando e o acervo.",
   Camadas: "O que está na cena, em ordem de empilhamento.",
 };
 
-/** Rótulo e dica saem do `mestre-toolbar.tsx` do aplicativo. */
-const FERRAMENTAS = [
-  {
-    icone: MousePointer2,
-    rotulo: "Selecionar",
-    dica: "Clique para selecionar, arraste no vazio para marcar vários.",
-    ativa: true,
-  },
-  {
-    icone: Hand,
-    rotulo: "Deslocar a cena",
-    dica: "Arraste para percorrer o mapa. Segurar espaço faz o mesmo.",
-    ativa: false,
-  },
-  {
-    icone: SquareDashedBottom,
-    rotulo: "Área escondida",
-    dica: "Cobre uma região do mapa. A mesa vê preto sólido.",
-    ativa: false,
-  },
-  {
-    icone: MapPin,
-    rotulo: "Ponto de anotação",
-    dica: "Nota e anexos cravados no mapa. Só você vê — nem a TV nem os celulares recebem.",
-    ativa: false,
-  },
-  {
-    icone: StickyNote,
-    rotulo: "Postit",
-    dica: "Um papel com texto colado no mapa. Só você vê.",
-    ativa: false,
-  },
-  {
-    icone: Pencil,
-    rotulo: "Lápis",
-    dica: "Risca o mapa à mão livre. A mesa vê.",
-    ativa: false,
-  },
-  {
-    icone: Eraser,
-    rotulo: "Borracha",
-    dica: "Passe sobre um risco para apagá-lo inteiro. Ctrl+Z devolve.",
-    ativa: false,
-  },
+type Ferramenta = { icone: LucideIcon; rotulo: string; dica: string };
+
+/**
+ * A régua da borda esquerda: desenhar. Rótulos e dicas saem de
+ * `pilula-de-desenho.tsx` e `mestre-toolbar.tsx`.
+ */
+const REGUA_DE_DESENHO: Ferramenta[][] = [
+  [
+    { icone: Square, rotulo: "Quadrado", dica: "Arraste de canto a canto. Shift trava o quadrado." },
+    { icone: Circle, rotulo: "Círculo", dica: "Arraste de canto a canto. Shift trava o círculo." },
+    { icone: Spline, rotulo: "Traço livre", dica: "Contorna vértice a vértice. O clique no primeiro fecha." },
+  ],
+  [
+    { icone: Type, rotulo: "Texto", dica: "Escreve direto na cena, sem papel. Nasce só para você." },
+  ],
+];
+
+/** A régua da borda direita: o que se crava no mapa, e a medida. */
+const REGUA_DO_MAPA: Ferramenta[][] = [
+  [
+    { icone: MapPin, rotulo: "Ponto", dica: "Crava um ponto com nota e anexos. Só você vê." },
+    { icone: StickyNote, rotulo: "Postit", dica: "Cola um papel com texto à vista. Só você vê." },
+    { icone: Lightbulb, rotulo: "Luz", dica: "Crava uma luz. Acende o escuro em volta dela." },
+  ],
+  [
+    { icone: Ruler, rotulo: "Régua", dica: "Mede distância e área. Cada quadrado vale 1 m." },
+  ],
 ];
 
 const CENAS = [
-  { nome: "Taverna do Javali", itens: "3 itens · 1 área", noAr: true },
-  { nome: "Estrada de Vent", itens: "1 item · 0 áreas", noAr: false },
+  { nome: "Estrada de Vent", itens: "1 item · 0 áreas" },
+  { nome: "Taverna do Javali", itens: "3 itens · 1 área" },
 ];
 
 /** As camadas trazem o tamanho em pixel, como no painel do aplicativo. */
 const CAMADAS = [
   { nome: "Kael", medida: "61 × 127" },
-  { nome: "Mira", medida: "59 × 121 · 360°" },
+  { nome: "Mira", medida: "59 × 121 · 15°" },
   { nome: "Handout 03 - Carta do Barão.jpg", medida: "183 × 55" },
 ];
 
-const IMAGENS = [
-  { nome: "Taverna - piso.png", peso: "1.2 MB" },
-  { nome: "Handout 03 - Carta do Barão.jpg", peso: "184 KB" },
-];
+const IMAGENS = ["Taverna - piso.png", "Handout 03 - Carta do Barão.jpg"];
 
 /**
  * As barras da onda do tocador.
@@ -151,7 +146,7 @@ const IMAGENS = [
  * igual em toda renderização — uma onda que muda a cada build viraria ruído
  * diferente em cada deploy.
  */
-const ONDA = Array.from({ length: 190 }, (_, i) =>
+const ONDA = Array.from({ length: 170 }, (_, i) =>
   Math.round(
     16 +
       Math.abs(Math.sin(i * 1.7) * Math.cos(i * 0.37) + Math.sin(i * 0.11) * 0.45) * 78,
@@ -161,12 +156,15 @@ const ONDA = Array.from({ length: 190 }, (_, i) =>
 /** Quanto da faixa já tocou, em barras: 0:14 de 5:31. */
 const TOCADO = 8;
 
+type Lado = "cima" | "baixo" | "direita" | "esquerda";
+
 /**
  * Dica no hover, em CSS puro: `group-hover` numa camada escondida. Sem estado e
  * sem JS, então a demo continua sendo componente de servidor.
  *
  * `lado` existe porque a moldura corta o que passa dela: perto do topo a dica
- * tem que abrir pra baixo, senão some.
+ * tem que abrir pra baixo, senão some. As réguas das bordas abrem para dentro
+ * do palco, como no aplicativo.
  */
 function Dica({
   titulo,
@@ -177,11 +175,12 @@ function Dica({
 }: {
   titulo: string;
   detalhe?: string;
-  lado?: "cima" | "baixo";
+  lado?: Lado;
   /**
-   * Por qual borda a dica se pendura. Centrada ela vaza dos dois lados, e numa
-   * coluna de 176px isso é mais largo que a própria coluna: a metade que passa
-   * da borda é cortada pela moldura da janela.
+   * Por qual borda a dica se pendura, quando ela abre em cima ou embaixo.
+   * Centrada ela vaza dos dois lados, e numa coluna de 176px isso é mais largo
+   * que a própria coluna: a metade que passa da borda é cortada pela moldura
+   * da janela.
    */
   alinhar?: "centro" | "esquerda" | "direita";
   children: React.ReactNode;
@@ -192,13 +191,18 @@ function Dica({
     direita: "right-0",
   }[alinhar];
 
+  const posicao = {
+    cima: `bottom-full mb-1.5 ${eixoX}`,
+    baixo: `top-full mt-1.5 ${eixoX}`,
+    direita: "top-1/2 left-full ml-1.5 -translate-y-1/2",
+    esquerda: "top-1/2 right-full mr-1.5 -translate-y-1/2",
+  }[lado];
+
   return (
     <span className="group/dica relative inline-flex">
       {children}
       <span
-        className={`pointer-events-none absolute z-40 hidden w-max max-w-44 rounded-md border border-border bg-background px-2 py-1.5 text-left shadow-lg shadow-black/60 group-hover/dica:block ${eixoX} ${
-          lado === "cima" ? "bottom-full mb-1.5" : "top-full mt-1.5"
-        }`}
+        className={`pointer-events-none absolute z-40 hidden w-max max-w-44 rounded-md border border-border bg-background px-2 py-1.5 text-left shadow-lg shadow-black/60 group-hover/dica:block ${posicao}`}
       >
         <span className="block font-mono text-foreground">{titulo}</span>
         {detalhe ? (
@@ -299,12 +303,59 @@ function TiraDeAbas({
   );
 }
 
-/** Botão largo, o mesmo em toda biblioteca. */
-function BotaoLargo({ icone: Icone, rotulo }: { icone: LucideIcon; rotulo: string }) {
+/** O botão redondo de contorno que abre os painéis do aplicativo. */
+function BotaoRedondo({
+  icone: Icone,
+  titulo,
+  detalhe,
+}: {
+  icone: LucideIcon;
+  titulo: string;
+  detalhe?: string;
+}) {
   return (
-    <div className="mx-1.5 mt-1.5 flex items-center justify-center gap-1.5 rounded-md border border-border py-1.5 text-muted-foreground">
-      <Icone className="size-3" strokeWidth={1.75} />
-      {rotulo}
+    <Dica titulo={titulo} detalhe={detalhe} lado="baixo" alinhar="direita">
+      <span className="grid size-5 place-items-center rounded-full border border-border text-muted-foreground">
+        <Icone className="size-2.5" strokeWidth={1.75} />
+      </span>
+    </Dica>
+  );
+}
+
+/** As subabas de um painel, como Mapas e Fundos nas Cenas. */
+function SubAbas({ opcoes, ativa }: { opcoes: string[]; ativa: string }) {
+  return (
+    <span className="flex items-center rounded-md border border-border p-0.5">
+      {opcoes.map((opcao) => (
+        <span
+          key={opcao}
+          className={`rounded px-1.5 py-0.5 ${
+            opcao === ativa ? "bg-muted text-foreground" : "text-muted-foreground"
+          }`}
+        >
+          {opcao}
+        </span>
+      ))}
+    </span>
+  );
+}
+
+/** Uma régua vertical de ferramentas, presa a uma das bordas do palco. */
+function Regua({ grupos, lado }: { grupos: Ferramenta[][]; lado: "direita" | "esquerda" }) {
+  return (
+    <div className="flex flex-col items-center gap-0.5 rounded-lg border border-border bg-background/85 p-1 backdrop-blur">
+      {grupos.map((grupo, indice) => (
+        <Fragment key={grupo[0].rotulo}>
+          {indice > 0 ? <span className="my-0.5 h-px w-3 bg-border" /> : null}
+          {grupo.map(({ icone: Icone, rotulo, dica }) => (
+            <Dica key={rotulo} titulo={rotulo} detalhe={dica} lado={lado}>
+              <span className="p-1 text-muted-foreground">
+                <Icone className="size-3" strokeWidth={1.75} />
+              </span>
+            </Dica>
+          ))}
+        </Fragment>
+      ))}
     </div>
   );
 }
@@ -327,137 +378,6 @@ function Miniatura({ className = "" }: { className?: string }) {
         <circle cx="16" cy="14" r="5" fill="var(--accent)" fillOpacity={0.18} />
       </svg>
     </span>
-  );
-}
-
-/** Mobília da taverna, em coordenadas do mapa. */
-const MOVEIS = [
-  { x: 74, y: 56, w: 52, h: 14 },
-  { x: 152, y: 52, w: 30, h: 18 },
-  { x: 268, y: 92, w: 16, h: 58 },
-  { x: 92, y: 236, w: 58, h: 12 },
-  { x: 230, y: 252, w: 40, h: 14 },
-  { x: 68, y: 132, w: 14, h: 40 },
-];
-
-/**
- * Entulho espalhado pelo piso: pontos por fórmula, não por sorteio, pelo mesmo
- * motivo da onda do tocador — o desenho tem que sair igual em todo build.
- */
-const ENTULHO = Array.from({ length: 26 }, (_, i) => ({
-  x: 76 + ((i * 97) % 216),
-  y: 62 + ((i * 151) % 190),
-  r: 0.8 + ((i * 7) % 5) * 0.32,
-}));
-
-/** O palco: o mapa em si, sob os cartões e as pílulas de ferramenta. */
-function Palco() {
-  return (
-    <svg
-      viewBox="0 0 360 300"
-      preserveAspectRatio="xMidYMid slice"
-      className="size-full"
-      aria-hidden
-    >
-      <defs>
-        <pattern id="grade-demo" width="18" height="18" patternUnits="userSpaceOnUse">
-          <path
-            d="M18 0H0V18"
-            fill="none"
-            stroke="var(--foreground)"
-            strokeOpacity={0.07}
-            strokeWidth={0.6}
-          />
-        </pattern>
-        <radialGradient id="luz-demo" cx="0.5" cy="0.5" r="0.5">
-          <stop offset="0%" stopColor="var(--accent)" stopOpacity={0.22} />
-          <stop offset="100%" stopColor="var(--accent)" stopOpacity={0} />
-        </radialGradient>
-        <radialGradient id="sangue-demo" cx="0.5" cy="0.5" r="0.5">
-          <stop offset="0%" stopColor="oklch(0.4 0.19 25)" stopOpacity={0.7} />
-          <stop offset="100%" stopColor="oklch(0.28 0.14 25)" stopOpacity={0} />
-        </radialGradient>
-        {/* A planta recorta tudo que é piso: sem isto as tábuas e o entulho
-            passariam por cima da parede e o cômodo perderia o contorno. */}
-        <clipPath id="piso-demo">
-          <path d="M56,40 H286 L312,76 V246 H212 L186,274 H86 L56,238 Z" />
-        </clipPath>
-      </defs>
-
-      <rect width="360" height="300" fill="oklch(0.105 0 0)" />
-
-      {/* Planta da taverna: piso escuro, parede um tom acima. */}
-      <path
-        d="M56,40 H286 L312,76 V246 H212 L186,274 H86 L56,238 Z"
-        fill="oklch(0.165 0.008 60)"
-        stroke="oklch(0.3 0.022 68)"
-        strokeWidth={3}
-        strokeLinejoin="round"
-      />
-
-      <g clipPath="url(#piso-demo)">
-        {/* Tábuas do assoalho. */}
-        {Array.from({ length: 11 }, (_, i) => (
-          <path
-            key={i}
-            d={`M50,${48 + i * 22} H320`}
-            stroke="var(--foreground)"
-            strokeOpacity={0.05}
-            strokeWidth={0.8}
-          />
-        ))}
-
-        <circle cx="128" cy="158" r="34" fill="url(#luz-demo)" />
-        <circle cx="252" cy="210" r="26" fill="url(#luz-demo)" />
-        <ellipse cx="170" cy="204" rx="30" ry="19" fill="url(#sangue-demo)" />
-
-        {MOVEIS.map(({ x, y, w, h }) => (
-          <rect
-            key={`${x}-${y}`}
-            x={x}
-            y={y}
-            width={w}
-            height={h}
-            rx={1.5}
-            fill="oklch(0.225 0.018 62)"
-            stroke="oklch(0.32 0.025 68)"
-            strokeWidth={0.8}
-          />
-        ))}
-
-        {ENTULHO.map(({ x, y, r }, i) => (
-          <circle key={i} cx={x} cy={y} r={r} fill="var(--foreground)" fillOpacity={0.07} />
-        ))}
-      </g>
-
-      <rect width="360" height="300" fill="url(#grade-demo)" />
-
-      {/* Área escondida: a mesa vê preto sólido; o mestre vê a marcação. */}
-      <g>
-        <rect x="216" y="176" width="82" height="58" fill="oklch(0.06 0 0)" />
-        <rect
-          x="216"
-          y="176"
-          width="82"
-          height="58"
-          fill="none"
-          stroke="var(--foreground)"
-          strokeOpacity={0.35}
-          strokeWidth={1}
-          strokeDasharray="4 3"
-        />
-      </g>
-
-      {/* Traço à mão livre. */}
-      <path
-        d="M84,262 C110,248 128,266 150,254 C168,244 180,260 200,252"
-        fill="none"
-        stroke="var(--foreground)"
-        strokeOpacity={0.45}
-        strokeWidth={2}
-        strokeLinecap="round"
-      />
-    </svg>
   );
 }
 
@@ -505,7 +425,7 @@ function JanelaFlutuante({
 /** O papel colado no mapa. Só o mestre vê. */
 function Postit() {
   return (
-    <div className="absolute top-[13%] left-[5%] z-10 w-[30%] rounded-sm bg-[#f4e9a8] p-2 text-[#3b3520] shadow-lg shadow-black/50">
+    <div className="absolute top-[13%] left-[7%] z-10 w-[29%] rounded-sm bg-[#f4e9a8] p-2 text-[#3b3520] shadow-lg shadow-black/50">
       <p className="flex items-center gap-1 font-medium underline">
         <Link className="size-2.5" strokeWidth={2} />
         Kael
@@ -538,7 +458,7 @@ function PontoComNota() {
         viewBox="0 0 100 100"
       >
         <path
-          d="M31,47 C40,42 48,36 57,32"
+          d="M31,47 C40,42 48,32 57,26"
           fill="none"
           stroke="var(--accent)"
           strokeOpacity={0.5}
@@ -547,7 +467,7 @@ function PontoComNota() {
         />
       </svg>
 
-      <div className="absolute top-[27%] right-[4%] z-20 w-[38%] overflow-hidden rounded-lg border border-border bg-background shadow-xl shadow-black/60">
+      <div className="absolute top-[10%] right-[8%] z-20 w-[35%] overflow-hidden rounded-lg border border-border bg-background shadow-xl shadow-black/60">
         <div className="flex items-center gap-1.5 border-b border-border px-1.5 py-1">
           <span className="grid size-3.5 shrink-0 place-items-center rounded-full border border-accent/60 font-mono text-[8px] text-accent">
             1
@@ -580,7 +500,7 @@ function PontoComNota() {
         </div>
 
         <p className="px-1.5 pb-1.5 leading-snug text-muted-foreground/70">
-          Só você vê este ponto. A TV e os celulares recebem apenas o que você
+          Só você vê este ponto. A janela do espectador e os celulares recebem apenas o que você
           transmitir.
         </p>
       </div>
@@ -589,20 +509,21 @@ function PontoComNota() {
 }
 
 /**
- * O enquadramento que a mesa recebe.
+ * A câmera selecionada, sobre o mapa.
  *
- * É o retângulo do "Enquadrar a mesa aqui": o mestre pode estar olhando outro
- * canto do mapa sem mover o que a TV mostra.
+ * É o recorte que a janela do espectador recebe quando a câmera vai ao ar: o
+ * mestre pode estar olhando outro canto do mapa sem mover o que a mesa vê. O
+ * nome fica dentro da moldura, no canto, como no aplicativo.
  */
 function Camera() {
   const alca = "absolute size-1.5 border border-foreground/70 bg-background";
 
   return (
     <div className="absolute top-[40%] left-[36%] z-10 h-[34%] w-[30%]">
-      <span className="absolute -top-4 left-0 rounded border border-border bg-background/90 px-1 py-0.5 font-mono text-[9px] text-foreground">
-        câmera
+      <span className="absolute inset-0 border border-foreground/60" />
+      <span className="absolute top-1 left-1 rounded border border-border bg-background/90 px-1 py-0.5 font-mono text-[9px] text-foreground">
+        Balcão
       </span>
-      <span className="absolute inset-0 border border-dashed border-foreground/40" />
       <span className={`${alca} -top-[3px] -left-[3px]`} />
       <span className={`${alca} -top-[3px] -right-[3px]`} />
       <span className={`${alca} -bottom-[3px] -left-[3px]`} />
@@ -611,19 +532,41 @@ function Camera() {
   );
 }
 
-export function DemoMestre({ cena = "Taverna do Javali" }: { cena?: string }) {
+export function DemoMestre({
+  cena = "Taverna do Javali",
+  noAr = "Estrada de Vent",
+}: {
+  /** A cena aberta no palco. */
+  cena?: string;
+  /** A que a mesa está vendo. */
+  noAr?: string;
+}) {
+  const divisor = <span className="mx-0.5 h-3 w-px bg-border" />;
+
   return (
     <div className="flex aspect-16/9 min-w-240 flex-col bg-background text-[10px] select-none">
       {/* O cabeçalho da sessão: o que está no ar, e por onde a mesa entra. */}
       <header className="flex items-center gap-2 border-b border-border px-3 py-1.5">
         <Dica
           titulo="No ar"
-          detalhe={`A mesa está vendo "${cena}". Você edita outra cena sem ninguém ver o rascunho.`}
+          detalhe={`A mesa está vendo "${noAr}". Você edita "${cena}" sem ninguém ver o rascunho.`}
           lado="baixo"
+          alinhar="esquerda"
         >
           <span className="flex items-center gap-1.5 rounded border border-border bg-muted/60 px-1.5 py-1">
-            <span className="size-1.5 rounded-full bg-[oklch(0.55_0.2_25)]" />
-            <span className="text-foreground">{cena}</span>
+            <span className="size-1.5 rounded-full bg-[oklch(0.62_0.19_25)] shadow-[0_0_6px_oklch(0.62_0.19_25)]" />
+            <span className="text-foreground">{noAr}</span>
+          </span>
+        </Dica>
+        <Dica
+          titulo="Colocar no ar"
+          detalhe={`A mesa passa a ver "${cena}".`}
+          lado="baixo"
+          alinhar="esquerda"
+        >
+          <span className="flex items-center gap-1 rounded border border-border px-1.5 py-1 text-muted-foreground">
+            <Radio className="size-3" strokeWidth={1.75} />
+            Colocar no ar
           </span>
         </Dica>
         <Dica titulo="Sair do ar" detalhe="Tira a mesa do ar. Útil em intervalo." lado="baixo">
@@ -635,11 +578,11 @@ export function DemoMestre({ cena = "Taverna do Javali" }: { cena?: string }) {
         <span className="ml-auto flex items-center gap-2 text-muted-foreground">
           <Dica
             titulo="Entrar na mesa"
-            detalhe="Abre o código e o QR para os celulares e para a TV."
+            detalhe="Abre o código e o QR para os celulares e para a janela do espectador."
             lado="baixo"
           >
-            <span className="flex items-center gap-1 rounded border border-border px-1.5 py-1">
-              <Users className="size-3" strokeWidth={1.75} />
+            <span className="flex items-center gap-1 rounded px-1.5 py-1">
+              <QrCode className="size-3" strokeWidth={1.75} />
               Entrar na mesa
             </span>
           </Dica>
@@ -647,9 +590,10 @@ export function DemoMestre({ cena = "Taverna do Javali" }: { cena?: string }) {
             titulo="Abrir Espectador"
             detalhe="A tela da mesa, nesta máquina ou em outra."
             lado="baixo"
+            alinhar="direita"
           >
             <span className="flex items-center gap-1 rounded border border-border px-1.5 py-1">
-              <SquareArrowOutUpRight className="size-3" strokeWidth={1.75} />
+              <ExternalLink className="size-3" strokeWidth={1.75} />
               Abrir Espectador
             </span>
           </Dica>
@@ -661,38 +605,64 @@ export function DemoMestre({ cena = "Taverna do Javali" }: { cena?: string }) {
             sessão. É o layout de fábrica do dock. */}
         <aside className="flex w-44 shrink-0 flex-col border-r border-border">
           <TiraDeAbas
-            abas={["Cenas", "Áreas", "Retratos", "Personagens"]}
+            abas={["Cenas", "Arquivos", "Retratos", "Personagens"]}
             ativa="Cenas"
             encolher="esquerda"
           />
-          <BotaoLargo icone={Plus} rotulo="Nova cena" />
+          <div className="flex items-center gap-1 px-1.5 pt-1.5">
+            <SubAbas opcoes={["Mapas", "Fundos"]} ativa="Mapas" />
+            <span className="ml-auto">
+              <BotaoRedondo icone={Plus} titulo="Novo mapa" />
+            </span>
+          </div>
 
           <ul className="mt-1.5 flex flex-col">
-            {CENAS.map(({ nome, itens, noAr }) => (
-              <li
-                key={nome}
-                className={`flex items-center gap-1.5 px-1.5 py-1.5 ${
-                  noAr ? "bg-muted/60" : ""
-                }`}
-              >
-                <Miniatura className="h-6 w-9" />
-                <span className="min-w-0 flex-1">
-                  <span className="flex items-baseline gap-1 truncate">
-                    <span className={noAr ? "text-foreground" : "text-muted-foreground"}>
-                      {nome}
-                    </span>
-                    {noAr ? (
-                      <span className="shrink-0 text-[oklch(0.62_0.19_25)]">· no ar</span>
+            {CENAS.map(({ nome, itens }) => {
+              const estaNoAr = nome === noAr;
+              const editando = nome === cena;
+
+              return (
+                <li
+                  key={nome}
+                  className={`flex items-center gap-1 px-1 py-1.5 ${editando ? "bg-muted/60" : ""}`}
+                >
+                  <GripVertical
+                    className="size-3 shrink-0 text-muted-foreground/50"
+                    strokeWidth={1.75}
+                  />
+                  <span className="relative shrink-0">
+                    <Miniatura className="h-6 w-10" />
+                    {estaNoAr ? (
+                      <span className="absolute -top-0.5 -right-0.5 size-1.5 rounded-full bg-[oklch(0.62_0.19_25)]" />
                     ) : null}
                   </span>
-                  <span className="block truncate text-muted-foreground/70">{itens}</span>
-                </span>
-                <EllipsisVertical
-                  className="size-3 shrink-0 text-muted-foreground"
-                  strokeWidth={1.75}
-                />
-              </li>
-            ))}
+                  <span className="min-w-0 flex-1">
+                    {/* O nome encolhe primeiro: o "no ar" é o que a linha tem
+                        de mais importante, e não pode ser o que some. */}
+                    <span className="flex min-w-0 items-baseline gap-1">
+                      <span
+                        className={`min-w-0 truncate ${editando ? "text-foreground" : "text-muted-foreground"}`}
+                      >
+                        {nome}
+                      </span>
+                      {estaNoAr ? (
+                        <span className="shrink-0 text-[oklch(0.62_0.19_25)]">· no ar</span>
+                      ) : null}
+                    </span>
+                    <span className="block truncate text-muted-foreground/70">{itens}</span>
+                  </span>
+                  {estaNoAr ? null : (
+                    <Dica titulo={`Colocar ${nome} no ar`} lado="baixo" alinhar="direita">
+                      <Radio className="size-3 shrink-0 text-muted-foreground" strokeWidth={1.75} />
+                    </Dica>
+                  )}
+                  <EllipsisVertical
+                    className="size-3 shrink-0 text-muted-foreground"
+                    strokeWidth={1.75}
+                  />
+                </li>
+              );
+            })}
           </ul>
         </aside>
 
@@ -709,7 +679,7 @@ export function DemoMestre({ cena = "Taverna do Javali" }: { cena?: string }) {
               icone={ScrollText}
               titulo="Kael"
               subtitulo="Ficha do personagem"
-              className="bottom-[15%] left-[4%] w-[32%]"
+              className="bottom-[16%] left-[7%] w-[30%]"
             >
               <div className="flex gap-1.5 p-1.5">
                 <span className="grid size-10 shrink-0 place-items-center rounded border border-border bg-muted font-mono text-muted-foreground">
@@ -727,48 +697,74 @@ export function DemoMestre({ cena = "Taverna do Javali" }: { cena?: string }) {
               </p>
             </JanelaFlutuante>
 
-            {/* Os pontos da cena, no canto de cima. */}
-            <div className="absolute top-2 left-2 z-30">
+            {/* No canto de cima, o que a cena tem: pontos e áreas escondidas.
+                As áreas deixaram de ser aba e viraram esta contagem. */}
+            <div className="absolute top-2 left-2 z-30 flex items-center gap-1.5">
               <Dica
-                titulo="Pontos desta cena"
-                detalhe="Leva a uma nota que pode estar fora do enquadramento."
+                titulo="Pontos de anotação"
+                detalhe="A lista dos pontos desta cena. Escolher um leva a vista até ele."
                 lado="baixo"
+                alinhar="esquerda"
               >
                 <Pilula>
                   <MapPin className="size-3 text-muted-foreground" strokeWidth={1.75} />
                   <span className="pr-1 font-mono text-muted-foreground">3</span>
                 </Pilula>
               </Dica>
+              <Dica
+                titulo="Áreas escondidas"
+                detalhe="As áreas desta cena. O olho de cada uma revela ou esconde."
+                lado="baixo"
+                alinhar="esquerda"
+              >
+                <Pilula>
+                  <EyeOff className="size-3 text-muted-foreground" strokeWidth={1.75} />
+                  <span className="pr-1 font-mono text-muted-foreground">0/1</span>
+                </Pilula>
+              </Dica>
             </div>
 
-            <div className="absolute top-2 right-2 z-30 flex flex-col items-end gap-2">
+            <div className="absolute top-2 right-2 z-30">
               <Pilula>
                 <Dica
-                  titulo="Jogadores"
-                  detalhe="Quem entrou pelo celular, com o código da mesa."
+                  titulo="Configurações do mapa"
+                  detalhe="O que vale para a cena inteira."
                   lado="baixo"
+                  alinhar="direita"
+                >
+                  <span className="p-1 text-muted-foreground">
+                    <Settings2 className="size-3" strokeWidth={1.75} />
+                  </span>
+                </Dica>
+                {divisor}
+                <Dica
+                  titulo="Jogadores"
+                  detalhe="4 de 4 na mesa agora. Escolha um para ver arquivos e notas."
+                  lado="baixo"
+                  alinhar="direita"
                 >
                   <span className="flex items-center gap-1 px-1 text-muted-foreground">
                     <Users className="size-3" strokeWidth={1.75} />
                     <span className="font-mono">4</span>
                   </span>
                 </Dica>
-                <Dica titulo="Rolagens" detalhe="O que a mesa rolou, na ordem." lado="baixo">
-                  <span className="px-1 text-muted-foreground">
-                    <Dices className="size-3" strokeWidth={1.75} />
-                  </span>
-                </Dica>
-                <Dica titulo="Recolher a coluna" lado="baixo">
-                  <span className="px-1 text-muted-foreground">
-                    <PanelRightClose className="size-3" strokeWidth={1.75} />
-                  </span>
-                </Dica>
               </Pilula>
+            </div>
 
+            {/* As duas réguas das bordas: desenhar à esquerda, o que se crava
+                no mapa à direita. */}
+            <div className="absolute top-1/2 left-2 z-30 -translate-y-1/2">
+              <Regua grupos={REGUA_DE_DESENHO} lado="direita" />
+            </div>
+            <div className="absolute top-1/2 right-2 z-30 -translate-y-1/2">
+              <Regua grupos={REGUA_DO_MAPA} lado="esquerda" />
+            </div>
+
+            <div className="absolute right-[8%] bottom-[18%] z-30">
               <Dica
                 titulo="Saquinho de dados"
-                detalhe="Rola na tela, à vista da mesa. O do site, no canto da página, é este mesmo."
-                lado="baixo"
+                detalhe="Os dados desta mesa. O do site, no canto da página, é este mesmo."
+                alinhar="direita"
               >
                 <span className="relative grid size-7 place-items-center rounded-full border border-border bg-background/85 text-muted-foreground backdrop-blur">
                   <Dices className="size-3.5" strokeWidth={1.75} />
@@ -779,60 +775,67 @@ export function DemoMestre({ cena = "Taverna do Javali" }: { cena?: string }) {
               </Dica>
             </div>
 
-            {/* Ferramentas e enquadramento nas duas pontas, como no aplicativo. */}
+            {/* As ferramentas do palco cabem num botão só, que abre para cima
+                e mostra a que está na mão. */}
             <div className="absolute bottom-2 left-2 z-30">
-              <Pilula>
-                {FERRAMENTAS.map(({ icone: Icone, rotulo, dica, ativa }) => (
-                  <Dica key={rotulo} titulo={rotulo} detalhe={dica}>
-                    <span
-                      className={
-                        ativa
-                          ? "rounded bg-muted p-1 text-foreground"
-                          : "p-1 text-muted-foreground"
-                      }
-                    >
-                      <Icone className="size-3" strokeWidth={1.75} />
-                    </span>
-                  </Dica>
-                ))}
-              </Pilula>
+              <Dica
+                titulo="Selecionar"
+                detalhe="Ferramentas do palco. Clique para trocar."
+                alinhar="esquerda"
+              >
+                <Pilula>
+                  <span className="rounded bg-muted p-1 text-foreground">
+                    <MousePointer2 className="size-3" strokeWidth={1.75} />
+                  </span>
+                </Pilula>
+              </Dica>
             </div>
 
-            <div className="absolute right-2 bottom-2 z-30">
+            {/* As câmeras da cena, ao lado do zoom: escolher uma e transmitir
+                é o que muda o que a mesa vê. */}
+            <div className="absolute right-2 bottom-2 z-30 flex items-center gap-1.5">
               <Pilula>
-                <Dica titulo="Menos zoom" alinhar="esquerda">
-                  <span className="p-1 text-muted-foreground">
-                    <Minus className="size-3" strokeWidth={1.75} />
-                  </span>
-                </Dica>
-                <span className="px-0.5 font-mono text-muted-foreground">152%</span>
-                <Dica titulo="Mais zoom">
+                <span className="flex items-center gap-1 rounded bg-foreground px-1.5 py-0.5 text-background">
+                  <span className="font-mono opacity-60">1</span>
+                  Balcão
+                </span>
+                <span className="flex items-center gap-1 px-1.5 py-0.5 text-muted-foreground">
+                  <span className="font-mono">2</span>
+                  Porão
+                </span>
+                <Dica
+                  titulo="Nova câmera"
+                  detalhe="Nasce sobre a selecionada, ou sobre o que você vê, e já no ar."
+                >
                   <span className="p-1 text-muted-foreground">
                     <Plus className="size-3" strokeWidth={1.75} />
                   </span>
                 </Dica>
-                <Dica titulo="Grade" detalhe="Encaixa o que você arrasta nos quadrados.">
+                {divisor}
+                <Dica titulo="Transmitir" detalhe="A mesa passa a ver a câmera selecionada.">
                   <span className="p-1 text-muted-foreground">
-                    <Grid3x3 className="size-3" strokeWidth={1.75} />
+                    <Radio className="size-3" strokeWidth={1.75} />
                   </span>
                 </Dica>
-                <Dica titulo="Régua" detalhe="Mede sobre o mapa. A mesa acompanha a conta.">
+                <Dica titulo="Mais comandos da câmera" alinhar="direita">
                   <span className="p-1 text-muted-foreground">
-                    <Ruler className="size-3" strokeWidth={1.75} />
+                    <EllipsisVertical className="size-3" strokeWidth={1.75} />
                   </span>
                 </Dica>
-                <Dica titulo="Encaixar a cena inteira">
+              </Pilula>
+
+              <Pilula>
+                <Dica titulo="Menos zoom">
                   <span className="p-1 text-muted-foreground">
-                    <Maximize className="size-3" strokeWidth={1.75} />
+                    <Minus className="size-3" strokeWidth={1.75} />
                   </span>
                 </Dica>
-                <Dica
-                  titulo="Enquadrar a mesa aqui"
-                  detalhe="A TV passa a mostrar exatamente este recorte."
-                  alinhar="direita"
-                >
+                <Dica titulo="Encaixar tudo o que existe">
+                  <span className="px-0.5 font-mono text-muted-foreground">152%</span>
+                </Dica>
+                <Dica titulo="Mais zoom" alinhar="direita">
                   <span className="p-1 text-muted-foreground">
-                    <Frame className="size-3" strokeWidth={1.75} />
+                    <Plus className="size-3" strokeWidth={1.75} />
                   </span>
                 </Dica>
               </Pilula>
@@ -844,17 +847,27 @@ export function DemoMestre({ cena = "Taverna do Javali" }: { cena?: string }) {
             meio — as bibliotecas em cima, as camadas da cena embaixo. */}
         <aside className="flex w-44 shrink-0 flex-col border-l border-border">
           <div className="flex min-h-0 flex-[3] flex-col">
-            <TiraDeAbas abas={["Imagens", "Sons"]} ativa="Imagens" encolher="direita" />
-            <BotaoLargo icone={Upload} rotulo="Importar imagens" />
-            <ul className="mt-1.5 flex flex-col">
-              {IMAGENS.map(({ nome, peso }) => (
-                <li key={nome} className="flex items-center gap-1.5 px-1.5 py-1">
+            <TiraDeAbas abas={["Biblioteca", "Sons"]} ativa="Biblioteca" encolher="direita" />
+            <div className="flex items-center justify-end gap-1 px-1.5 pt-1.5">
+              <BotaoRedondo icone={FolderPlus} titulo="Nova pasta" />
+              <BotaoRedondo icone={Upload} titulo="Importar arquivos" />
+            </div>
+            <ul className="mt-1 flex flex-col">
+              <li className="flex items-center gap-1.5 px-1.5 py-1">
+                <ChevronDown className="size-2.5 shrink-0 text-muted-foreground" strokeWidth={1.75} />
+                <FolderClosed className="size-3 shrink-0 text-muted-foreground" strokeWidth={1.75} />
+                <span className="min-w-0 flex-1 truncate font-medium text-foreground">Taverna</span>
+                <span className="font-mono text-muted-foreground/70">2</span>
+                <EllipsisVertical className="size-3 shrink-0 text-muted-foreground" strokeWidth={1.75} />
+              </li>
+              {IMAGENS.map((nome) => (
+                <li key={nome} className="flex items-center gap-1.5 py-1 pr-1.5 pl-4">
                   <Miniatura className="h-5 w-7" />
-                  <span className="min-w-0 flex-1">
-                    <span className="block truncate text-foreground">{nome}</span>
-                    <span className="block truncate text-muted-foreground/70">{peso}</span>
-                  </span>
-                  <Plus className="size-3 shrink-0 text-muted-foreground" strokeWidth={1.75} />
+                  <span className="min-w-0 flex-1 truncate text-foreground">{nome}</span>
+                  <Dica titulo={`Adicionar ${nome} à cena`} lado="baixo" alinhar="direita">
+                    <Plus className="size-3 shrink-0 text-muted-foreground" strokeWidth={1.75} />
+                  </Dica>
+                  <EllipsisVertical className="size-3 shrink-0 text-muted-foreground" strokeWidth={1.75} />
                 </li>
               ))}
             </ul>
@@ -868,17 +881,14 @@ export function DemoMestre({ cena = "Taverna do Javali" }: { cena?: string }) {
 
           <div className="flex min-h-0 flex-[2] flex-col">
             <TiraDeAbas abas={["Camadas"]} ativa="Camadas" />
-            <p className="flex items-baseline gap-1.5 px-2 pt-1.5 pb-1">
+            <p className="flex items-center gap-1.5 px-2 pt-1.5 pb-1">
               <span className="text-foreground">Em cena</span>
               <span className="text-muted-foreground/70">3 · frente no topo</span>
+              <FolderPlus className="ml-auto size-3 text-muted-foreground" strokeWidth={1.75} />
             </p>
             <ul className="flex flex-col">
               {CAMADAS.map(({ nome, medida }) => (
                 <li key={nome} className="flex items-center gap-1.5 px-1.5 py-1">
-                  <GripVertical
-                    className="size-3 shrink-0 text-muted-foreground/60"
-                    strokeWidth={1.75}
-                  />
                   <Miniatura className="size-5" />
                   <span className="min-w-0 flex-1">
                     <span className="block truncate text-foreground">{nome}</span>
@@ -890,7 +900,7 @@ export function DemoMestre({ cena = "Taverna do Javali" }: { cena?: string }) {
                     <Dica titulo="Travar" lado="cima" alinhar="direita">
                       <LockOpen className="size-2.5" strokeWidth={1.75} />
                     </Dica>
-                    <Dica titulo="Remover da cena" lado="cima" alinhar="direita">
+                    <Dica titulo="Remover do mapa" lado="cima" alinhar="direita">
                       <Trash2 className="size-2.5" strokeWidth={1.75} />
                     </Dica>
                   </span>
@@ -901,11 +911,12 @@ export function DemoMestre({ cena = "Taverna do Javali" }: { cena?: string }) {
         </aside>
       </div>
 
-      {/* A trilha é da sessão, não da cena: trocar de cena não corta a música. */}
+      {/* A trilha é da sessão, não da cena: trocar de cena não corta a música.
+          A barra só existe com uma faixa escolhida — aqui, tocando. */}
       <footer className="flex items-center gap-2 border-t border-border px-2 py-1.5 text-muted-foreground">
-        <Dica titulo="Retomar a trilha">
+        <Dica titulo="Pausar" alinhar="esquerda">
           <span className="grid size-6 shrink-0 place-items-center rounded-full border border-border">
-            <AudioLines className="size-3" strokeWidth={1.75} />
+            <Pause className="size-3" strokeWidth={1.75} />
           </span>
         </Dica>
         <span className="shrink-0 font-mono text-foreground">O Ídolo</span>
@@ -926,14 +937,22 @@ export function DemoMestre({ cena = "Taverna do Javali" }: { cena?: string }) {
         </span>
 
         <span className="shrink-0 font-mono">5:31</span>
-        <Dica titulo="Repetir a faixa">
+        <Dica titulo="Repetindo">
           <Repeat className="size-3 shrink-0" strokeWidth={1.75} />
         </Dica>
         <span className="flex h-px w-12 shrink-0 items-center bg-border">
           <span className="block h-px w-2/3 bg-foreground/50" />
         </span>
-        <Dica titulo="Volume" detalhe="Em todas as telas, não só nesta." alinhar="direita">
+        <span className="w-4 shrink-0 font-mono">70</span>
+        <Dica
+          titulo="Silenciar"
+          detalhe="Silencia só esta tela. A janela do espectador e os celulares continuam ouvindo."
+          alinhar="direita"
+        >
           <Volume2 className="size-3 shrink-0" strokeWidth={1.75} />
+        </Dica>
+        <Dica titulo="Tirar a trilha" alinhar="direita">
+          <Square className="size-3 shrink-0" strokeWidth={1.75} />
         </Dica>
       </footer>
     </div>

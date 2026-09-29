@@ -1,5 +1,15 @@
 import Image from "next/image";
-import { ChevronDown, Clapperboard, LayoutGrid, Maximize2, Minus, Settings, X } from "lucide-react";
+import {
+  ChevronDown,
+  Clapperboard,
+  Maximize2,
+  Minus,
+  PanelsTopLeft,
+  Settings,
+  Sparkles,
+  Volume2,
+  X,
+} from "lucide-react";
 
 import marca from "@/assets/marca-ato20.png";
 import { DemoMestre } from "@/components/demo-mestre";
@@ -17,9 +27,10 @@ const VERSAO = ULTIMA_RELEASE?.tag.replace(/^v/, "").replace(/-.*$/, "");
  * própria (ele roda sem decoração do sistema). Repetir a barra aqui é o que faz
  * a captura parecer o programa, e não uma imagem solta no meio da página.
  *
- * A barra carrega, da esquerda pra direita: a marca, o sistema da campanha, o
+ * A barra carrega, da esquerda pra direita: a versão, a marca, a campanha, o
  * menu de abas e o código da mesa — o que os jogadores digitam pra entrar. No
- * meio fica o que está sendo editado, e à direita os botões da janela.
+ * meio fica o que está sendo editado, e à direita o que mudou, o volume, as
+ * configurações e os botões da janela.
  */
 export function JanelaDemo({
   cena,
@@ -48,12 +59,12 @@ export function JanelaDemo({
           <ChevronDown className="size-3" strokeWidth={1.75} />
         </span>
         <span className="flex items-center gap-1 text-xs text-muted-foreground">
-          <LayoutGrid className="size-3" strokeWidth={1.75} />
+          <PanelsTopLeft className="size-3" strokeWidth={1.75} />
           Abas
           <ChevronDown className="size-3" strokeWidth={1.75} />
         </span>
 
-        {/* O código da mesa. É por ele que os celulares e a TV entram. */}
+        {/* O código da mesa. É por ele que os celulares e o espectador entram. */}
         <span className="rounded border border-border bg-muted/60 px-1.5 py-0.5 font-mono text-[10px] tracking-widest text-muted-foreground">
           {codigo}
         </span>
@@ -65,7 +76,11 @@ export function JanelaDemo({
           </span>
         ) : null}
 
+        {/* O que mudou, o volume da máquina e as configurações, antes dos
+            botões da janela. */}
         <span className="relative ml-auto flex items-center gap-3 text-muted-foreground">
+          <Sparkles className="size-3.5" strokeWidth={1.75} />
+          <Volume2 className="size-3.5" strokeWidth={1.75} />
           <Settings className="size-3.5" strokeWidth={1.75} />
           <Minus className="size-3.5" strokeWidth={1.75} />
           <Maximize2 className="size-3" strokeWidth={1.75} />
