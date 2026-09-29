@@ -17,21 +17,23 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const TITULO = "ATO20 · o VTT local pra RPG presencial";
+
 const DESCRICAO =
-  "O ATO20 é a IDE para mestrar RPG de mesa. Um VTT para jogo presencial: roda em LAN, na sua casa, com os seus amigos. Open source.";
+  "O ATO20 é um VTT open source pra RPG presencial: câmera na janela do espectador, cada jogador no próprio celular, quadros, notas, personagens e arquivos numa pasta que é sua, e plugins pra deixar do seu jeito. Roda na sua rede, sem conta e sem servidor.";
 
 export const metadata: Metadata = {
-  title: "ATO20 — a IDE para RPG de mesa",
+  title: TITULO,
   description: DESCRICAO,
   openGraph: {
-    title: "ATO20 — a IDE para RPG de mesa",
+    title: TITULO,
     description: DESCRICAO,
     type: "website",
     locale: "pt_BR",
   },
   twitter: {
     card: "summary_large_image",
-    title: "ATO20 — a IDE para RPG de mesa",
+    title: TITULO,
     description: DESCRICAO,
   },
 };

@@ -38,7 +38,7 @@ export function Fechamento() {
             strokeWidth={1.75}
           />
           <span>
-            beta: dá pra jogar com ele, e ainda há aresta — principalmente de
+            beta: dá pra jogar com ele, e ainda há aresta, principalmente de
             portabilidade e de desempenho. O{" "}
             <a
               href={AUTOR_URL}

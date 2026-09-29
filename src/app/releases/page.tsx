@@ -12,10 +12,10 @@ const DESCRICAO =
   "O que mudou em cada versão do ATO20, e os arquivos de cada release.";
 
 export const metadata: Metadata = {
-  title: "Notas de atualização — ATO20",
+  title: "Notas de atualização · ATO20",
   description: DESCRICAO,
   openGraph: {
-    title: "Notas de atualização — ATO20",
+    title: "Notas de atualização · ATO20",
     description: DESCRICAO,
     type: "website",
     locale: "pt_BR",
