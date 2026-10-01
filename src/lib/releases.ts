@@ -22,6 +22,41 @@ export type Release = {
 /** Da mais nova pra mais velha, que é como a API devolve. */
 export const RELEASES: Release[] = [
   {
+    "tag": "v1.0.0",
+    "nome": "ATO20 v1.0.0",
+    "publicadaEm": "2026-10-01T20:49:46Z",
+    "prerelease": false,
+    "pagina": "https://github.com/ato20-org/ato20/releases/tag/v1.0.0",
+    "notas": "Beta: dá para jogar com ele, e ainda há aresta.\n\n**Linux** — `.AppImage` roda sem instalar, e na primeira abertura\nele mesmo põe o atalho no menu (rofi, wofi e afins). Basta dar\npermissão de execução: `chmod +x ato20_*.AppImage`. `.deb` e `.rpm`\npara quem prefere instalar pelo gerenciador.\n**Windows** — `.msi` ou o instalador `.exe`. Os dois saem SEM\nassinatura de código, então o SmartScreen vai avisar: \"Mais\ninformações\" e \"Executar mesmo assim\".",
+    "arquivos": [
+      {
+        "nome": "ato20-1.0.0-1.x86_64.rpm",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.0.0/ato20-1.0.0-1.x86_64.rpm",
+        "bytes": 16162212
+      },
+      {
+        "nome": "ato20_1.0.0_amd64.AppImage",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.0.0/ato20_1.0.0_amd64.AppImage",
+        "bytes": 104307192
+      },
+      {
+        "nome": "ato20_1.0.0_amd64.deb",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.0.0/ato20_1.0.0_amd64.deb",
+        "bytes": 16224986
+      },
+      {
+        "nome": "ato20_1.0.0_x64-setup.exe",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.0.0/ato20_1.0.0_x64-setup.exe",
+        "bytes": 11196943
+      },
+      {
+        "nome": "ato20_1.0.0_x64_en-US.msi",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.0.0/ato20_1.0.0_x64_en-US.msi",
+        "bytes": 14541446
+      }
+    ]
+  },
+  {
     "tag": "v0.7.2",
     "nome": "ATO20 v0.7.2",
     "publicadaEm": "2026-09-29T21:51:04Z",
