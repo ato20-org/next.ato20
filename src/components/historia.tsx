@@ -4,11 +4,11 @@ import { Video } from "@/components/video";
 const RECURSOS = [
   {
     titulo: "Quadro",
-    linha: "Uma folha sem chão: texto direto na folha, setas que seguem o que você move, post-it, imagem, dado e cartão no mesmo lugar.",
+    linha: "Uma folha sem chão: texto direto na folha, setas que seguem o que você move, post-it com letra de mão, imagem, dado e cartão no mesmo lugar. Traço à mão, se quiser.",
   },
   {
     titulo: "Nota",
-    linha: "Markdown com prévia ao vivo. @, / e > chamam referência, comando e citação.",
+    linha: "Markdown com prévia ao vivo e barra de formatação. @ cita, e a menção sozinha na linha mostra a imagem, o retrato ou a página do livro.",
   },
   {
     titulo: "Arquivos",

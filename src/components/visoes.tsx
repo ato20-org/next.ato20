@@ -42,7 +42,8 @@ export function Visoes() {
         </h2>
         <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground text-pretty">
           O mestre no aplicativo, a janela do espectador e os celulares no navegador. Quando
-          você põe a cena no ar, as três mudam juntas.
+          você põe a cena no ar, as três mudam juntas, e o ping de qualquer um aparece
+          nas três.
         </p>
       </div>
 

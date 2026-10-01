@@ -8,6 +8,7 @@ import {
   Dices,
   EllipsisVertical,
   ExternalLink,
+  Eye,
   EyeOff,
   Files,
   FolderClosed,
@@ -897,6 +898,10 @@ export function DemoMestre({
                   <span className="flex shrink-0 items-center gap-1 text-muted-foreground">
                     <ChevronUp className="size-2.5" strokeWidth={1.75} />
                     <ChevronDown className="size-2.5" strokeWidth={1.75} />
+                    {/* O olho e o cadeado juntos, na ordem do aplicativo. */}
+                    <Dica titulo="Esconder" lado="cima" alinhar="direita">
+                      <Eye className="size-2.5" strokeWidth={1.75} />
+                    </Dica>
                     <Dica titulo="Travar" lado="cima" alinhar="direita">
                       <LockOpen className="size-2.5" strokeWidth={1.75} />
                     </Dica>

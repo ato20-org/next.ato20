@@ -11,7 +11,7 @@ const NAO_PRECISA = [
 const PRECISA = [
   "um computador pro mestre, com Linux ou Windows",
   "uma tela pra janela do espectador: TV, monitor, projetor ou outro notebook",
-  "o celular de quem joga, se quiser ficha e dado na mão",
+  "o celular de quem joga, se quiser ficha, dado e chat na mão",
   "todo mundo na mesma rede",
 ];
 

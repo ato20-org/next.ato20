@@ -9,15 +9,15 @@ import { Video } from "@/components/video";
 const RECURSOS = [
   {
     titulo: "Câmeras com nome",
-    linha: "Enquadramentos guardados na cena, numa pílula no canto do palco, ao lado do zoom. Transmitir é escolher um.",
+    linha: "Enquadramentos guardados na cena, numa pílula no canto do palco. Transmitir é escolher um, e a troca corta em fade na janela do espectador.",
   },
   {
-    titulo: "Corte em fade",
-    linha: "Trocar de câmera corta em fade na janela do espectador. Sem nenhuma no ar, a mesa fica escura.",
+    titulo: "Formato livre",
+    linha: "A torre em pé, o corredor deitado: o canto da moldura estica livre, e o espectador mostra o recorte inteiro, com faixa preta no que sobra.",
   },
   {
     titulo: "Cinegrafista no V",
-    linha: "Segurando V, o mouse move o enquadramento sem mexer no mapa, e a janela do espectador acompanha sem solavanco.",
+    linha: "Segurando V, o mouse move o enquadramento sem mexer no mapa, e a janela do espectador desliza junto. Com Shift, a câmera anda num eixo só.",
   },
   {
     titulo: "O que a mesa não viu",

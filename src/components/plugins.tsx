@@ -2,7 +2,7 @@ import { type ReactNode } from "react";
 
 /**
  * O que um plugin alcança. Cada linha sai da documentação do aplicativo
- * (`docs/extensoes.md`), que é a promessa da API 2: o que está aqui existe na
+ * (`docs/extensoes.md`), que é a promessa da API 4: o que está aqui existe na
  * versão publicada.
  */
 const RECURSOS = [
@@ -12,7 +12,7 @@ const RECURSOS = [
   },
   {
     titulo: "Um sistema de regras",
-    linha: "Iniciativa, ataque que já dá o dano, ficha com a cara de outro sistema: o plugin alcança personagens, medidores, condições e dados.",
+    linha: "Iniciativa, ataque que já dá o dano, ficha com a cara de outro sistema: o plugin alcança personagens, medidores, condições, dados e o chat da campanha.",
   },
   {
     titulo: "Na mesa inteira",
@@ -21,6 +21,10 @@ const RECURSOS = [
   {
     titulo: "No celular do jogador",
     linha: "Uma seção na ficha, com botão: o jogador aperta, e quem executa é o Mestre.",
+  },
+  {
+    titulo: "Na live",
+    linha: "Páginas na rede pro OBS: os dados rolando e os retratos como na TV, de fundo transparente. A página recebe só o que a mesa vê.",
   },
   {
     titulo: "Configurações, como no VSCode",
@@ -37,7 +41,7 @@ const MANIFESTO = `{
   "id": "iniciativa",
   "nome": "Iniciativa",
   "versao": "1.0.0",
-  "apiVersao": 2,
+  "apiVersao": 4,
   "principal": "main.js",
   "contribui": {
     "paineis": [
