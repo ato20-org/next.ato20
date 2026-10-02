@@ -23,6 +23,9 @@ const DESCRICAO =
   "O ATO20 é um VTT open source pra RPG presencial: câmera na janela do espectador, cada jogador no próprio celular, quadros, notas, personagens e arquivos numa pasta que é sua, e plugins pra deixar do seu jeito. Roda na sua rede, sem conta e sem servidor.";
 
 export const metadata: Metadata = {
+  // O site tem domínio próprio: a base torna as URLs de OpenGraph/Twitter
+  // absolutas em vez de relativas à origem do deploy.
+  metadataBase: new URL("https://ato20.valbmig.com.br"),
   title: TITULO,
   description: DESCRICAO,
   openGraph: {
