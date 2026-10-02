@@ -22,6 +22,41 @@ export type Release = {
 /** Da mais nova pra mais velha, que é como a API devolve. */
 export const RELEASES: Release[] = [
   {
+    "tag": "v1.1.0",
+    "nome": "ATO20 v1.1.0",
+    "publicadaEm": "2026-10-02T20:20:02Z",
+    "prerelease": false,
+    "pagina": "https://github.com/ato20-org/ato20/releases/tag/v1.1.0",
+    "notas": "## Novidades\n\n- **Mapa de esguelha (2.5D), em beta: a mesa vista de lado, com as paredes em pé.** No Mestre, o botão 2.5D ao lado das configurações do mapa mostra a mesa de esguelha: os personagens ficam em pé e as paredes sobem. Para a janela do espectador ver assim, crie um tripé na barra Tripés e transmita com T. No 2.5D dá para marcar, arrastar e deitar os personagens; mapa, luz e paredes continuam se editando no 2D. Shift+L entra no tripé e anda com ele, como num jogo.\n- **Mapas, Fundos, Personagens e Retratos ganharam pastas e busca.** Arraste um mapa ou um personagem para dentro de uma pasta, ou use \"Mover para\" no menu da linha. Players e NPCs têm cada um a sua árvore, e os retratos soltos aparecem sob a pasta do personagem. A busca acha pelo nome e pela pasta, e mostra o caminho de cada achado. A Biblioteca também ganhou busca.\n- **Recorte o retrato e a miniatura ao anexar, em quadrado ou em círculo.** Arraste para enquadrar e use a roda para aproximar, até 8 vezes. A miniatura abre no círculo, que é o token redondo da mesa. \"Usar inteira\" grava a imagem como ela veio, para a figura de corpo inteiro.\n- **Duplo clique num personagem no mapa abre a ficha dele.** Vale também para o token travado, e o token não sai do lugar junto.\n- **Plugins podem desenhar medidores com imagens.** Barra, pontos ou uma sequência de quadros, com o valor escrito dentro, só com imagens e um arquivo de configuração na pasta do plugin. No medidor, a paleta junta as formas de fábrica e as dos plugins, e dá para mostrar ou esconder o nome e o valor.\n\n## Correções\n\n- **Com a aba Mesa aberta, a mesa parava de acompanhar o Mestre.** A janela do espectador, o celular e a própria aba ficavam presos num quadro de minutos antes, sem aviso. Agora seguem a cena e a câmera como antes.\n- **Com muitas câmeras, a barra de câmeras atravessava a tela.** Agora ela para de crescer e rola, e as pontas esmaecem quando há câmera fora da vista.",
+    "arquivos": [
+      {
+        "nome": "ato20-1.1.0-1.x86_64.rpm",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.1.0/ato20-1.1.0-1.x86_64.rpm",
+        "bytes": 16304430
+      },
+      {
+        "nome": "ato20_1.1.0_amd64.AppImage",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.1.0/ato20_1.1.0_amd64.AppImage",
+        "bytes": 104450552
+      },
+      {
+        "nome": "ato20_1.1.0_amd64.deb",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.1.0/ato20_1.1.0_amd64.deb",
+        "bytes": 16380042
+      },
+      {
+        "nome": "ato20_1.1.0_x64-setup.exe",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.1.0/ato20_1.1.0_x64-setup.exe",
+        "bytes": 11311702
+      },
+      {
+        "nome": "ato20_1.1.0_x64_en-US.msi",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.1.0/ato20_1.1.0_x64_en-US.msi",
+        "bytes": 14707062
+      }
+    ]
+  },
+  {
     "tag": "v1.0.0",
     "nome": "ATO20 v1.0.0",
     "publicadaEm": "2026-10-01T20:49:46Z",
