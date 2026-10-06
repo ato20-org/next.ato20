@@ -2,7 +2,8 @@ import { Heart, MapPin, TriangleAlert } from "lucide-react";
 
 import { Download } from "@/components/download";
 import { MarcaAscii } from "@/components/marca-ascii";
-import { AUTOR_URL } from "@/lib/projeto";
+import { MarcaKofi } from "@/components/marcas";
+import { AUTOR_URL, KOFI_URL } from "@/lib/projeto";
 import { ULTIMA_RELEASE } from "@/lib/releases";
 
 /**
@@ -48,7 +49,16 @@ export function Fechamento() {
             >
               @valb-mig
             </a>{" "}
-            está nisso a todo vapor.
+            está nisso a todo vapor. Se quiser dar uma força, tem o{" "}
+            <a
+              href={KOFI_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="text-foreground underline decoration-border underline-offset-4 transition-colors hover:decoration-foreground"
+            >
+              Ko-fi
+            </a>
+            .
           </span>
         </p>
       </div>
@@ -68,6 +78,16 @@ export function Fechamento() {
             pt-BR
           </span>
         </span>
+        <span className="text-border">·</span>
+        <a
+          href={KOFI_URL}
+          target="_blank"
+          rel="noreferrer"
+          className="flex items-center gap-2 transition-colors hover:text-foreground"
+        >
+          <MarcaKofi className="size-3.5 shrink-0" />
+          apoie no ko-fi
+        </a>
         {ULTIMA_RELEASE ? (
           <>
             <span className="text-border">·</span>

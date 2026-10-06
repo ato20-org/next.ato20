@@ -14,7 +14,10 @@ const exigir = createRequire(import.meta.url);
 const simpleIcons = exigir("simple-icons");
 
 /** Marcas preenchidas (simple-icons). */
-const PREENCHIDAS = [{ chave: "siGithub", componente: "MarcaGithub" }];
+const PREENCHIDAS = [
+  { chave: "siGithub", componente: "MarcaGithub" },
+  { chave: "siKofi", componente: "MarcaKofi" },
+];
 
 /** Marcas de traço (@tabler/icons), no mesmo peso dos ícones do lucide. */
 const TRACADAS = [
