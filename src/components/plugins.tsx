@@ -2,7 +2,7 @@ import { type ReactNode } from "react";
 
 /**
  * O que um plugin alcança. Cada linha sai da documentação do aplicativo
- * (`docs/extensoes.md`), que é a promessa da API 4: o que está aqui existe na
+ * (`docs/extensoes.md`), que é a promessa da API 5: o que está aqui existe na
  * versão publicada.
  */
 const RECURSOS = [
@@ -24,7 +24,7 @@ const RECURSOS = [
   },
   {
     titulo: "Na live",
-    linha: "Páginas na rede pro OBS: os dados rolando e os retratos como na TV, de fundo transparente. A página recebe só o que a mesa vê.",
+    linha: "Páginas na rede pro OBS: os dados rolando e os retratos como na janela do espectador, de fundo transparente. A página recebe só o que a mesa vê.",
   },
   {
     titulo: "Configurações, como no VSCode",
@@ -41,7 +41,7 @@ const MANIFESTO = `{
   "id": "iniciativa",
   "nome": "Iniciativa",
   "versao": "1.0.0",
-  "apiVersao": 4,
+  "apiVersao": 5,
   "principal": "main.js",
   "contribui": {
     "paineis": [
