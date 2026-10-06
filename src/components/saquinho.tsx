@@ -7,6 +7,27 @@ import { DadoSolido } from "@/components/dado-solido";
 import { TIPOS, valorDaRolagem, type FacesDado, type TipoDado } from "@/lib/dados-tipos";
 import { arremessar, avancar, pintar, type Dado } from "@/lib/dado-arremesso";
 import { avancarSuccao, pintarBuraco, sugar, type Sugado } from "@/lib/dado-succao";
+import type { Idioma } from "@/lib/idioma";
+
+const pt = {
+  saquinho: "Saquinho",
+  instrucao: "Arraste um dado para a página e solte para rolar.",
+  pegar: (dado: string) => `Pegar ${dado}`,
+  naMesa: "Na mesa",
+  recolher: "Recolher os dados",
+  botao: "Saquinho de dados",
+};
+
+const en: typeof pt = {
+  saquinho: "Dice bag",
+  instrucao: "Drag a die onto the page and let go to roll it.",
+  pegar: (dado) => `Pick up a ${dado}`,
+  naMesa: "On the table",
+  recolher: "Gather the dice",
+  botao: "Dice bag",
+};
+
+const TEXTO = { pt, en };
 
 /** Raio de referência do dado na tela, em pixel. Cada tipo ajusta em cima. */
 const RAIO = 26;
@@ -56,7 +77,8 @@ function naMaoDe(tipo: TipoDado, x: number, y: number): NaMao {
  * repintadas por quadro. Em `<polygon>` isso viraria centenas de nós mudando de
  * atributo a 60 quadros por segundo.
  */
-export function Saquinho() {
+export function Saquinho({ idioma }: { idioma: Idioma }) {
+  const t = TEXTO[idioma];
   const [aberto, setAberto] = useState(false);
   const [quantos, setQuantos] = useState(0);
   const [soma, setSoma] = useState(0);
@@ -350,9 +372,9 @@ export function Saquinho() {
             id={painel}
             className="absolute right-0 bottom-full mb-2 w-60 rounded-xl border border-border bg-background/95 p-3 shadow-2xl shadow-black/70 backdrop-blur"
           >
-            <p className="font-mono text-sm text-foreground">Saquinho</p>
+            <p className="font-mono text-sm text-foreground">{t.saquinho}</p>
             <p className="mt-0.5 text-muted-foreground">
-              Arraste um dado para a página e solte para rolar.
+              {t.instrucao}
             </p>
 
             <div className="mt-3 grid grid-cols-3 gap-1">
@@ -360,7 +382,7 @@ export function Saquinho() {
                 <button
                   key={tipo.nome}
                   type="button"
-                  aria-label={`Pegar ${tipo.nome}`}
+                  aria-label={t.pegar(tipo.nome)}
                   onPointerDown={(evento) => pegar(tipo, evento)}
                   className="grid touch-none cursor-grab place-items-center gap-1 rounded-md py-1.5 transition-transform hover:scale-105 hover:bg-muted active:cursor-grabbing"
                 >
@@ -378,7 +400,7 @@ export function Saquinho() {
 
             {quantos > 0 ? (
               <div className="mt-3 flex items-baseline gap-2 border-t border-border pt-2.5">
-                <span className="flex-1 text-muted-foreground">Na mesa</span>
+                <span className="flex-1 text-muted-foreground">{t.naMesa}</span>
                 <span className="font-mono text-muted-foreground">{quantos}</span>
                 <span className="font-mono text-base leading-none font-semibold tabular-nums">
                   {soma}
@@ -408,7 +430,7 @@ export function Saquinho() {
                 className="mt-2 flex w-full items-center gap-1.5 border-t border-border pt-2 text-muted-foreground transition-colors hover:text-foreground"
               >
                 <X className="size-3" strokeWidth={1.75} />
-                Recolher os dados
+                {t.recolher}
               </button>
             ) : null}
           </div>
@@ -417,7 +439,7 @@ export function Saquinho() {
         <button
           ref={botao}
           type="button"
-          aria-label="Saquinho de dados"
+          aria-label={t.botao}
           aria-expanded={aberto}
           aria-controls={aberto ? painel : undefined}
           onClick={() => setAberto((estava) => !estava)}

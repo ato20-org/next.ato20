@@ -53,6 +53,29 @@ if (!resposta.ok) {
   );
 }
 
+/**
+ * O corpo de uma release é português e, depois do marcador, inglês:
+ *
+ *     ## Novidades
+ *     ...
+ *     ---
+ *     <!-- en -->
+ *     ## What's new
+ *     ...
+ *
+ * O marcador é comentário de HTML, invisível no GitHub; o `---` antes dele é o
+ * que separa as duas línguas para quem lê lá. Release sem marcador é só
+ * português, e a página em inglês a mostra assim, avisando.
+ */
+const MARCADOR_EN = /\n(?:---\s*\n)?\s*<!--\s*en\s*-->\s*\n/;
+
+function separarNotas(corpo) {
+  const texto = (corpo ?? "").replace(/\r\n/g, "\n").trim();
+  const [pt, en] = texto.split(MARCADOR_EN);
+
+  return { notas: pt.replace(/\n---\s*$/, "").trim(), notasEn: en?.trim() || null };
+}
+
 const releases = (await resposta.json())
   // Rascunho não é release publicada: ninguém de fora consegue baixar.
   .filter((release) => !release.draft)
@@ -62,7 +85,7 @@ const releases = (await resposta.json())
     publicadaEm: release.published_at,
     prerelease: release.prerelease,
     pagina: release.html_url,
-    notas: (release.body ?? "").replace(/\r\n/g, "\n").trim(),
+    ...separarNotas(release.body),
     arquivos: release.assets
       .filter((arquivo) => !INTERNOS.test(arquivo.name))
       .map((arquivo) => ({
@@ -88,8 +111,10 @@ export type Release = {
   publicadaEm: string;
   prerelease: boolean;
   pagina: string;
-  /** Markdown como o GitHub guardou. Ver \`notas-de-release.tsx\`. */
+  /** Markdown em português, como o GitHub guardou. Ver \`notas-de-release.tsx\`. */
   notas: string;
+  /** A seção em inglês do mesmo corpo, depois de \`<!-- en -->\`. \`null\` sem ela. */
+  notasEn: string | null;
   arquivos: ArquivoDeRelease[];
 };
 

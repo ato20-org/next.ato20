@@ -13,7 +13,22 @@ import {
 
 import marca from "@/assets/marca-ato20.png";
 import { DemoMestre } from "@/components/demo-mestre";
+import type { Idioma } from "@/lib/idioma";
 import { ULTIMA_RELEASE } from "@/lib/releases";
+
+const pt = {
+  campanha: "Crônicas do Javali",
+  abas: "Abas",
+  editando: (cena: string) => `Editando ${cena}`,
+};
+
+const en: typeof pt = {
+  campanha: "The Boar Chronicles",
+  abas: "Tabs",
+  editando: (cena) => `Editing ${cena}`,
+};
+
+const TEXTO = { pt, en };
 
 /**
  * A versão que a barra mostra sai da release publicada, e não de um número
@@ -33,14 +48,18 @@ const VERSAO = ULTIMA_RELEASE?.tag.replace(/^v/, "").replace(/-.*$/, "");
  * configurações e os botões da janela.
  */
 export function JanelaDemo({
+  idioma,
   cena,
-  campanha = "Crônicas do Javali",
+  campanha = TEXTO[idioma].campanha,
   codigo = "VGMBWH",
 }: {
+  idioma: Idioma;
   cena?: string;
   campanha?: string;
   codigo?: string;
 }) {
+  const t = TEXTO[idioma];
+
   return (
     <figure className="m-0 overflow-hidden rounded-xl border border-border bg-muted/40 shadow-2xl shadow-black/60 backdrop-blur-sm">
       <div className="relative flex h-8 min-w-240 items-center gap-2 border-b border-border px-2.5">
@@ -60,7 +79,7 @@ export function JanelaDemo({
         </span>
         <span className="flex items-center gap-1 text-xs text-muted-foreground">
           <PanelsTopLeft className="size-3" strokeWidth={1.75} />
-          Abas
+          {t.abas}
           <ChevronDown className="size-3" strokeWidth={1.75} />
         </span>
 
@@ -72,7 +91,7 @@ export function JanelaDemo({
         {cena ? (
           <span className="pointer-events-none absolute inset-x-0 flex items-center justify-center gap-1.5 font-mono text-xs text-muted-foreground">
             <Clapperboard className="size-3" strokeWidth={1.75} />
-            Editando {cena}
+            {t.editando(cena)}
           </span>
         ) : null}
 
@@ -88,7 +107,7 @@ export function JanelaDemo({
         </span>
       </div>
 
-      <DemoMestre cena={cena} />
+      <DemoMestre idioma={idioma} cena={cena} />
     </figure>
   );
 }

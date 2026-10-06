@@ -19,7 +19,9 @@ import {
   MarcaWindows,
 } from "@/components/marcas";
 import { formatarTamanho } from "@/lib/formatos";
+import { caminho, type Idioma } from "@/lib/idioma";
 import {
+  FORMATOS,
   PLATAFORMAS,
   PREVISOES,
   type PlataformaId,
@@ -28,6 +30,40 @@ import {
   detectarPlataforma,
 } from "@/lib/plataformas";
 import { ULTIMA_RELEASE } from "@/lib/releases";
+
+const pt = {
+  baixarPara: (sistema: string) => `Baixar para ${sistema}`,
+  baixar: "Baixar o ATO20",
+  notas: "Notas de atualização",
+  outras: "outras plataformas",
+  noCelular: "no celular, quem joga entra pelo navegador",
+  semPacote: (sistema: string) => `${sistema} ainda não tem pacote`,
+  downloads: "Downloads",
+  doMestre: "o aplicativo do mestre",
+  fechar: "Fechar",
+  celular: "Celular",
+  celularLinha: (previsao: string) =>
+    `Quem joga entra pelo navegador do celular, sem instalar nada: é o aplicativo do mestre que serve a tela, na rede da casa. O mestre no Android e no iOS está ${previsao}.`,
+  todas: "todas as versões, com o que mudou em cada uma",
+};
+
+const en: typeof pt = {
+  baixarPara: (sistema) => `Download for ${sistema}`,
+  baixar: "Download ATO20",
+  notas: "Release notes",
+  outras: "other platforms",
+  noCelular: "on phones, players join from the browser",
+  semPacote: (sistema) => `no ${sistema} package yet`,
+  downloads: "Downloads",
+  doMestre: "the GM app",
+  fechar: "Close",
+  celular: "Phone",
+  celularLinha: (previsao) =>
+    `Players join from their phone's browser, with nothing to install: the GM's app serves the screen over the home network. The GM app for Android and iOS is ${previsao}.`,
+  todas: "every version, with what changed in each one",
+};
+
+const TEXTO = { pt, en };
 
 /**
  * O Linux fica com o terminal do lucide porque não existe logo de traço do Tux:
@@ -57,11 +93,11 @@ const DE_COMPUTADOR: PlataformaId[] = ["linux", "windows", "macos"];
  * tem pacote. No celular a resposta não é "espere": é que o celular já joga,
  * pelo navegador — quem instala é só o mestre.
  */
-function avisoSemPacote(id: PlataformaId): string {
-  if (id === "android" || id === "ios") {
-    return "no celular, quem joga entra pelo navegador";
-  }
-  return `${PLATAFORMAS[id].nome} ainda não tem pacote`;
+function avisoSemPacote(id: PlataformaId, idioma: Idioma): string {
+  const t = TEXTO[idioma];
+
+  if (id === "android" || id === "ios") return t.noCelular;
+  return t.semPacote(PLATAFORMAS[id].nome);
 }
 
 /**
@@ -77,9 +113,12 @@ function avisoSemPacote(id: PlataformaId): string {
  * "qual arquivo?", e o hero responde "o que é isso?" e "onde começo?".
  */
 export function Download({
+  idioma,
   simples = false,
   children,
-}: { simples?: boolean; children?: React.ReactNode } = {}) {
+}: { idioma: Idioma; simples?: boolean; children?: React.ReactNode }) {
+  const t = TEXTO[idioma];
+
   // O sistema só é conhecido no cliente: no servidor o snapshot é `null`, então
   // o HTML renderizado e a primeira renderização do cliente batem, e a detecção
   // aparece logo depois da hidratação.
@@ -105,32 +144,32 @@ export function Download({
         {arquivo ? (
           <a href={arquivo.url} download className={ESTILO_BOTAO}>
             <IconeDoBotao className="size-4" strokeWidth={1.75} />
-            Baixar para {plataforma?.nome}
+            {t.baixarPara(plataforma?.nome ?? "")}
           </a>
         ) : !detectada ? (
           // Antes da hidratação o sistema ainda não é conhecido, e este é o
           // botão que o HTML pré-renderizado carrega — o que o buscador, a
           // prévia de link e quem abre sem JavaScript enxergam. A lista de
           // releases serve qualquer sistema, e não precisa de script.
-          <Link href="/releases" className={ESTILO_BOTAO}>
+          <Link href={caminho(idioma, "/releases")} className={ESTILO_BOTAO}>
             <IconeDoBotao className="size-4" strokeWidth={1.75} />
-            Baixar o ATO20
+            {t.baixar}
           </Link>
         ) : (
           // Sistema sem pacote (macOS, celular): o botão não finge que baixa.
           // Ele abre os downloads, e a linha de baixo diz por quê.
           <button type="button" onClick={abrir} className={ESTILO_BOTAO}>
             <IconeBaixar className="size-4" strokeWidth={1.75} />
-            Baixar o ATO20
+            {t.baixar}
           </button>
         )}
 
         {simples ? null : (
           <Link
-            href="/releases"
+            href={caminho(idioma, "/releases")}
             className="inline-flex h-12 items-center justify-center gap-1.5 rounded-lg border border-border px-5 text-sm font-medium whitespace-nowrap text-muted-foreground transition-colors hover:border-foreground/30 hover:text-foreground"
           >
-            Notas de atualização
+            {t.notas}
             <ArrowUpRight className="size-4" strokeWidth={1.75} />
           </Link>
         )}
@@ -144,17 +183,17 @@ export function Download({
           {ULTIMA_RELEASE ? (
             <span className="text-accent">{ULTIMA_RELEASE.tag}</span>
           ) : null}
-          {arquivo && plataforma ? (
+          {arquivo && detectada ? (
             <>
               <span className="text-border">·</span>
-              {plataforma.formato}
+              {FORMATOS[idioma][detectada]}
               <span className="text-border">·</span>
-              {formatarTamanho(arquivo.bytes)}
+              {formatarTamanho(arquivo.bytes, idioma)}
             </>
           ) : detectada ? (
             <>
               <span className="text-border">·</span>
-              {avisoSemPacote(detectada)}
+              {avisoSemPacote(detectada, idioma)}
             </>
           ) : null}
           <span className="text-border">·</span>
@@ -163,22 +202,23 @@ export function Download({
             onClick={abrir}
             className="underline decoration-border underline-offset-4 transition-colors hover:text-foreground hover:decoration-foreground"
           >
-            outras plataformas
+            {t.outras}
           </button>
         </p>
       )}
 
-      <JanelaDeDownloads dialogo={dialogo} />
+      <JanelaDeDownloads idioma={idioma} dialogo={dialogo} />
     </div>
   );
 }
 
 /** Um sistema que a release já publica: os arquivos dele e o comando. */
-function LinhaDisponivel({ id }: { id: PlataformaId }) {
+function LinhaDisponivel({ id, idioma }: { id: PlataformaId; idioma: Idioma }) {
   const principal = arquivoPrincipal(id);
   if (!principal) return null;
 
-  const { nome, formato } = PLATAFORMAS[id];
+  const { nome } = PLATAFORMAS[id];
+  const formato = FORMATOS[idioma][id];
   const Icone = ICONES[id];
   const arquivos = [
     { rotulo: formato, arquivo: principal },
@@ -205,13 +245,15 @@ function LinhaDisponivel({ id }: { id: PlataformaId }) {
           >
             <IconeBaixar className="size-3.5 text-muted-foreground" strokeWidth={1.75} />
             {rotulo}
-            <span className="text-muted-foreground">{formatarTamanho(arquivo.bytes)}</span>
+            <span className="text-muted-foreground">
+              {formatarTamanho(arquivo.bytes, idioma)}
+            </span>
           </a>
         ))}
       </div>
       {/* O caminho de quem já mora no terminal. Fica aqui, e não no hero:
           é detalhe de instalação, e o botão é o de todo mundo. */}
-      <ComandoDeDownload plataforma={id} url={principal.url} />
+      <ComandoDeDownload idioma={idioma} plataforma={id} url={principal.url} />
     </li>
   );
 }
@@ -227,7 +269,15 @@ function LinhaDisponivel({ id }: { id: PlataformaId }) {
  * lado do Linux faria parecer que o ATO20 é um aplicativo de celular, e o que
  * falta ali é o Mestre, não o Jogador.
  */
-function JanelaDeDownloads({ dialogo }: { dialogo: RefObject<HTMLDialogElement | null> }) {
+function JanelaDeDownloads({
+  idioma,
+  dialogo,
+}: {
+  idioma: Idioma;
+  dialogo: RefObject<HTMLDialogElement | null>;
+}) {
+  const t = TEXTO[idioma];
+
   // O alvo do clique só é o próprio `<dialog>` quando o clique cai no fundo:
   // qualquer coisa dentro dele é filha, e aí o alvo é outro.
   function fecharPeloFundo(evento: MouseEvent<HTMLDialogElement>) {
@@ -245,19 +295,20 @@ function JanelaDeDownloads({ dialogo }: { dialogo: RefObject<HTMLDialogElement |
         <div className="flex items-start justify-between gap-4">
           <div>
             <h2 id="titulo-downloads" className="text-xl font-semibold tracking-tight">
-              Downloads
+              {t.downloads}
             </h2>
             <p className="mt-1 font-mono text-xs text-muted-foreground">
               {ULTIMA_RELEASE ? (
                 <span className="text-accent">{ULTIMA_RELEASE.tag}</span>
               ) : null}
-              {ULTIMA_RELEASE ? " · " : null}o aplicativo do mestre
+              {ULTIMA_RELEASE ? " · " : null}
+              {t.doMestre}
             </p>
           </div>
           <button
             type="button"
             onClick={() => dialogo.current?.close()}
-            aria-label="Fechar"
+            aria-label={t.fechar}
             className="inline-flex size-9 shrink-0 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:text-foreground"
           >
             <X className="size-4" strokeWidth={1.75} />
@@ -267,32 +318,29 @@ function JanelaDeDownloads({ dialogo }: { dialogo: RefObject<HTMLDialogElement |
         <ul className="mt-4 divide-y divide-border">
           {DE_COMPUTADOR.map((id) =>
             arquivoPrincipal(id) ? (
-              <LinhaDisponivel key={id} id={id} />
+              <LinhaDisponivel key={id} id={id} idioma={idioma} />
             ) : (
-              <LinhaPlanejada key={id} id={id} />
+              <LinhaPlanejada key={id} id={id} idioma={idioma} />
             ),
           )}
 
           <li className="py-5">
             <p className="flex items-center gap-2 text-sm font-medium">
               <Smartphone className="size-4 text-muted-foreground" strokeWidth={1.75} />
-              Celular
+              {t.celular}
             </p>
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground text-pretty">
-              Quem joga entra pelo navegador do celular, sem instalar nada: é o
-              aplicativo do mestre que serve a tela, na rede da casa. O mestre
-              no Android e no iOS está{" "}
-              {PREVISOES[PLATAFORMAS.android.previsao]}.
+              {t.celularLinha(PREVISOES[idioma][PLATAFORMAS.android.previsao])}
             </p>
           </li>
         </ul>
 
         <p className="mt-4 border-t border-border pt-5 font-mono text-xs">
           <Link
-            href="/releases"
+            href={caminho(idioma, "/releases")}
             className="inline-flex items-center gap-1.5 text-muted-foreground transition-colors hover:text-foreground"
           >
-            todas as versões, com o que mudou em cada uma
+            {t.todas}
             <ArrowUpRight className="size-3.5" strokeWidth={1.75} />
           </Link>
         </p>
@@ -302,7 +350,7 @@ function JanelaDeDownloads({ dialogo }: { dialogo: RefObject<HTMLDialogElement |
 }
 
 /** Um sistema de computador que ainda não tem pacote. */
-function LinhaPlanejada({ id }: { id: PlataformaId }) {
+function LinhaPlanejada({ id, idioma }: { id: PlataformaId; idioma: Idioma }) {
   const { nome, previsao } = PLATAFORMAS[id];
   const Icone = ICONES[id];
 
@@ -312,7 +360,7 @@ function LinhaPlanejada({ id }: { id: PlataformaId }) {
         <Icone className="size-4" strokeWidth={1.75} />
         {nome}
       </p>
-      <span className="font-mono text-xs text-muted-foreground">{PREVISOES[previsao]}</span>
+      <span className="font-mono text-xs text-muted-foreground">{PREVISOES[idioma][previsao]}</span>
     </li>
   );
 }

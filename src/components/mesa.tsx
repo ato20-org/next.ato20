@@ -3,6 +3,26 @@ import Image from "next/image";
 import fundo from "@/assets/fundo-ascii.png";
 import { JanelaDemo } from "@/components/janela-demo";
 import { Video } from "@/components/video";
+import type { Idioma } from "@/lib/idioma";
+
+const pt = {
+  rotulo: "interface real",
+  titulo: "É assim que a mesa fica na sua tela.",
+  lead: "A janela do mestre mostra a cena. O resto da mesa acompanha nas próprias telas.",
+  alt: "Da lista de campanhas à mesa: o mestre abre a Floresta Brutal, o mapa aparece com os tokens e a luz, e a câmera se afasta até o recorte que a janela do espectador vê",
+  /** A cena aberta na ilustração: tem de ser uma das cenas da `DemoMestre`. */
+  cena: "Taverna do Javali",
+};
+
+const en: typeof pt = {
+  rotulo: "the real interface",
+  titulo: "This is how the table looks on your screen.",
+  lead: "The GM window shows the scene. The rest of the table follows along on their own screens.",
+  alt: "From the campaign list to the table: the GM opens Floresta Brutal, the map appears with its tokens and lighting, and the camera pulls back to the shot the spectator window sees",
+  cena: "The Boar's Tavern",
+};
+
+const TEXTO = { pt, en };
 
 /**
  * A interface inteira, perto do fim da página, com o ASCII de uma mesa de RPG
@@ -12,7 +32,9 @@ import { Video } from "@/components/video";
  * escalado pra caber: reduzido, os caracteres se fundem e o ASCII vira textura
  * borrada. Quem corta é o `overflow-hidden` da seção.
  */
-export function Mesa() {
+export function Mesa({ idioma }: { idioma: Idioma }) {
+  const t = TEXTO[idioma];
+
   return (
     <section className="relative isolate overflow-hidden py-20 sm:py-24">
       {/* Duas máscaras em elementos aninhados, uma por eixo. Juntas num
@@ -34,14 +56,13 @@ export function Mesa() {
       <div className="mx-auto w-full max-w-3xl px-6 xl:max-w-7xl xl:px-12">
         <div className="surgir">
           <p className="font-mono text-sm text-muted-foreground">
-            <span className="text-accent">{"//"}</span> interface real
+            <span className="text-accent">{"//"}</span> {t.rotulo}
           </p>
           <h2 className="mt-4 max-w-2xl text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
-            É assim que a mesa fica na sua tela.
+            {t.titulo}
           </h2>
           <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground text-pretty">
-            A janela do mestre mostra a cena. O resto da mesa acompanha nas
-            próprias telas.
+            {t.lead}
           </p>
         </div>
 
@@ -64,14 +85,14 @@ export function Mesa() {
           <div className="xl:hidden">
             <Video
               nome="intro"
-              alt="Da lista de campanhas à mesa: o mestre abre a Floresta Brutal, o mapa aparece com os tokens e a luz, e a câmera se afasta até o recorte que a janela do espectador vê"
+              alt={t.alt}
               largura={1226}
               altura={666}
             />
           </div>
 
           <div className="hidden xl:block">
-            <JanelaDemo cena="Taverna do Javali" />
+            <JanelaDemo idioma={idioma} cena={t.cena} />
           </div>
         </div>
       </div>
