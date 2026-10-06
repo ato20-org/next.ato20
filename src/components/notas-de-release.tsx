@@ -1,5 +1,8 @@
 import { Fragment, type ReactNode } from "react";
 
+import type { Idioma } from "@/lib/idioma";
+import type { Release } from "@/lib/releases";
+
 /**
  * Desenha as notas de uma release.
  *
@@ -68,13 +71,51 @@ function ehItem(linha: string) {
   return linha.startsWith("- ") || linha.startsWith("* ");
 }
 
-export function NotasDeRelease({ notas }: { notas: string }) {
+/**
+ * `soEmPortugues` é o aviso de quando a release não tem as notas no idioma da
+ * página. Em português ele nunca aparece: a nota sempre existe em português.
+ */
+const pt = { semNotas: "Esta release saiu sem notas.", soEmPortugues: "" };
+
+const en: typeof pt = {
+  semNotas: "This release shipped without notes.",
+  soEmPortugues: "The notes for this release are only in Portuguese.",
+};
+
+const TEXTO = { pt, en };
+
+/**
+ * As notas de uma release no idioma da página.
+ *
+ * Em inglês, a seção em inglês do corpo quando ela existe. Quando não existe
+ * -- as releases de antes da tradução --, o português, avisando: notas em
+ * outra língua são melhores que nenhuma, e o aviso é o que impede a página de
+ * parecer quebrada.
+ */
+export function NotasDeRelease({ release, idioma }: { release: Release; idioma: Idioma }) {
+  const t = TEXTO[idioma];
+  const traduzida = idioma === "en" ? release.notasEn : release.notas;
+  const notas = traduzida ?? release.notas;
+
   if (!notas) {
+    return <p className="text-muted-foreground italic">{t.semNotas}</p>;
+  }
+
+  if (traduzida === null) {
     return (
-      <p className="text-muted-foreground italic">Esta release saiu sem notas.</p>
+      <div lang="pt-BR">
+        <p className="mb-4 font-mono text-xs text-muted-foreground" lang={idioma}>
+          {t.soEmPortugues}
+        </p>
+        <Notas notas={notas} />
+      </div>
     );
   }
 
+  return <Notas notas={notas} />;
+}
+
+function Notas({ notas }: { notas: string }) {
   // Linha em branco separa bloco; dentro do bloco, a quebra é quebra mesmo —
   // as notas do ATO20 são escritas com as linhas já cortadas na mão.
   const blocos = notas.split(/\n{2,}/);

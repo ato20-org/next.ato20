@@ -11,12 +11,14 @@ import {
 } from "react";
 
 import { Palco } from "@/components/palco-demo";
+import type { Idioma } from "@/lib/idioma";
 import { useMenosMovimento } from "@/lib/movimento";
 
 type Posicao = { x: number; y: number };
 
 /**
- * As câmeras da cena, em fração do palco.
+ * As câmeras da cena, em fração do palco. O nome de cada uma mora no texto,
+ * em `cameras`, na mesma ordem.
  *
  * O palco é 16:9 e a câmera também — é o recorte que o aplicativo nunca deixa
  * sair de 16:9 —, então uma fração só serve de largura e de altura. Os pontos
@@ -25,10 +27,43 @@ type Posicao = { x: number; y: number };
  * janela do espectador recebe como preto sólido.
  */
 const CAMERAS = [
-  { nome: "Entrada", x: 0.5, y: 0.06, tamanho: 0.34 },
-  { nome: "Balcão", x: 0.175, y: 0.32, tamanho: 0.36 },
-  { nome: "Porão", x: 0.54, y: 0.6, tamanho: 0.34 },
+  { x: 0.5, y: 0.06, tamanho: 0.34 },
+  { x: 0.175, y: 0.32, tamanho: 0.36 },
+  { x: 0.54, y: 0.6, tamanho: 0.34 },
 ];
+
+/**
+ * A maquete fala a língua da página, inclusive nos nomes de exemplo: a cena e
+ * as câmeras são as mesmas da `DemoMestre`, e mudam junto com ela.
+ */
+const pt = {
+  cameras: ["Entrada", "Balcão", "Porão"] satisfies [string, string, string],
+  cena: "Taverna do Javali",
+  demonstracao: "Demonstração da câmera: o palco do mestre e a janela do espectador",
+  camera: (nome: string) =>
+    `Câmera ${nome}. Arraste ou use as setas para mover o enquadramento.`,
+  mestre: "mestre",
+  cinegrafista: "cinegrafista",
+  camerasDaCena: "Câmeras da cena",
+  espectador: "espectador",
+  noAr: (nome: string) => `no ar: ${nome}`,
+  legenda: "arraste a moldura, ou troque de câmera na pílula",
+};
+
+const en: typeof pt = {
+  cameras: ["Entrance", "Bar", "Cellar"],
+  cena: "The Boar's Tavern",
+  demonstracao: "Camera demo: the GM's stage and the spectator window",
+  camera: (nome) => `${nome} camera. Drag it or use the arrow keys to move the frame.`,
+  mestre: "gm",
+  cinegrafista: "camera operator",
+  camerasDaCena: "Scene cameras",
+  espectador: "spectator",
+  noAr: (nome) => `on air: ${nome}`,
+  legenda: "drag the frame, or switch cameras in the pill",
+};
+
+const TEXTO = { pt, en };
 
 const BASE: Posicao[] = CAMERAS.map(({ x, y }) => ({ x, y }));
 
@@ -99,7 +134,8 @@ function limitar({ x, y }: Posicao, tamanho: number): Posicao {
  * gesto. Fora da tela ela para, e com `prefers-reduced-motion` ela nunca anda
  * sozinha: corte e deslize viram troca seca, e só a mão move a câmera.
  */
-export function DemoCamera() {
+export function DemoCamera({ idioma }: { idioma: Idioma }) {
+  const t = TEXTO[idioma];
   const reduzir = useMenosMovimento();
 
   const [posicoes, setPosicoes] = useState<Posicao[]>(BASE);
@@ -291,14 +327,14 @@ export function DemoCamera() {
   return (
     <figure
       ref={raiz}
-      aria-label="Demonstração da câmera: o palco do mestre e a janela do espectador"
+      aria-label={t.demonstracao}
       className="m-0"
     >
       <div className="grid gap-8 xl:grid-cols-[minmax(0,1.45fr)_minmax(0,1fr)] xl:items-center xl:gap-12">
         <div className="min-w-0">
           <p className="mb-2 flex items-center justify-between font-mono text-[0.65rem] tracking-widest text-muted-foreground uppercase">
-            <span>mestre</span>
-            <span className="normal-case tracking-normal">Taverna do Javali</span>
+            <span>{t.mestre}</span>
+            <span className="normal-case tracking-normal">{t.cena}</span>
           </p>
 
           <div className="rounded-xl border border-border bg-muted/40 p-2 shadow-2xl shadow-black/60 backdrop-blur-sm">
@@ -310,7 +346,8 @@ export function DemoCamera() {
                 <Palco prefixo="camera-mestre" />
               </div>
 
-              {CAMERAS.map(({ nome, tamanho }, indice) => {
+              {CAMERAS.map(({ tamanho }, indice) => {
+                const nome = t.cameras[indice];
                 const { x, y } = posicoes[indice];
                 const ativa = indice === noAr;
                 const estilo: CSSProperties = {
@@ -331,7 +368,7 @@ export function DemoCamera() {
                     role="button"
                     tabIndex={0}
                     aria-pressed={ativa}
-                    aria-label={`Câmera ${nome}. Arraste ou use as setas para mover o enquadramento.`}
+                    aria-label={t.camera(nome)}
                     onPointerDown={(evento) => pegar(evento, indice)}
                     onPointerMove={mover}
                     onPointerUp={soltar}
@@ -390,14 +427,14 @@ export function DemoCamera() {
                 >
                   V
                 </kbd>
-                cinegrafista
+                {t.cinegrafista}
               </span>
               <div
                 role="group"
-                aria-label="Câmeras da cena"
+                aria-label={t.camerasDaCena}
                 className="ml-auto flex items-center gap-0.5 rounded-lg border border-border bg-background/80 p-0.5"
               >
-                {CAMERAS.map(({ nome }, indice) => {
+                {t.cameras.map((nome, indice) => {
                   const ativa = indice === noAr;
                   return (
                     <button
@@ -430,10 +467,10 @@ export function DemoCamera() {
 
         <div className="mx-auto w-full max-w-md min-w-0 xl:max-w-none">
           <p className="mb-2 flex items-center justify-between font-mono text-[0.65rem] tracking-widest text-muted-foreground uppercase">
-            <span>espectador</span>
+            <span>{t.espectador}</span>
             <span className="flex items-center gap-1.5 normal-case tracking-normal">
               <span className="size-1.5 rounded-full bg-[oklch(0.62_0.19_25)]" />
-              no ar: {CAMERAS[noAr].nome}
+              {t.noAr(t.cameras[noAr])}
             </span>
           </p>
 
@@ -482,7 +519,7 @@ export function DemoCamera() {
       </div>
 
       <figcaption className="mt-6 text-center font-mono text-xs text-muted-foreground">
-        arraste a moldura, ou troque de câmera na pílula
+        {t.legenda}
       </figcaption>
     </figure>
   );

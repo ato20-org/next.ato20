@@ -1,43 +1,54 @@
 import { type ReactNode } from "react";
 
-/**
- * O que um plugin alcança. Cada linha sai da documentação do aplicativo
- * (`docs/extensoes.md`), que é a promessa da API 5: o que está aqui existe na
- * versão publicada.
- */
-const RECURSOS = [
-  {
-    titulo: "Temas",
-    linha: "Um arquivo de CSS que redeclara as cores do aplicativo. Sem ferramenta, sem build.",
-  },
-  {
-    titulo: "Um sistema de regras",
-    linha: "Iniciativa, ataque que já dá o dano, ficha com a cara de outro sistema: o plugin alcança personagens, medidores, condições, dados e o chat da campanha.",
-  },
-  {
-    titulo: "Na mesa inteira",
-    linha: "O medidor desenhado pelo plugin aparece na janela do espectador e no celular, sem código de plugin rodar fora do Mestre.",
-  },
-  {
-    titulo: "No celular do jogador",
-    linha: "Uma seção na ficha, com botão: o jogador aperta, e quem executa é o Mestre.",
-  },
-  {
-    titulo: "Na live",
-    linha: "Páginas na rede pro OBS: os dados rolando e os retratos como na janela do espectador, de fundo transparente. A página recebe só o que a mesa vê.",
-  },
-  {
-    titulo: "Configurações, como no VSCode",
-    linha: "Da máquina e da campanha, na tela ou em JSON. A da campanha vence a da máquina.",
-  },
-];
+import type { Idioma } from "@/lib/idioma";
 
 /**
- * Um manifesto que o aplicativo aceita como está: é o formato de
+ * O que um plugin alcança (`recursos`). Cada linha sai da documentação do
+ * aplicativo (`docs/extensoes.md`), que é a promessa da API 5: o que está aqui
+ * existe na versão publicada.
+ *
+ * O `manifesto` é um que o aplicativo aceita como está: é o formato de
  * `docs/extensoes.md`, com a `apiVersao` atual. Inventar campo aqui venderia
- * uma API que não existe para quem copiar o exemplo.
+ * uma API que não existe para quem copiar o exemplo. Por isso as CHAVES ficam
+ * em português nos dois idiomas -- são a API -- e só os valores mudam.
  */
-const MANIFESTO = `{
+const pt = {
+  titulo: (
+    <>
+      Do jeito
+      <br />
+      da sua mesa.
+    </>
+  ),
+  lead: "Tema é um arquivo de CSS. Plugin é uma pasta com um manifesto: instalar é copiar a pasta, e a tela de Plugins mostra o que ele faz antes de rodar uma linha.",
+  recursos: [
+    {
+      titulo: "Temas",
+      linha: "Um arquivo de CSS que redeclara as cores do aplicativo. Sem ferramenta, sem build.",
+    },
+    {
+      titulo: "Um sistema de regras",
+      linha: "Iniciativa, ataque que já dá o dano, ficha com a cara de outro sistema: o plugin alcança personagens, medidores, condições, dados e o chat da campanha.",
+    },
+    {
+      titulo: "Na mesa inteira",
+      linha: "O medidor desenhado pelo plugin aparece na janela do espectador e no celular, sem código de plugin rodar fora do Mestre.",
+    },
+    {
+      titulo: "No celular do jogador",
+      linha: "Uma seção na ficha, com botão: o jogador aperta, e quem executa é o Mestre.",
+    },
+    {
+      titulo: "Na live",
+      linha: "Páginas na rede pro OBS: os dados rolando e os retratos como na janela do espectador, de fundo transparente. A página recebe só o que a mesa vê.",
+    },
+    {
+      titulo: "Configurações, como no VSCode",
+      linha: "Da máquina e da campanha, na tela ou em JSON. A da campanha vence a da máquina.",
+    },
+  ],
+  pasta: "iniciativa/",
+  manifesto: `{
   "id": "iniciativa",
   "nome": "Iniciativa",
   "versao": "1.0.0",
@@ -55,7 +66,69 @@ const MANIFESTO = `{
       }
     ]
   }
-}`;
+}`,
+  aviso: "plugin de funcionalidade roda com o alcance da janela do Mestre: instale de quem você confia, como num editor de código.",
+};
+
+const en: typeof pt = {
+  titulo: (
+    <>
+      The way
+      <br />
+      your table plays.
+    </>
+  ),
+  lead: "A theme is a CSS file. A plugin is a folder with a manifest: installing it is copying the folder, and the Plugins screen shows what it does before it runs a single line.",
+  recursos: [
+    {
+      titulo: "Themes",
+      linha: "A CSS file that redeclares the app's colors. No tooling, no build step.",
+    },
+    {
+      titulo: "A rules system",
+      linha: "Initiative, attacks that deal their own damage, a sheet that looks like another system: a plugin reaches characters, meters, conditions, dice and the campaign chat.",
+    },
+    {
+      titulo: "Across the whole table",
+      linha: "A meter drawn by the plugin shows up on the spectator window and on the phones, with no plugin code running outside the GM window.",
+    },
+    {
+      titulo: "On the player's phone",
+      linha: "A section on the sheet, with a button: the player taps it, and the GM window runs it.",
+    },
+    {
+      titulo: "On stream",
+      linha: "Pages on your network for OBS: the dice rolling and the portraits as on the spectator window, on a transparent background. The page only gets what the table sees.",
+    },
+    {
+      titulo: "Settings, like in VS Code",
+      linha: "Per machine and per campaign, in the UI or in JSON. The campaign's settings win over the machine's.",
+    },
+  ],
+  pasta: "initiative/",
+  manifesto: `{
+  "id": "initiative",
+  "nome": "Initiative",
+  "versao": "1.0.0",
+  "apiVersao": 5,
+  "principal": "main.js",
+  "contribui": {
+    "paineis": [
+      { "id": "order", "titulo": "Initiative order" }
+    ],
+    "comandos": [
+      {
+        "id": "roll",
+        "titulo": "Roll initiative",
+        "atalho": "Alt+I"
+      }
+    ]
+  }
+}`,
+  aviso: "feature plugins run with the same access as the GM window: install them from people you trust, like in a code editor.",
+};
+
+const TEXTO = { pt, en };
 
 const TOKEN = /("(?:[^"\\]|\\.)*")(\s*:)?|(\d+)/g;
 
@@ -124,7 +197,9 @@ function colorir(texto: string): ReactNode[] {
  * arquivo que se lê, e mostrar o arquivo é a prova. É também o que casa com a
  * IDE do hero — é assim que se estende um editor.
  */
-export function Plugins() {
+export function Plugins({ idioma }: { idioma: Idioma }) {
+  const t = TEXTO[idioma];
+
   return (
     <section className="relative isolate mx-auto w-full max-w-3xl overflow-hidden px-6 py-16 sm:py-20 xl:max-w-7xl xl:px-12">
       <div className="grid gap-12 xl:grid-cols-[minmax(0,1fr)_minmax(0,30rem)] xl:items-start xl:gap-16">
@@ -134,19 +209,15 @@ export function Plugins() {
               <span className="text-accent">{"//"}</span> plugins
             </p>
             <h2 className="mt-4 text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
-              Do jeito
-              <br />
-              da sua mesa.
+              {t.titulo}
             </h2>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground text-pretty">
-              Tema é um arquivo de CSS. Plugin é uma pasta com um manifesto:
-              instalar é copiar a pasta, e a tela de Plugins mostra o que ele
-              faz antes de rodar uma linha.
+              {t.lead}
             </p>
           </div>
 
           <ul className="mt-10 grid gap-6 sm:grid-cols-2">
-            {RECURSOS.map(({ titulo, linha }) => (
+            {t.recursos.map(({ titulo, linha }) => (
               <li key={titulo} className="surgir">
                 <h3 className="font-mono text-xs tracking-widest text-foreground uppercase">
                   {titulo}
@@ -160,12 +231,12 @@ export function Plugins() {
         <div className="surgir min-w-0 xl:mt-12">
           <figure className="m-0 overflow-hidden rounded-xl border border-border bg-muted/20">
             <figcaption className="flex items-center gap-2 border-b border-border px-4 py-2.5 font-mono text-xs text-muted-foreground">
-              <span className="text-border">iniciativa/</span>
+              <span className="text-border">{t.pasta}</span>
               <span className="text-foreground">manifest.json</span>
             </figcaption>
             <div className="overflow-x-auto p-4 sm:p-6">
               <pre className="m-0 min-w-max font-mono text-xs leading-relaxed">
-                <code>{colorir(MANIFESTO)}</code>
+                <code>{colorir(t.manifesto)}</code>
               </pre>
             </div>
           </figure>
@@ -173,9 +244,7 @@ export function Plugins() {
           {/* A guarda que existe é contra plugin malformado, não contra plugin
               malicioso — e isso se diz, em vez de parecer uma loja revisada. */}
           <p className="mt-4 font-mono text-xs leading-relaxed text-muted-foreground">
-            <span className="text-accent">{"//"}</span> plugin de funcionalidade
-            roda com o alcance da janela do Mestre: instale de quem você confia,
-            como num editor de código.
+            <span className="text-accent">{"//"}</span> {t.aviso}
           </p>
         </div>
       </div>

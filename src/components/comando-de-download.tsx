@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 import { Check, Copy } from "lucide-react";
 
+import type { Idioma } from "@/lib/idioma";
 import type { PlataformaId } from "@/lib/plataformas";
 
 /**
@@ -22,6 +23,12 @@ import type { PlataformaId } from "@/lib/plataformas";
  * Só Linux e Windows têm comando, porque só eles têm arquivo. As outras
  * plataformas nem chegam aqui: quem monta o componente já não tem `arquivo`.
  */
+
+const pt = { copiado: "Comando copiado", copiar: "Copiar o comando" };
+
+const en: typeof pt = { copiado: "Command copied", copiar: "Copy the command" };
+
+const TEXTO = { pt, en };
 
 /** Por quanto tempo o ícone confirma a cópia. */
 const CONFIRMACAO_MS = 2000;
@@ -55,12 +62,15 @@ function receitaPara(id: PlataformaId, url: string): Receita | null {
 }
 
 export function ComandoDeDownload({
+  idioma,
   plataforma,
   url,
 }: {
+  idioma: Idioma;
   plataforma: PlataformaId;
   url: string;
 }) {
+  const t = TEXTO[idioma];
   const receita = receitaPara(plataforma, url);
   const [copiado, setCopiado] = useState(false);
 
@@ -101,7 +111,7 @@ export function ComandoDeDownload({
       <button
         type="button"
         onClick={copiar}
-        aria-label={copiado ? "Comando copiado" : "Copiar o comando"}
+        aria-label={copiado ? t.copiado : t.copiar}
         className="shrink-0 rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
       >
         {copiado ? (

@@ -6,6 +6,24 @@ import Image, { type StaticImageData } from "next/image";
 
 import { Maximize2, X } from "lucide-react";
 
+import type { Idioma } from "@/lib/idioma";
+
+const pt = {
+  ampliar: "ampliar",
+  ampliarComo: (alt: string) => `Ampliar: ${alt}`,
+  fechar: "Fechar",
+  dica: "clique fora ou aperte Esc pra fechar",
+};
+
+const en: typeof pt = {
+  ampliar: "enlarge",
+  ampliarComo: (alt) => `Enlarge: ${alt}`,
+  fechar: "Close",
+  dica: "click outside or press Esc to close",
+};
+
+const TEXTO = { pt, en };
+
 /**
  * Uma captura do aplicativo que dá pra olhar de perto.
  *
@@ -17,16 +35,19 @@ import { Maximize2, X } from "lucide-react";
  * o resto da página inerte vêm do navegador, sem código nosso pra manter.
  */
 export function Captura({
+  idioma,
   imagem,
   alt,
   sizes,
   className = "",
 }: {
+  idioma: Idioma;
   imagem: StaticImageData;
   alt: string;
   sizes: string;
   className?: string;
 }) {
+  const t = TEXTO[idioma];
   const dialogo = useRef<HTMLDialogElement>(null);
 
   // O alvo do clique só é o próprio `<dialog>` quando o clique cai no fundo:
@@ -40,7 +61,7 @@ export function Captura({
       <button
         type="button"
         onClick={() => dialogo.current?.showModal()}
-        aria-label={`Ampliar: ${alt}`}
+        aria-label={t.ampliarComo(alt)}
         className={`group relative block cursor-zoom-in hover:z-10 ${className}`}
       >
         <Image
@@ -53,7 +74,7 @@ export function Captura({
 
         <span className="pointer-events-none absolute right-3 bottom-3 inline-flex items-center gap-1.5 rounded-md border border-border bg-background/85 px-2 py-1 font-mono text-[0.65rem] text-muted-foreground opacity-0 backdrop-blur-sm transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
           <Maximize2 className="size-3" strokeWidth={1.75} />
-          ampliar
+          {t.ampliar}
         </span>
       </button>
 
@@ -76,7 +97,7 @@ export function Captura({
           <button
             type="button"
             onClick={() => dialogo.current?.close()}
-            aria-label="Fechar"
+            aria-label={t.fechar}
             className="absolute -top-3 -right-3 inline-flex size-9 items-center justify-center rounded-full border border-border bg-background text-muted-foreground transition-colors hover:text-foreground"
           >
             <X className="size-4" strokeWidth={1.75} />
@@ -84,7 +105,7 @@ export function Captura({
         </div>
 
         <p className="mt-3 text-center font-mono text-xs text-muted-foreground">
-          clique fora ou aperte Esc pra fechar
+          {t.dica}
         </p>
       </dialog>
     </>
