@@ -24,6 +24,42 @@ export type Release = {
 /** Da mais nova pra mais velha, que é como a API devolve. */
 export const RELEASES: Release[] = [
   {
+    "tag": "v1.2.0",
+    "nome": "ATO20 v1.2.0",
+    "publicadaEm": "2026-10-06T20:24:16Z",
+    "prerelease": false,
+    "pagina": "https://github.com/ato20-org/ato20/releases/tag/v1.2.0",
+    "notas": "## Novidades\n\n- **O ATO20 fala inglês.** Em Configurações → Geral → Idioma. A primeira abertura segue o idioma do sistema. A janela do espectador e os celulares acompanham o Mestre, e cada jogador pode escolher o idioma do próprio celular, no menu ou na tela de entrada.\n- **Condições ganharam efeito: fogo, gelo, veneno, sangue e água em volta da figura.** Em chamas, Congelado, Envenenado, Sangrando e Molhado vêm prontos, e o fogo ilumina em volta. Na Configuração da campanha, a engrenagem de cada condição abre o efeito dela, para ajustar ou criar um novo partindo de um pronto. O efeito aparece na janela do espectador e no celular.\n- **Objetos do mapa também recebem condição.** Qualquer imagem que não é personagem, um barril ou uma caixa, ganha condição pelo botão direito ou pelo gizmo, com selo, efeito e a opção de esconder da mesa.\n- **Efeito em área no chão: chamas, lodo venenoso, gelo trincado e poça.** Na pílula de desenho, \"Efeito em área\" marca um pedaço do chão, e o efeito se escolhe no gizmo dele. Vale no 2D e no 2.5D, e os efeitos em área se configuram na campanha, como os das condições.\n- **Portas que abrem, tapam a luz e ficam em pé no 2.5D.** A ferramenta Porta fica embaixo da Luz: arraste da dobradiça à ponta. O botão do gizmo abre e fecha, e a porta gira em todas as telas. Fechada, ela tapa a luz e o sol como uma parede.\n- **Nota, livro e quadro lado a lado com o mapa.** Pelo botão de colunas no editor e no leitor, por \"Abrir ao lado do mapa\" no menu de Arquivos, ou arrastando o arquivo para a borda do palco. Os painéis têm abas e são lembrados por campanha.\n- **Tudo de retrato na janela Retratos, e o mapa do Mestre mais limpo.** A janela mostra a tela da mesa em 16:9, com os retratos como a mesa vê, e embaixo Elenco, Layout e Posição. O mapa do Mestre não desenha mais as cabeças nem o contorno em volta dos tokens.\n- **O celular vê de esguelha quando um tripé está no ar.** Como a janela do espectador. O jogador continua arrastando o próprio token, agora pelo chão sob o dedo.\n- **Cor livre em toda fileira de cor.** O botão de arco-íris no fim da fileira abre um seletor com quadrado, faixa de matiz e hexadecimal: no gizmo, na condição, na luz do efeito e no efeito em área.\n- **A cor fora do mapa se escolhe nas configurações do mapa.** Breu, carvão, ardósia, feltro ou qualquer tom, no 2D e no 2.5D. As configurações do mapa também aparecem no 2.5D.\n- **Duplo clique num item agrupado entra no grupo.** E seleciona só aquele item no mapa, sem abrir a lista. O segundo duplo clique abre a ficha, como antes.\n- **Muitas figuras com efeito não pesam mais a janela do espectador.** Com quarenta figuras em chamas, ela passou de 5 para 22 quadros por segundo, e as peças do 2.5D ficaram mais leves.\n- **Plugins trazem efeitos e falam mais de um idioma.** Na API 6, um plugin declara efeitos de condição e em área. Na API 7, todo texto do manifesto pode vir por idioma, e o código do plugin sabe o idioma da tela.\n\n## Correções\n\n- **O retrato no ar desligava ao fechar o aplicativo.** Fechar logo depois de pôr um retrato no ar perdia a escolha, e o aplicativo reabria com ele desligado. Agora ele volta no ar.\n- **A janela Mesa não mostrava o 2.5D com um tripé no ar.** Ela seguia no mapa de prumo enquanto a janela do espectador via de esguelha. Agora mostra o mesmo que a mesa.",
+    "notasEn": "## What's new\n\n- **ATO20 speaks English.** In Settings → General → Language. The first launch follows the system language. The spectator window and the phones follow the GM, and each player can pick the language of their own phone, in the menu or on the join screen.\n- **Conditions have effects: fire, ice, poison, blood and water around the figure.** On fire, Frozen, Poisoned, Bleeding and Wet come ready, and the fire lights up its surroundings. In Campaign settings, the gear on each condition opens its effect, to tweak it or to make a new one starting from a ready-made effect. The effect shows on the spectator window and on the phones.\n- **Map objects can take conditions too.** Any image that is not a character, a barrel or a crate, gets conditions from the right-click menu or the gizmo, with a badge, an effect and the option to hide it from the table.\n- **Area effects on the floor: flames, poison sludge, cracked ice and puddles.** In the drawing pill, \"Area effect\" marks a patch of floor, and the effect is picked in its gizmo. It works in 2D and in 2.5D, and area effects are set up in the campaign, like condition effects.\n- **Doors that open, block the light and stand up in 2.5D.** The Door tool sits under Light: drag from the hinge to the tip. The gizmo button opens and closes it, and the door swings on every screen. Closed, it blocks the light and the sun like a wall.\n- **Notes, books and boards side by side with the map.** With the columns button in the editor and the reader, \"Open beside the map\" in the Files menu, or by dragging the file to the edge of the stage. Panels have tabs and are remembered per campaign.\n- **Everything about portraits in the Portraits window, and a cleaner GM map.** The window shows the table screen in 16:9, with the portraits as the table sees them, and below it Cast, Layout and Position. The GM map no longer draws the heads or the outline around tokens.\n- **The phone sees the side-on view when a tripod is on air.** Like the spectator window. Players can still drag their own token, now by the floor under their finger.\n- **Any color in every color row.** The rainbow button at the end of the row opens a picker with a square, a hue strip and hex: in the gizmo, the condition, the effect light and the area effect.\n- **The color outside the map is set in the map settings.** Pitch black, charcoal, slate, felt or any shade, in 2D and in 2.5D. The map settings also show in 2.5D.\n- **Double-clicking a grouped item enters the group.** And selects just that item on the map, without opening the list. A second double click opens the sheet, as before.\n- **Many figures with effects no longer weigh down the spectator window.** With forty figures on fire, it went from 5 to 22 frames per second, and 2.5D pieces got lighter.\n- **Plugins bring effects and speak more than one language.** With API 6, a plugin declares condition and area effects. With API 7, every text in the manifest can come per language, and the plugin code knows the screen language.\n\n## Fixes\n\n- **The portrait on air turned off when the app closed.** Closing right after putting a portrait on air lost the choice, and the app reopened with it off. It now comes back on air.\n- **The Table window didn't show 2.5D with a tripod on air.** It stayed on the top-down map while the spectator window showed the side-on view. It now shows what the table sees.",
+    "arquivos": [
+      {
+        "nome": "ato20-1.2.0-1.x86_64.rpm",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.2.0/ato20-1.2.0-1.x86_64.rpm",
+        "bytes": 23132544
+      },
+      {
+        "nome": "ato20_1.2.0_amd64.AppImage",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.2.0/ato20_1.2.0_amd64.AppImage",
+        "bytes": 111307256
+      },
+      {
+        "nome": "ato20_1.2.0_amd64.deb",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.2.0/ato20_1.2.0_amd64.deb",
+        "bytes": 23212978
+      },
+      {
+        "nome": "ato20_1.2.0_x64-setup.exe",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.2.0/ato20_1.2.0_x64-setup.exe",
+        "bytes": 18127537
+      },
+      {
+        "nome": "ato20_1.2.0_x64_en-US.msi",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.2.0/ato20_1.2.0_x64_en-US.msi",
+        "bytes": 21545588
+      }
+    ]
+  },
+  {
     "tag": "v1.1.0",
     "nome": "ATO20 v1.1.0",
     "publicadaEm": "2026-10-02T20:20:02Z",
