@@ -1,6 +1,8 @@
+import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 import { type ReactNode } from "react";
 
-import type { Idioma } from "@/lib/idioma";
+import { caminho, type Idioma } from "@/lib/idioma";
 
 /**
  * O que um plugin alcança (`recursos`). Cada linha sai da documentação do
@@ -68,6 +70,7 @@ const pt = {
   }
 }`,
   aviso: "plugin de funcionalidade roda com o alcance da janela do Mestre: instale de quem você confia, como num editor de código.",
+  verPlugins: "ver os plugins",
 };
 
 const en: typeof pt = {
@@ -126,6 +129,7 @@ const en: typeof pt = {
   }
 }`,
   aviso: "feature plugins run with the same access as the GM window: install them from people you trust, like in a code editor.",
+  verPlugins: "browse plugins",
 };
 
 const TEXTO = { pt, en };
@@ -214,6 +218,13 @@ export function Plugins({ idioma }: { idioma: Idioma }) {
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground text-pretty">
               {t.lead}
             </p>
+            <Link
+              href={caminho(idioma, "/plugins")}
+              className="mt-6 inline-flex items-center gap-1.5 font-mono text-xs text-muted-foreground transition-colors hover:text-foreground"
+            >
+              {t.verPlugins}
+              <ArrowRight className="size-3.5" strokeWidth={1.75} />
+            </Link>
           </div>
 
           <ul className="mt-10 grid gap-6 sm:grid-cols-2">

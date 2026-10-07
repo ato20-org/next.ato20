@@ -15,7 +15,7 @@ export const IDIOMAS = ["pt", "en"] as const;
 export type Idioma = (typeof IDIOMAS)[number];
 
 /** As rotas do site, sem o prefixo do idioma. */
-export type Rota = "/" | "/releases";
+export type Rota = "/" | "/plugins" | "/releases";
 
 const PREFIXO: Record<Idioma, string> = { pt: "", en: "/en" };
 

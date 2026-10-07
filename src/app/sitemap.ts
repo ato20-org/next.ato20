@@ -3,9 +3,9 @@ import type { MetadataRoute } from "next";
 import { caminho, type Rota } from "@/lib/idioma";
 import { BASE } from "@/lib/metadados";
 
-const ROTAS: Rota[] = ["/", "/releases"];
+const ROTAS: Rota[] = ["/", "/plugins", "/releases"];
 
-/** As duas páginas nos dois idiomas, cada uma apontando a irmã. */
+/** As páginas nos dois idiomas, cada uma apontando a irmã. */
 export default function sitemap(): MetadataRoute.Sitemap {
   const absoluto = (endereco: string) => new URL(endereco, BASE).toString();
 
