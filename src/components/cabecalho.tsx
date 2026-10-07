@@ -6,14 +6,14 @@ import { MarcaGithub } from "@/components/marcas";
 import { caminho, IDIOMAS, NOME_CURTO, type Idioma, type Rota } from "@/lib/idioma";
 import { REPO_URL } from "@/lib/projeto";
 
-const pt = { releases: "releases", trocar: "Read in English" };
+const pt = { plugins: "plugins", releases: "releases", trocar: "Read in English" };
 
-const en: typeof pt = { releases: "releases", trocar: "Ler em português" };
+const en: typeof pt = { plugins: "plugins", releases: "releases", trocar: "Ler em português" };
 
 const TEXTO = { pt, en };
 
 /**
- * A barra do topo, igual na home e na página de releases.
+ * A barra do topo, igual na home e nas páginas de plugins e de releases.
  *
  * A marca é link pra home em todas as páginas, inclusive na própria home: uma
  * marca que às vezes leva pra algum lugar e às vezes não é pior do que uma que
@@ -39,6 +39,12 @@ export function Cabecalho({ idioma, rota }: { idioma: Idioma; rota: Rota }) {
 
       <nav className="flex items-center gap-5 font-mono text-xs text-muted-foreground">
         <Link
+          href={caminho(idioma, "/plugins")}
+          className="transition-colors hover:text-foreground"
+        >
+          {t.plugins}
+        </Link>
+        <Link
           href={caminho(idioma, "/releases")}
           className="transition-colors hover:text-foreground"
         >
@@ -48,10 +54,13 @@ export function Cabecalho({ idioma, rota }: { idioma: Idioma; rota: Rota }) {
           href={REPO_URL}
           target="_blank"
           rel="noreferrer"
+          aria-label="GitHub"
           className="inline-flex items-center gap-2 transition-colors hover:text-foreground"
         >
           <MarcaGithub className="size-4" />
-          github
+          {/* No celular, só a marca: com plugins, releases e os dois idiomas,
+              a palavra empurrava o menu para cima do nome ATO20. */}
+          <span className="hidden sm:inline">github</span>
         </a>
         {/* `<a>` e não `<Link>`: cada idioma tem o seu root layout, e a troca
             entre eles é uma carga de página inteira de qualquer jeito. */}
