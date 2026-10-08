@@ -24,6 +24,42 @@ export type Release = {
 /** Da mais nova pra mais velha, que é como a API devolve. */
 export const RELEASES: Release[] = [
   {
+    "tag": "v1.3.0",
+    "nome": "ATO20 v1.3.0",
+    "publicadaEm": "2026-10-08T13:24:22Z",
+    "prerelease": false,
+    "pagina": "https://github.com/ato20-org/ato20/releases/tag/v1.3.0",
+    "notas": "## Novidades\n\n- **As ferramentas do Mestre ficam numa barra no topo.** Selecionar, Deslocar, Laser, Lápis, Borracha, Texto e Elementos numa barra só, no topo e ao centro. Nos cantos de cima, à esquerda o que é consulta (pontos, áreas, jogadores) e à direita o que ajusta a cena. Cada ferramenta abre o painel dela no canto de baixo.\n- **Lápis macio, borracha que corta e um painel de texto.** O lápis ganhou largura, opacidade e suavizar, e o risco sai em curva macia. A borracha apaga só o pedaço por onde passa, ou o risco inteiro. O texto ganhou fonte, tamanho, alinhamento e opacidade. Alt + roda, ou [ e ], mudam o tamanho do pincel.\n- **Névoa dinâmica: a lanterna dos tokens revela o mapa.** Uma área de névoa dinâmica abre onde a lanterna de um token alcança e fecha quando a luz sai. Paredes e portas param a revelação. E a borracha da névoa, no gizmo da área, fura só aquela área.\n- **Laser para apontar no mapa sem marcar nada.** Na barra do topo: segure e risque, e a mesa vê um rastro vermelho que some sozinho. Parado com o botão apertado, fica um ponto aceso. Nada entra na cena.\n- **As câmeras salvas ganharam foto, numa faixa embaixo do palco.** A faixa recolhe, muda de altura e separa Câmeras e Tripés. Cada cartão mostra o que a câmera enquadra.\n- **Paredes editáveis e céu no 2.5D.** No 2.5D, clique numa parede para mover, mudar de tamanho e de altura, girar e trocar a cor da face, com sugestões tiradas do mapa e conta-gotas. Em Configurações do mapa → Fora do mapa, o Céu no 2.5D pode ser uma cor ou uma imagem panorâmica que gira com a câmera.\n- **A figura em pé vira para o lado em que olha.** No 2.5D, o botão de setas no gizmo da peça liga \"Espelhar para onde olha\".\n- **A lanterna do token tem intensidade e uma roda para mirar.** No menu da lanterna, fraca, média ou forte. Com o token selecionado, o alcance aparece em volta dele: arraste a ponta em volta para mirar, e para longe ou para perto para mudar o alcance. No 2.5D, a roda do olhar também mira a lanterna. E tokens e mobília agora ficam bem pequenos no 2D, como no 2.5D.\n- **Brilho, contraste, saturação e matiz na janela do espectador.** Para acertar a imagem na TV, no monitor ou no projetor da mesa sem mexer no mapa. Vale para a campanha toda, em Configuração da campanha → Espectador, e para um mapa só, em Configurações do mapa. O Mestre e os celulares não mudam.\n- **O Discord mostra o que o Mestre está fazendo.** \"Jogando ATO20\" no perfil, com o que você está fazendo (Editando mapa, Mestrando campanha), o tempo de sessão e quantos jogadores estão na mesa. O título da janela diz o mesmo. Desliga em Configurações → Ajustes → Mostrar no Discord, e o nome da campanha só aparece se você ligar.\n- **O catálogo de plugins dentro do aplicativo.** Em Configurações → Plugins, a aba Catálogo mostra os plugins do site, com o que cada um faz, se executa código e se já está instalado.\n- **Plugins desenham munição bala por bala.** Os pontos de um medidor de plugin podem ser estreitos, como uma bala de pé, e virar um ponto com \"×30\" quando o máximo passa de um teto, para o pente cheio caber na ficha.\n\n## Correções\n\n- **O mapa ampliado não borra mais ao arrastar ou selecionar.** Arrastar um token, puxar a câmera ou clicar no vazio deixava o mapa embaçado no zoom. A roda da lanterna e o token deitado no 2.5D do Mestre também ficaram nítidos.",
+    "notasEn": "## What's new\n\n- **The GM tools sit in a bar at the top.** Select, Pan, Laser, Pencil, Eraser, Text and Elements in a single bar, at the top and centered. In the top corners, what you look up (pins, areas, players) is on the left and what adjusts the scene is on the right. Each tool opens its own panel in the bottom corner.\n- **A smooth pencil, an eraser that cuts and a text panel.** The pencil gained width, opacity and smoothing, and strokes come out as soft curves. The eraser removes only the piece it passes over, or the whole stroke. Text gained font, size, alignment and opacity. Alt + wheel, or [ and ], change the brush size.\n- **Dynamic fog: token lanterns reveal the map.** A dynamic fog area opens wherever a token's lantern reaches and closes when the light leaves. Walls and doors stop the reveal. And the fog eraser, in the area's gizmo, cuts holes in that area only.\n- **A laser to point at the map without marking anything.** In the top bar: hold and drag, and the table sees a red trail that fades on its own. Held still, it stays as a lit dot. Nothing goes into the scene.\n- **Saved cameras have a photo now, in a strip below the stage.** The strip collapses, changes height and splits Cameras and Tripods. Each card shows what the camera frames.\n- **Editable walls and a sky in 2.5D.** In 2.5D, click a wall to move it, change its size and height, rotate it and change its face color, with suggestions taken from the map and an eyedropper. In Map settings → Outside the map, the Sky in 2.5D can be a color or a panoramic image that turns with the camera.\n- **Standing figures turn toward where they face.** In 2.5D, the arrows button in the piece's gizmo turns on \"Mirror toward where it faces\".\n- **Token lanterns have an intensity and a wheel to aim.** In the lantern menu, Dim, Medium or Bright. With the token selected, its reach shows around it: drag the tip around to aim, and farther or closer to change the reach. In 2.5D, the facing ring aims the lantern too. And tokens and furniture can now get very small in 2D, as in 2.5D.\n- **Brightness, contrast, saturation and hue in the spectator window.** To get the picture right on the table's TV, monitor or projector without touching the map. It works for the whole campaign, in Campaign settings → Spectator, and for a single map, in Map settings. The GM screen and the phones do not change.\n- **Discord shows what the GM is doing.** \"Playing ATO20\" on your profile, with what you are doing (Editing a map, Running a campaign), the session time and how many players are at the table. The window title says the same. Turn it off in Settings → Options → Show on Discord, and the campaign name only shows if you turn it on.\n- **The plugin catalog inside the app.** In Settings → Plugins, the Catalog tab shows the plugins from the website, with what each one does, whether it runs code and whether it is already installed.\n- **Plugins can draw ammo one bullet at a time.** The points of a plugin meter can be narrow, like a standing bullet, and turn into one point with \"×30\" when the maximum goes past a cap, so a full magazine fits on the sheet.\n\n## Fixes\n\n- **The zoomed-in map no longer blurs while dragging or selecting.** Dragging a token, pulling the camera or clicking on empty space left the map blurry when zoomed in. The lantern wheel and tokens lying down in the GM's 2.5D are sharp now too.",
+    "arquivos": [
+      {
+        "nome": "ato20-1.3.0-1.x86_64.rpm",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.3.0/ato20-1.3.0-1.x86_64.rpm",
+        "bytes": 23240556
+      },
+      {
+        "nome": "ato20_1.3.0_amd64.AppImage",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.3.0/ato20_1.3.0_amd64.AppImage",
+        "bytes": 111409656
+      },
+      {
+        "nome": "ato20_1.3.0_amd64.deb",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.3.0/ato20_1.3.0_amd64.deb",
+        "bytes": 23317214
+      },
+      {
+        "nome": "ato20_1.3.0_x64-setup.exe",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.3.0/ato20_1.3.0_x64-setup.exe",
+        "bytes": 18241628
+      },
+      {
+        "nome": "ato20_1.3.0_x64_en-US.msi",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.3.0/ato20_1.3.0_x64_en-US.msi",
+        "bytes": 21656180
+      }
+    ]
+  },
+  {
     "tag": "v1.2.0",
     "nome": "ATO20 v1.2.0",
     "publicadaEm": "2026-10-06T20:24:16Z",
