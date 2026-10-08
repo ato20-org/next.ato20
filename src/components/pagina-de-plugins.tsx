@@ -1,7 +1,9 @@
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 
+import { BuscaDePlugins } from "@/components/busca-de-plugins";
 import { Cabecalho } from "@/components/cabecalho";
+import { normalizar } from "@/lib/busca";
 import { noIdioma, PLUGINS, type PluginDoCatalogo } from "@/lib/catalogo";
 import type { Idioma } from "@/lib/idioma";
 import { metadados } from "@/lib/metadados";
@@ -25,10 +27,12 @@ const pt = {
   verNoGithub: "ver no GitHub",
   comoInstalar: "Como instalar",
   passos: [
-    "Baixe o repositório do plugin: no GitHub, Code → Download ZIP.",
-    "Descompacte. A pasta certa é a que tem o manifest.json dentro.",
-    "No ATO20, Configurações → Plugins → Importar plugin, e escolha essa pasta.",
+    "No ATO20, Configurações → Plugins → Catálogo.",
+    "Instalar, no card do plugin. Se ele executa código, o ATO20 pede confirmação antes.",
+    "Quando sair versão nova, o mesmo botão vira Atualizar.",
   ],
+  aMao:
+    "Num ATO20 sem o botão de instalar: baixe o repositório no GitHub (Code → Download ZIP), descompacte e, em Configurações → Plugins → Importar plugin, escolha a pasta que tem o manifest.json.",
   aviso:
     "plugin que executa código roda com o alcance da janela do Mestre: instale de quem você confia, como num editor de código.",
   fezUm: "Fez um plugin?",
@@ -56,10 +60,12 @@ const en: typeof pt = {
   verNoGithub: "see on GitHub",
   comoInstalar: "How to install",
   passos: [
-    "Download the plugin's repository: on GitHub, Code → Download ZIP.",
-    "Unzip it. The right folder is the one with manifest.json inside.",
-    "In ATO20, Settings → Plugins → Import plugin, and pick that folder.",
+    "In ATO20, Settings → Plugins → Catalog.",
+    "Install, on the plugin's card. If it runs code, ATO20 asks you to confirm first.",
+    "When a new version is out, the same button turns into Update.",
   ],
+  aMao:
+    "On an ATO20 without the install button: download the repository on GitHub (Code → Download ZIP), unzip it and, in Settings → Plugins → Import plugin, pick the folder with manifest.json inside.",
   aviso:
     "plugins that run code have the same access as the GM window: install them from people you trust, like in a code editor.",
   fezUm: "Made a plugin?",
@@ -155,6 +161,88 @@ function Icone({ plugin, nome }: { plugin: PluginDoCatalogo; nome: string }) {
   );
 }
 
+/** O card de um plugin: o que a busca mostra ou esconde. */
+function CardDoPlugin({ plugin, idioma }: { plugin: PluginDoCatalogo; idioma: Idioma }) {
+  const t = TEXTO[idioma];
+  const nome = noIdioma(plugin.nome, idioma);
+
+  return (
+    <>
+      <Capa plugin={plugin} />
+
+      <div className="flex flex-1 flex-col p-5">
+        <div className="flex items-center gap-3">
+          <Icone plugin={plugin} nome={nome} />
+          <div className="min-w-0">
+            <h2 className="font-medium tracking-tight text-balance">{nome}</h2>
+            <p className="mt-0.5 font-mono text-xs text-muted-foreground">
+              {t.por} {plugin.autor}
+            </p>
+          </div>
+        </div>
+
+        <p className="mt-4 flex-1 text-sm leading-relaxed text-muted-foreground text-pretty">
+          {noIdioma(plugin.descricao, idioma)}
+        </p>
+
+        {plugin.tags.length > 0 ? (
+          <ul className="mt-4 flex flex-wrap gap-x-3 gap-y-1 font-mono text-xs text-muted-foreground/80">
+            {plugin.tags.map((tag) => (
+              <li key={tag}>#{tag}</li>
+            ))}
+          </ul>
+        ) : null}
+
+        <div className="mt-5 flex items-center justify-between gap-3 border-t border-border pt-4">
+          <div className="flex flex-wrap gap-1.5">
+            {plugin.executaCodigo ? (
+              <span
+                title={t.executaCodigoNota}
+                className="rounded border border-accent/40 px-1.5 py-0.5 font-mono text-[0.65rem] tracking-wide text-accent uppercase"
+              >
+                {t.executaCodigo}
+              </span>
+            ) : (
+              <span
+                title={t.semCodigoNota}
+                className="rounded border border-border bg-muted/50 px-1.5 py-0.5 font-mono text-[0.65rem] tracking-wide text-foreground uppercase"
+              >
+                {t.semCodigo}
+              </span>
+            )}
+            <span className="rounded border border-dashed border-border px-1.5 py-0.5 font-mono text-[0.65rem] tracking-wide text-muted-foreground uppercase">
+              {t.api} {plugin.apiVersao}
+            </span>
+          </div>
+
+          <a
+            href={plugin.repositorio}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex shrink-0 items-center gap-1.5 font-mono text-xs text-muted-foreground transition-colors hover:text-foreground"
+          >
+            {t.verNoGithub}
+            <ArrowUpRight className="size-3.5" strokeWidth={1.75} />
+          </a>
+        </div>
+      </div>
+    </>
+  );
+}
+
+/** Tudo em que a busca procura, no idioma da página. */
+function textoDeBusca(plugin: PluginDoCatalogo, idioma: Idioma): string {
+  return normalizar(
+    [
+      plugin.id,
+      noIdioma(plugin.nome, idioma),
+      noIdioma(plugin.descricao, idioma),
+      plugin.autor,
+      ...plugin.tags,
+    ].join(" "),
+  );
+}
+
 /**
  * A vitrine de plugins.
  *
@@ -188,77 +276,14 @@ export function PaginaDePlugins({ idioma }: { idioma: Idioma }) {
         {PLUGINS.length === 0 ? (
           <p className="mt-16 font-mono text-sm text-muted-foreground">{t.nenhum}</p>
         ) : (
-          <ul className="mt-16 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-            {PLUGINS.map((plugin) => {
-              const nome = noIdioma(plugin.nome, idioma);
-
-              return (
-                <li
-                  key={plugin.id}
-                  className="flex flex-col overflow-hidden rounded-xl border border-border bg-muted/20"
-                >
-                  <Capa plugin={plugin} />
-
-                  <div className="flex flex-1 flex-col p-5">
-                    <div className="flex items-center gap-3">
-                      <Icone plugin={plugin} nome={nome} />
-                      <div className="min-w-0">
-                        <h2 className="font-medium tracking-tight text-balance">{nome}</h2>
-                        <p className="mt-0.5 font-mono text-xs text-muted-foreground">
-                          {t.por} {plugin.autor}
-                        </p>
-                      </div>
-                    </div>
-
-                    <p className="mt-4 flex-1 text-sm leading-relaxed text-muted-foreground text-pretty">
-                      {noIdioma(plugin.descricao, idioma)}
-                    </p>
-
-                    {plugin.tags.length > 0 ? (
-                      <ul className="mt-4 flex flex-wrap gap-x-3 gap-y-1 font-mono text-xs text-muted-foreground/80">
-                        {plugin.tags.map((tag) => (
-                          <li key={tag}>#{tag}</li>
-                        ))}
-                      </ul>
-                    ) : null}
-
-                    <div className="mt-5 flex items-center justify-between gap-3 border-t border-border pt-4">
-                      <div className="flex flex-wrap gap-1.5">
-                        {plugin.executaCodigo ? (
-                          <span
-                            title={t.executaCodigoNota}
-                            className="rounded border border-accent/40 px-1.5 py-0.5 font-mono text-[0.65rem] tracking-wide text-accent uppercase"
-                          >
-                            {t.executaCodigo}
-                          </span>
-                        ) : (
-                          <span
-                            title={t.semCodigoNota}
-                            className="rounded border border-border bg-muted/50 px-1.5 py-0.5 font-mono text-[0.65rem] tracking-wide text-foreground uppercase"
-                          >
-                            {t.semCodigo}
-                          </span>
-                        )}
-                        <span className="rounded border border-dashed border-border px-1.5 py-0.5 font-mono text-[0.65rem] tracking-wide text-muted-foreground uppercase">
-                          {t.api} {plugin.apiVersao}
-                        </span>
-                      </div>
-
-                      <a
-                        href={plugin.repositorio}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex shrink-0 items-center gap-1.5 font-mono text-xs text-muted-foreground transition-colors hover:text-foreground"
-                      >
-                        {t.verNoGithub}
-                        <ArrowUpRight className="size-3.5" strokeWidth={1.75} />
-                      </a>
-                    </div>
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
+          <BuscaDePlugins
+            idioma={idioma}
+            itens={PLUGINS.map((plugin) => ({
+              id: plugin.id,
+              busca: textoDeBusca(plugin, idioma),
+              card: <CardDoPlugin plugin={plugin} idioma={idioma} />,
+            }))}
+          />
         )}
 
         <div className="mt-20 grid gap-12 border-t border-border pt-10 xl:grid-cols-2 xl:gap-16">
@@ -274,6 +299,7 @@ export function PaginaDePlugins({ idioma }: { idioma: Idioma }) {
                 </li>
               ))}
             </ol>
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground text-pretty">{t.aMao}</p>
             <p className="mt-6 font-mono text-xs leading-relaxed text-muted-foreground">
               <span className="text-accent">{"//"}</span> {t.aviso}
             </p>
