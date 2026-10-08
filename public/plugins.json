@@ -11,7 +11,7 @@
       "autor": "valb-mig",
       "repositorio": "https://github.com/valb-mig/ato20.ordem-segredo-na-floresta.plugin",
       "executaCodigo": false,
-      "apiVersao": 6,
+      "apiVersao": 8,
       "tags": ["ordem-paranormal", "tema", "medidores", "efeitos"]
     },
     {
@@ -24,7 +24,7 @@
       "autor": "valb-mig",
       "repositorio": "https://github.com/valb-mig/ato20.obs.plugin",
       "executaCodigo": true,
-      "apiVersao": 3,
+      "apiVersao": 8,
       "tags": ["obs", "live"]
     }
   ]
