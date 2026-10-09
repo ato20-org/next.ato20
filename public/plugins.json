@@ -8,11 +8,37 @@
         "pt-BR": "Leva a mesa para a live: os dados caindo e os retratos dos personagens, em fontes de navegador com fundo transparente.",
         "en": "Takes the table to your stream: the dice falling and the character portraits, as browser sources with a transparent background."
       },
-      "autor": "valb-mig",
-      "repositorio": "https://github.com/valb-mig/ato20.obs.plugin",
+      "autor": "ato20-org",
+      "repositorio": "https://github.com/ato20-org/ato20.obs.plugin",
       "executaCodigo": true,
       "apiVersao": 8,
       "tags": ["obs", "live"]
+    },
+    {
+      "id": "ordem-paranormal",
+      "nome": "Ordem Paranormal",
+      "descricao": {
+        "pt-BR": "Ordem Paranormal no ATO20: a campanha nasce com AGI, FOR, INT, PRE e VIG, PV, PE e SAN, a ficha de agente nos detalhes e as condições do jogo. E a ficha de agente editável em PDF vira personagem.",
+        "en": "Ordem Paranormal in ATO20: the campaign starts with AGI, FOR, INT, PRE and VIG, HP, EP and SAN, the agent sheet as details and the game's conditions. And the fillable agent sheet PDF becomes a character."
+      },
+      "autor": "ato20-org",
+      "repositorio": "https://github.com/ato20-org/ato20.ordem-paranormal.plugin",
+      "executaCodigo": false,
+      "apiVersao": 11,
+      "tags": ["ordem-paranormal", "sistema", "ficha", "pdf"]
+    },
+    {
+      "id": "tormenta20",
+      "nome": "Tormenta20",
+      "descricao": {
+        "pt-BR": "Ensina o ATO20 a ler a ficha editável do Tormenta20 e criar o personagem a partir dela: atributos, PV e PM, perícias, habilidades, ataques e equipamento.",
+        "en": "Teaches ATO20 to read the fillable Tormenta20 sheet and build the character from it: attributes, HP and MP, skills, abilities, attacks and gear."
+      },
+      "autor": "ato20-org",
+      "repositorio": "https://github.com/ato20-org/ato20.tormenta20.plugin",
+      "executaCodigo": false,
+      "apiVersao": 10,
+      "tags": ["tormenta20", "ficha", "pdf"]
     }
   ]
 }
