@@ -2,19 +2,6 @@
   "formato": 1,
   "plugins": [
     {
-      "id": "ordem-segredo-na-floresta",
-      "nome": "Ordem Paranormal: Segredo na Floresta",
-      "descricao": {
-        "pt-BR": "A interface do Mestre nas cores da temporada, a névoa do Outro Lado e o lodo da Morte como efeitos em área, e as barras de pincel com o valor no meio: PV, SAN e PE. E a munição, uma bala por tiro.",
-        "en": "The GM interface in the season's colors, the Other Side's fog and Death's sludge as area effects, and brushstroke bars with the value in the middle: PV, SAN and PE. Plus ammo, one bullet per shot."
-      },
-      "autor": "valb-mig",
-      "repositorio": "https://github.com/valb-mig/ato20.ordem-segredo-na-floresta.plugin",
-      "executaCodigo": false,
-      "apiVersao": 6,
-      "tags": ["ordem-paranormal", "tema", "medidores", "efeitos"]
-    },
-    {
       "id": "obs",
       "nome": "OBS",
       "descricao": {
