@@ -11,7 +11,7 @@
       "autor": "valb-mig",
       "repositorio": "https://github.com/valb-mig/ato20.obs.plugin",
       "executaCodigo": true,
-      "apiVersao": 3,
+      "apiVersao": 8,
       "tags": ["obs", "live"]
     }
   ]
