@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <defs>
+    <radialGradient id="f" cx="50%" cy="40%" r="75%">
+      <stop offset="0" stop-color="#4a0f14"/><stop offset="1" stop-color="#14060a"/>
+    </radialGradient>
+    <filter id="brilho" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="7"/>
+    </filter>
+  </defs>
+  <rect width="256" height="256" rx="56" fill="url(#f)"/>
+  <rect x="2" y="2" width="252" height="252" rx="54" fill="none" stroke="#fff" stroke-opacity=".08" stroke-width="2"/>
+  <g fill="none" stroke="#f3e6e2" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"><polygon points="128.0,44.0 202.5,87.0 202.5,173.0 128.0,216.0 53.5,173.0 53.5,87.0"/><polygon points="128.0,81.8 169.7,154.1 86.3,154.1"/><line x1="128.0" y1="81.8" x2="53.5" y2="87.0"/><line x1="128.0" y1="81.8" x2="128.0" y2="44.0"/><line x1="128.0" y1="81.8" x2="202.5" y2="87.0"/><line x1="169.7" y1="154.1" x2="202.5" y2="87.0"/><line x1="169.7" y1="154.1" x2="202.5" y2="173.0"/><line x1="169.7" y1="154.1" x2="128.0" y2="216.0"/><line x1="86.3" y1="154.1" x2="128.0" y2="216.0"/><line x1="86.3" y1="154.1" x2="53.5" y2="173.0"/><line x1="86.3" y1="154.1" x2="53.5" y2="87.0"/></g>
+  <path d="M150 38 L104 128 L136 128 L100 220 L170 112 L136 112 L166 38 Z" fill="#ff3b3b" filter="url(#brilho)" opacity=".75"/>
+  <path d="M150 38 L104 128 L136 128 L100 220 L170 112 L136 112 L166 38 Z" fill="#ff4a3d" stroke="#14060a" stroke-width="5" stroke-linejoin="round" paint-order="stroke"/>
+</svg>

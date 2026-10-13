@@ -10,6 +10,8 @@
       },
       "autor": "ato20-org",
       "repositorio": "https://github.com/ato20-org/ato20.obs.plugin",
+      "icone": "/plugins/obs/icone.svg",
+      "capa": "/plugins/obs/capa.webp",
       "executaCodigo": true,
       "apiVersao": 8,
       "tags": ["obs", "live"]
@@ -23,6 +25,8 @@
       },
       "autor": "ato20-org",
       "repositorio": "https://github.com/ato20-org/ato20.ordem-paranormal.plugin",
+      "icone": "/plugins/ordem-paranormal/icone.svg",
+      "capa": "/plugins/ordem-paranormal/capa.png",
       "executaCodigo": false,
       "apiVersao": 11,
       "tags": ["ordem-paranormal", "sistema", "ficha", "pdf"]
@@ -36,6 +40,8 @@
       },
       "autor": "ato20-org",
       "repositorio": "https://github.com/ato20-org/ato20.tormenta20.plugin",
+      "icone": "/plugins/tormenta20/icone.svg",
+      "capa": "/plugins/tormenta20/capa.png",
       "executaCodigo": false,
       "apiVersao": 10,
       "tags": ["tormenta20", "ficha", "pdf"]
