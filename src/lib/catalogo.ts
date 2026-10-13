@@ -46,7 +46,11 @@ export type PluginDoCatalogo = {
   icone?: string;
   /** Caminho em `public/`, 16:9. */
   capa?: string;
-  /** O manifesto tem `principal`. É o que decide o selo do card. */
+  /**
+   * O manifesto tem `principal`. O aplicativo pergunta antes de instalar
+   * plugin que traz código. Fica mesmo sem selo na página: o aplicativo até a
+   * 1.4 mostra o selo no card do catálogo, e lê o campo ausente como "executa".
+   */
   executaCodigo: boolean;
   apiVersao: number;
   tags: string[];

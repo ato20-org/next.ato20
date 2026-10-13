@@ -86,7 +86,7 @@ export function BuscaDePlugins({ idioma, itens }: { idioma: Idioma; itens: ItemD
           {visiveis.map((item) => (
             <li
               key={item.id}
-              className="flex flex-col overflow-hidden rounded-xl border border-border bg-muted/20"
+              className="flex flex-col overflow-hidden rounded-xl border border-border bg-muted/20 transition-colors has-[a:hover]:border-muted-foreground/50"
             >
               {item.card}
             </li>

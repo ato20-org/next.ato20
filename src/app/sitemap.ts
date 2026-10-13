@@ -1,9 +1,15 @@
 import type { MetadataRoute } from "next";
 
+import { PLUGINS } from "@/lib/catalogo";
 import { caminho, type Rota } from "@/lib/idioma";
 import { BASE } from "@/lib/metadados";
 
-const ROTAS: Rota[] = ["/", "/plugins", "/releases"];
+const ROTAS: Rota[] = [
+  "/",
+  "/plugins",
+  ...PLUGINS.map((plugin): Rota => `/plugins/${plugin.id}`),
+  "/releases",
+];
 
 /** As páginas nos dois idiomas, cada uma apontando a irmã. */
 export default function sitemap(): MetadataRoute.Sitemap {

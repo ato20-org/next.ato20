@@ -14,8 +14,8 @@ export const IDIOMAS = ["pt", "en"] as const;
 
 export type Idioma = (typeof IDIOMAS)[number];
 
-/** As rotas do site, sem o prefixo do idioma. */
-export type Rota = "/" | "/plugins" | "/releases";
+/** As rotas do site, sem o prefixo do idioma. `/plugins/{id}` é a página de um plugin. */
+export type Rota = "/" | "/plugins" | `/plugins/${string}` | "/releases";
 
 const PREFIXO: Record<Idioma, string> = { pt: "", en: "/en" };
 

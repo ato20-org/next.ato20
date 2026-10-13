@@ -1,30 +1,26 @@
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 import { BuscaDePlugins } from "@/components/busca-de-plugins";
 import { Cabecalho } from "@/components/cabecalho";
 import { normalizar } from "@/lib/busca";
 import { noIdioma, PLUGINS, type PluginDoCatalogo } from "@/lib/catalogo";
-import type { Idioma } from "@/lib/idioma";
+import { caminho, type Idioma } from "@/lib/idioma";
 import { metadados } from "@/lib/metadados";
 import { REPO_URL } from "@/lib/projeto";
 
 const pt = {
   titulo: "Plugins · ATO20",
   descricao:
-    "Plugins para o ATO20: temas, sistemas de regras e o que mais a mesa pedir. Cada um com o que faz e se executa código.",
+    "Plugins para o ATO20: temas, sistemas de regras e o que mais a mesa pedir. Cada um com o que faz e como se usa.",
   rotulo: "catálogo",
   cabeca: "Plugins.",
   lead:
-    "Plugins para a mesa do ATO20. Cada card diz o que o plugin faz e se ele executa código, antes de você baixar qualquer coisa.",
+    "Plugins para a mesa do ATO20. Abra um para ver o que ele faz, as telas e o passo a passo, antes de instalar.",
   nenhum: "nenhum plugin no catálogo ainda.",
   por: "por",
-  semCodigo: "sem código",
-  semCodigoNota: "Só tema e o que o manifesto declara. Nenhum JavaScript roda.",
-  executaCodigo: "executa código",
-  executaCodigoNota: "Traz JavaScript, que roda com o alcance da janela do Mestre.",
-  api: "api",
-  verNoGithub: "ver no GitHub",
+  detalhes: "detalhes",
   comoInstalar: "Como instalar",
   passos: [
     "No ATO20, Configurações → Plugins → Catálogo.",
@@ -45,19 +41,14 @@ const pt = {
 const en: typeof pt = {
   titulo: "Plugins · ATO20",
   descricao:
-    "Plugins for ATO20: themes, rules systems and whatever else the table needs. Each one with what it does and whether it runs code.",
+    "Plugins for ATO20: themes, rules systems and whatever else the table needs. Each one with what it does and how to use it.",
   rotulo: "catalog",
   cabeca: "Plugins.",
   lead:
-    "Plugins for the ATO20 table. Each card says what the plugin does and whether it runs code, before you download anything.",
+    "Plugins for the ATO20 table. Open one to see what it does, its screens and a step by step, before you install it.",
   nenhum: "no plugins in the catalog yet.",
   por: "by",
-  semCodigo: "no code",
-  semCodigoNota: "Only a theme and what the manifest declares. No JavaScript runs.",
-  executaCodigo: "runs code",
-  executaCodigoNota: "Ships JavaScript, which runs with the same access as the GM window.",
-  api: "api",
-  verNoGithub: "see on GitHub",
+  detalhes: "details",
   comoInstalar: "How to install",
   passos: [
     "In ATO20, Settings → Plugins → Catalog.",
@@ -88,7 +79,7 @@ export function metadadosDePlugins(idioma: Idioma) {
  * Um matiz estável por plugin. Sem ícone, a inicial é o que distingue um card
  * do outro, e "Ordem" e "OBS" começam com a mesma letra: a cor é que separa.
  */
-function matiz(id: string): number {
+export function matiz(id: string): number {
   let soma = 0;
   for (const letra of id) soma = (soma * 31 + letra.charCodeAt(0)) % 360;
 
@@ -101,7 +92,7 @@ function matiz(id: string): number {
  * mesmo `iniciativa/` da seção de plugins da home, a promessa de que um plugin
  * é uma pasta.
  */
-function Capa({ plugin }: { plugin: PluginDoCatalogo }) {
+export function Capa({ plugin }: { plugin: PluginDoCatalogo }) {
   if (plugin.capa) {
     return (
       <div className="relative aspect-video border-b border-border">
@@ -134,16 +125,27 @@ function Capa({ plugin }: { plugin: PluginDoCatalogo }) {
   );
 }
 
-function Icone({ plugin, nome }: { plugin: PluginDoCatalogo; nome: string }) {
+export function Icone({
+  plugin,
+  nome,
+  grande = false,
+}: {
+  plugin: PluginDoCatalogo;
+  nome: string;
+  grande?: boolean;
+}) {
+  const lado = grande ? 72 : 48;
+  const tamanho = grande ? "size-18 rounded-2xl text-3xl" : "size-12 rounded-lg text-lg";
+
   if (plugin.icone) {
     return (
       <Image
         src={plugin.icone}
         alt=""
-        width={48}
-        height={48}
+        width={lado}
+        height={lado}
         unoptimized={plugin.icone.endsWith(".svg")}
-        className="size-12 shrink-0 rounded-lg"
+        className={`${tamanho} shrink-0`}
       />
     );
   }
@@ -153,7 +155,7 @@ function Icone({ plugin, nome }: { plugin: PluginDoCatalogo; nome: string }) {
   return (
     <span
       aria-hidden
-      className="grid size-12 shrink-0 place-items-center rounded-lg font-mono text-lg font-medium"
+      className={`${tamanho} grid shrink-0 place-items-center font-mono font-medium`}
       style={{ backgroundColor: `oklch(0.3 0.05 ${h})`, color: `oklch(0.88 0.08 ${h})` }}
     >
       {Array.from(nome)[0]?.toUpperCase()}
@@ -161,13 +163,16 @@ function Icone({ plugin, nome }: { plugin: PluginDoCatalogo; nome: string }) {
   );
 }
 
-/** O card de um plugin: o que a busca mostra ou esconde. */
+/**
+ * O card de um plugin: o que a busca mostra ou esconde. O card inteiro é o
+ * link da página dele, com o README; o GitHub e a versão da API ficam lá.
+ */
 function CardDoPlugin({ plugin, idioma }: { plugin: PluginDoCatalogo; idioma: Idioma }) {
   const t = TEXTO[idioma];
   const nome = noIdioma(plugin.nome, idioma);
 
   return (
-    <>
+    <Link href={caminho(idioma, `/plugins/${plugin.id}`)} className="group flex flex-1 flex-col">
       <Capa plugin={plugin} />
 
       <div className="flex flex-1 flex-col p-5">
@@ -185,48 +190,23 @@ function CardDoPlugin({ plugin, idioma }: { plugin: PluginDoCatalogo; idioma: Id
           {noIdioma(plugin.descricao, idioma)}
         </p>
 
-        {plugin.tags.length > 0 ? (
-          <ul className="mt-4 flex flex-wrap gap-x-3 gap-y-1 font-mono text-xs text-muted-foreground/80">
+        <div className="mt-5 flex items-center justify-between gap-3 border-t border-border pt-4">
+          <ul className="flex min-w-0 flex-wrap gap-x-3 gap-y-1 font-mono text-xs text-muted-foreground/80">
             {plugin.tags.map((tag) => (
               <li key={tag}>#{tag}</li>
             ))}
           </ul>
-        ) : null}
 
-        <div className="mt-5 flex items-center justify-between gap-3 border-t border-border pt-4">
-          <div className="flex flex-wrap gap-1.5">
-            {plugin.executaCodigo ? (
-              <span
-                title={t.executaCodigoNota}
-                className="rounded border border-accent/40 px-1.5 py-0.5 font-mono text-[0.65rem] tracking-wide text-accent uppercase"
-              >
-                {t.executaCodigo}
-              </span>
-            ) : (
-              <span
-                title={t.semCodigoNota}
-                className="rounded border border-border bg-muted/50 px-1.5 py-0.5 font-mono text-[0.65rem] tracking-wide text-foreground uppercase"
-              >
-                {t.semCodigo}
-              </span>
-            )}
-            <span className="rounded border border-dashed border-border px-1.5 py-0.5 font-mono text-[0.65rem] tracking-wide text-muted-foreground uppercase">
-              {t.api} {plugin.apiVersao}
-            </span>
-          </div>
-
-          <a
-            href={plugin.repositorio}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex shrink-0 items-center gap-1.5 font-mono text-xs text-muted-foreground transition-colors hover:text-foreground"
-          >
-            {t.verNoGithub}
-            <ArrowUpRight className="size-3.5" strokeWidth={1.75} />
-          </a>
+          <span className="inline-flex shrink-0 items-center gap-1.5 font-mono text-xs text-muted-foreground transition-colors group-hover:text-foreground">
+            {t.detalhes}
+            <ArrowRight
+              className="size-3.5 transition-transform group-hover:translate-x-0.5"
+              strokeWidth={1.75}
+            />
+          </span>
         </div>
       </div>
-    </>
+    </Link>
   );
 }
 
@@ -247,12 +227,12 @@ function textoDeBusca(plugin: PluginDoCatalogo, idioma: Idioma): string {
  * A vitrine de plugins.
  *
  * Os dados vêm de `public/plugins.json`, lido e validado no build por
- * `src/lib/catalogo.ts`: a página é estática, como a de releases.
+ * `src/lib/catalogo.ts`: a página é estática, como a de releases. Cada card
+ * leva à página do plugin (`PaginaDoPlugin`), com o README do repositório.
  *
- * O selo de código é a primeira coisa do rodapé de cada card. A guarda do
- * aplicativo é contra plugin malformado, não contra plugin malicioso, e uma
- * vitrine dentro do site do projeto parece aval: o selo é o que diz, card a
- * card, quanto se está confiando ao instalar.
+ * Sem selo de "executa código" no card: quem escolhe um plugin quer saber o
+ * que ele faz. A confiança fica no aviso do "como instalar", e o aplicativo
+ * pergunta na hora de instalar um plugin que traz código.
  */
 export function PaginaDePlugins({ idioma }: { idioma: Idioma }) {
   const t = TEXTO[idioma];
