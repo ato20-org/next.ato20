@@ -29,8 +29,8 @@ export const RELEASES: Release[] = [
     "publicadaEm": "2026-10-13T14:43:14Z",
     "prerelease": false,
     "pagina": "https://github.com/ato20-org/ato20/releases/tag/v1.5.1",
-    "notas": "Beta: dá para jogar com ele, e ainda há aresta.\n\n**Linux** — `.AppImage` roda sem instalar, e na primeira abertura\nele mesmo põe o atalho no menu (rofi, wofi e afins). Basta dar\npermissão de execução: `chmod +x ato20_*.AppImage`. `.deb` e `.rpm`\npara quem prefere instalar pelo gerenciador.\n**Windows** — `.msi` ou o instalador `.exe`. Os dois saem SEM\nassinatura de código, então o SmartScreen vai avisar: \"Mais\ninformações\" e \"Executar mesmo assim\".",
-    "notasEn": null,
+    "notas": "## Correções\n\n- **No AppImage, rolar dado não trava mais a janela.** Desde a 1.4.0, o dado rolado depois de alguns segundos parado congelava a janela inteira por até oito segundos antes de cair, pela ficha, pelo saquinho ou pela paleta. Era o som dos dados acordando.",
+    "notasEn": "## Fixes\n\n- **In the AppImage, rolling dice no longer freezes the window.** Since 1.4.0, a die rolled after a few idle seconds froze the whole window for up to eight seconds before falling, from the sheet, the dice bag or the command palette. It was the dice sound waking up.",
     "arquivos": [
       {
         "nome": "ato20-1.5.1-1.x86_64.rpm",
@@ -65,8 +65,8 @@ export const RELEASES: Release[] = [
     "publicadaEm": "2026-10-13T11:29:08Z",
     "prerelease": false,
     "pagina": "https://github.com/ato20-org/ato20/releases/tag/v1.5.0",
-    "notas": "Beta: dá para jogar com ele, e ainda há aresta.\n\n**Linux** — `.AppImage` roda sem instalar, e na primeira abertura\nele mesmo põe o atalho no menu (rofi, wofi e afins). Basta dar\npermissão de execução: `chmod +x ato20_*.AppImage`. `.deb` e `.rpm`\npara quem prefere instalar pelo gerenciador.\n**Windows** — `.msi` ou o instalador `.exe`. Os dois saem SEM\nassinatura de código, então o SmartScreen vai avisar: \"Mais\ninformações\" e \"Executar mesmo assim\".",
-    "notasEn": null,
+    "notas": "## Novidades\n\n- **Cada plugin tem a sua página, com as telas e o passo a passo.** No Catálogo, clicar num plugin abre a página dele, como numa loja de extensões: o ícone, quem fez, a versão e o que o autor escreveu sobre ele, com imagens. Os plugins instalados abrem a mesma página, em Configurações → Plugins → Instalados, com o Atualizar quando há versão nova.\n- **Os plugins instalados mostram o ícone.** A lista de Instalados mostra o ícone de cada plugin ao lado do nome. OBS, Ordem Paranormal e Tormenta20 já trazem o deles: é só atualizar pelo Catálogo. Quem escreve plugin declara o icone no manifest.json.",
+    "notasEn": "## What's new\n\n- **Each plugin has its own page, with screenshots and a step by step.** In the Catalog, clicking a plugin opens its page, like in an extension store: the icon, who made it, the version and what its author wrote about it, with images. Installed plugins open the same page, in Settings → Plugins → Installed, with Update when there's a new version.\n- **Installed plugins show their icon.** The Installed list shows each plugin's icon next to its name. OBS, Ordem Paranormal and Tormenta20 already ship theirs: just update them from the Catalog. Plugin authors declare the icone in manifest.json.",
     "arquivos": [
       {
         "nome": "ato20-1.5.0-1.x86_64.rpm",
