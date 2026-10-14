@@ -24,6 +24,42 @@ export type Release = {
 /** Da mais nova pra mais velha, que é como a API devolve. */
 export const RELEASES: Release[] = [
   {
+    "tag": "v1.6.0",
+    "nome": "ATO20 v1.6.0",
+    "publicadaEm": "2026-10-14T21:01:08Z",
+    "prerelease": false,
+    "pagina": "https://github.com/ato20-org/ato20/releases/tag/v1.6.0",
+    "notas": "## Novidades\n\n- **Os itens são da campanha, cada um com o seu card.** A janela Itens guarda o catálogo em pastas, com busca. O card do item se edita no lugar: imagem, nome, descrição, atributos e medidores, e um atributo como 1d8+2 cortante rola no clique. A mesma espada pode estar com mais de um personagem, e cada mochila guarda a sua quantidade e os seus medidores. Os itens que já estavam nas fichas passam para o catálogo. Campanha aberta nesta versão não abre mais nas anteriores.\n- **O item no mapa, nos pontos e na mesa.** Arraste um item da janela Itens para um personagem, para o mapa, para um ponto de anotação ou para o handout. No mapa, a peça mostra o nome do item e o botão de transmitir. Mostrar na mesa leva o cartão do item para a TV e os celulares, sem o que está escondido, e a mochila do celular mostra atributos e medidores.\n- **Zoom no mapa do celular e da TV.** Pinça, Ctrl com a roda, Ctrl com + − 0 ou os botões no canto do mapa, até 400%. O zoom só aproxima dentro do que o mestre enquadrou, nunca mostra além, e cada troca de câmera volta ao enquadramento dele.\n- **O celular do jogador em tela cheia.** A página entra em tela cheia no primeiro toque dentro da mesa, e a barra do navegador some, com a ficha, o chat e o saquinho no lugar. Um botão no alto liga e desliga, e o celular lembra a escolha. No iPhone o navegador não permite.\n- **As janelas do Mestre esticam por todas as bordas e cantos.** Antes, só pelo canto de baixo à direita. Para alargar uma ficha para a esquerda, era preciso arrastar a janela, esticar e arrastar de volta.\n- **As colunas do Mestre abrem e fecham pelo cabeçalho.** Um botão em cada ponta do cabeçalho, que mostra se a coluna está aberta. E ao arrastar uma nota ou um quadro para o lado do mapa, a tela mostra onde ele vai abrir antes de soltar: Dividir à esquerda, Dividir à direita ou Abrir como aba.\n- **O quadro só vai ao ar pela paleta.** O Colocar no ar saiu do cabeçalho e do menu do quadro: um clique distraído punha as anotações na TV. Na paleta (Ctrl+K), transmitir pelo nome do quadro continua funcionando.\n- **Fichas com muitas perícias e dados ficaram mais leves.** Com cem perícias, editar uma ficou cinco vezes mais rápido, e buscar na barra lateral, dez. Trocar de grupo também ficou mais leve.\n\n## Correções\n\n- **No celular com o mapa em tela cheia, o que o mestre mostra aparece.** O jogador com o mapa em tela cheia não via o item, a carta ou o retrato que o mestre punha em evidência.\n- **O botão de som da TV aparece de novo.** Quando sobrava tela em cima e embaixo do mapa, ele ficava invisível, mas continuava clicável.\n- **No saquinho do celular, rolar a lista não arremessa mais um dado.** Os dados ficam parados, e só as últimas rolagens rolam. Com o celular deitado, os dados cabem em duas fileiras.",
+    "notasEn": "## What's new\n\n- **Items belong to the campaign, each with its own card.** The Items window keeps the catalog in folders, with search. An item's card is edited in place: image, name, description, attributes and meters, and an attribute like 1d8+2 slashing rolls on click. The same sword can be with more than one character, and each backpack keeps its own quantity and meters. Items that were already on sheets move to the catalog. A campaign opened in this version no longer opens in earlier ones.\n- **Items on the map, on pins and at the table.** Drag an item from the Items window onto a character, the map, a map pin or the handout. On the map, the piece shows the item's name and the button to put it on air. Show at the table sends the item's card to the TV and the phones, without what's hidden, and the backpack on the phone shows attributes and meters.\n- **Zoom on the map on phones and the TV.** Pinch, Ctrl with the wheel, Ctrl with + − 0 or the buttons in the corner of the map, up to 400%. Zoom only closes in on what the GM framed, never shows beyond it, and every camera change goes back to the GM's framing.\n- **The player's phone in full screen.** The page goes full screen on the first tap inside the table, and the browser bar disappears, with the sheet, the chat and the dice bag in place. A button at the top turns it on and off, and the phone remembers the choice. On iPhone the browser doesn't allow it.\n- **GM windows stretch from every edge and corner.** Before, only from the bottom right corner. To widen a sheet to the left, you had to drag the window, stretch it and drag it back.\n- **GM columns open and close from the header.** A button at each end of the header, showing whether the column is open. And when dragging a note or a board beside the map, the screen shows where it will open before you let go: Split left, Split right or Open as a tab.\n- **Boards only go on air from the palette.** Put on air left the header and the board's menu: one absent-minded click put your notes on the TV. In the palette (Ctrl+K), putting it on air by the board's name still works.\n- **Sheets with many skills and dice got lighter.** With a hundred skills, editing one got five times faster, and searching the sidebar ten times. Switching groups got lighter too.\n\n## Fixes\n\n- **On a phone with the map in full screen, what the GM shows now appears.** Players with the map in full screen didn't see the item, card or portrait the GM put in the spotlight.\n- **The TV's sound button shows again.** When there was room above and below the map, it was invisible but still clickable.\n- **In the phone's dice bag, scrolling the list no longer throws a die.** The dice stay put, and only the recent rolls scroll. With the phone sideways, the dice fit in two rows.",
+    "arquivos": [
+      {
+        "nome": "ato20-1.6.0-1.x86_64.rpm",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.6.0/ato20-1.6.0-1.x86_64.rpm",
+        "bytes": 24383710
+      },
+      {
+        "nome": "ato20_1.6.0_amd64.AppImage",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.6.0/ato20_1.6.0_amd64.AppImage",
+        "bytes": 112433656
+      },
+      {
+        "nome": "ato20_1.6.0_amd64.deb",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.6.0/ato20_1.6.0_amd64.deb",
+        "bytes": 24465318
+      },
+      {
+        "nome": "ato20_1.6.0_x64-setup.exe",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.6.0/ato20_1.6.0_x64-setup.exe",
+        "bytes": 19072377
+      },
+      {
+        "nome": "ato20_1.6.0_x64_en-US.msi",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.6.0/ato20_1.6.0_x64_en-US.msi",
+        "bytes": 22737628
+      }
+    ]
+  },
+  {
     "tag": "v1.5.1",
     "nome": "ATO20 v1.5.1",
     "publicadaEm": "2026-10-13T14:43:14Z",
