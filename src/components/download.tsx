@@ -18,7 +18,7 @@ import {
   MarcaApple,
   MarcaWindows,
 } from "@/components/marcas";
-import { formatarTamanho } from "@/lib/formatos";
+import { formatarDownloads, formatarTamanho } from "@/lib/formatos";
 import { caminho, type Idioma } from "@/lib/idioma";
 import {
   FORMATOS,
@@ -29,7 +29,7 @@ import {
   arquivosAlternativos,
   detectarPlataforma,
 } from "@/lib/plataformas";
-import { ULTIMA_RELEASE } from "@/lib/releases";
+import { DOWNLOADS, ULTIMA_RELEASE } from "@/lib/releases";
 
 const pt = {
   baixarPara: (sistema: string) => `Baixar para ${sistema}`,
@@ -182,6 +182,12 @@ export function Download({
         <p className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-xs text-muted-foreground">
           {ULTIMA_RELEASE ? (
             <span className="text-accent">{ULTIMA_RELEASE.tag}</span>
+          ) : null}
+          {DOWNLOADS > 0 ? (
+            <>
+              <span className="text-border">·</span>
+              {formatarDownloads(DOWNLOADS, idioma)}
+            </>
           ) : null}
           {arquivo && detectada ? (
             <>

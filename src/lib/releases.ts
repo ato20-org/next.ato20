@@ -5,6 +5,8 @@ export type ArquivoDeRelease = {
   nome: string;
   url: string;
   bytes: number;
+  /** Quantas vezes o GitHub entregou este arquivo, até o momento da geração. */
+  downloads: number;
 };
 
 export type Release = {
@@ -35,27 +37,32 @@ export const RELEASES: Release[] = [
       {
         "nome": "ato20-1.7.0-1.x86_64.rpm",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.7.0/ato20-1.7.0-1.x86_64.rpm",
-        "bytes": 24463562
+        "bytes": 24463562,
+        "downloads": 0
       },
       {
         "nome": "ato20_1.7.0_amd64.AppImage",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.7.0/ato20_1.7.0_amd64.AppImage",
-        "bytes": 112503288
+        "bytes": 112503288,
+        "downloads": 0
       },
       {
         "nome": "ato20_1.7.0_amd64.deb",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.7.0/ato20_1.7.0_amd64.deb",
-        "bytes": 24543994
+        "bytes": 24543994,
+        "downloads": 0
       },
       {
         "nome": "ato20_1.7.0_x64-setup.exe",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.7.0/ato20_1.7.0_x64-setup.exe",
-        "bytes": 19134097
+        "bytes": 19134097,
+        "downloads": 0
       },
       {
         "nome": "ato20_1.7.0_x64_en-US.msi",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.7.0/ato20_1.7.0_x64_en-US.msi",
-        "bytes": 22852316
+        "bytes": 22852316,
+        "downloads": 0
       }
     ]
   },
@@ -71,27 +78,32 @@ export const RELEASES: Release[] = [
       {
         "nome": "ato20-1.6.0-1.x86_64.rpm",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.6.0/ato20-1.6.0-1.x86_64.rpm",
-        "bytes": 24383710
+        "bytes": 24383710,
+        "downloads": 0
       },
       {
         "nome": "ato20_1.6.0_amd64.AppImage",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.6.0/ato20_1.6.0_amd64.AppImage",
-        "bytes": 112433656
+        "bytes": 112433656,
+        "downloads": 0
       },
       {
         "nome": "ato20_1.6.0_amd64.deb",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.6.0/ato20_1.6.0_amd64.deb",
-        "bytes": 24465318
+        "bytes": 24465318,
+        "downloads": 0
       },
       {
         "nome": "ato20_1.6.0_x64-setup.exe",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.6.0/ato20_1.6.0_x64-setup.exe",
-        "bytes": 19072377
+        "bytes": 19072377,
+        "downloads": 0
       },
       {
         "nome": "ato20_1.6.0_x64_en-US.msi",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.6.0/ato20_1.6.0_x64_en-US.msi",
-        "bytes": 22737628
+        "bytes": 22737628,
+        "downloads": 0
       }
     ]
   },
@@ -107,27 +119,32 @@ export const RELEASES: Release[] = [
       {
         "nome": "ato20-1.5.1-1.x86_64.rpm",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.5.1/ato20-1.5.1-1.x86_64.rpm",
-        "bytes": 24160947
+        "bytes": 24160947,
+        "downloads": 0
       },
       {
         "nome": "ato20_1.5.1_amd64.AppImage",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.5.1/ato20_1.5.1_amd64.AppImage",
-        "bytes": 112237048
+        "bytes": 112237048,
+        "downloads": 2
       },
       {
         "nome": "ato20_1.5.1_amd64.deb",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.5.1/ato20_1.5.1_amd64.deb",
-        "bytes": 24239124
+        "bytes": 24239124,
+        "downloads": 0
       },
       {
         "nome": "ato20_1.5.1_x64-setup.exe",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.5.1/ato20_1.5.1_x64-setup.exe",
-        "bytes": 18938863
+        "bytes": 18938863,
+        "downloads": 0
       },
       {
         "nome": "ato20_1.5.1_x64_en-US.msi",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.5.1/ato20_1.5.1_x64_en-US.msi",
-        "bytes": 22545100
+        "bytes": 22545100,
+        "downloads": 0
       }
     ]
   },
@@ -143,27 +160,32 @@ export const RELEASES: Release[] = [
       {
         "nome": "ato20-1.5.0-1.x86_64.rpm",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.5.0/ato20-1.5.0-1.x86_64.rpm",
-        "bytes": 24160787
+        "bytes": 24160787,
+        "downloads": 0
       },
       {
         "nome": "ato20_1.5.0_amd64.AppImage",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.5.0/ato20_1.5.0_amd64.AppImage",
-        "bytes": 112237048
+        "bytes": 112237048,
+        "downloads": 1
       },
       {
         "nome": "ato20_1.5.0_amd64.deb",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.5.0/ato20_1.5.0_amd64.deb",
-        "bytes": 24241548
+        "bytes": 24241548,
+        "downloads": 0
       },
       {
         "nome": "ato20_1.5.0_x64-setup.exe",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.5.0/ato20_1.5.0_x64-setup.exe",
-        "bytes": 18943231
+        "bytes": 18943231,
+        "downloads": 0
       },
       {
         "nome": "ato20_1.5.0_x64_en-US.msi",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.5.0/ato20_1.5.0_x64_en-US.msi",
-        "bytes": 22528716
+        "bytes": 22528716,
+        "downloads": 0
       }
     ]
   },
@@ -179,27 +201,32 @@ export const RELEASES: Release[] = [
       {
         "nome": "ato20-1.4.0-1.x86_64.rpm",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.4.0/ato20-1.4.0-1.x86_64.rpm",
-        "bytes": 24033332
+        "bytes": 24033332,
+        "downloads": 0
       },
       {
         "nome": "ato20_1.4.0_amd64.AppImage",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.4.0/ato20_1.4.0_amd64.AppImage",
-        "bytes": 112134648
+        "bytes": 112134648,
+        "downloads": 3
       },
       {
         "nome": "ato20_1.4.0_amd64.deb",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.4.0/ato20_1.4.0_amd64.deb",
-        "bytes": 24125282
+        "bytes": 24125282,
+        "downloads": 0
       },
       {
         "nome": "ato20_1.4.0_x64-setup.exe",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.4.0/ato20_1.4.0_x64-setup.exe",
-        "bytes": 18844380
+        "bytes": 18844380,
+        "downloads": 1
       },
       {
         "nome": "ato20_1.4.0_x64_en-US.msi",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.4.0/ato20_1.4.0_x64_en-US.msi",
-        "bytes": 22409884
+        "bytes": 22409884,
+        "downloads": 0
       }
     ]
   },
@@ -215,27 +242,32 @@ export const RELEASES: Release[] = [
       {
         "nome": "ato20-1.3.0-1.x86_64.rpm",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.3.0/ato20-1.3.0-1.x86_64.rpm",
-        "bytes": 23240556
+        "bytes": 23240556,
+        "downloads": 0
       },
       {
         "nome": "ato20_1.3.0_amd64.AppImage",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.3.0/ato20_1.3.0_amd64.AppImage",
-        "bytes": 111409656
+        "bytes": 111409656,
+        "downloads": 2
       },
       {
         "nome": "ato20_1.3.0_amd64.deb",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.3.0/ato20_1.3.0_amd64.deb",
-        "bytes": 23317214
+        "bytes": 23317214,
+        "downloads": 0
       },
       {
         "nome": "ato20_1.3.0_x64-setup.exe",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.3.0/ato20_1.3.0_x64-setup.exe",
-        "bytes": 18241628
+        "bytes": 18241628,
+        "downloads": 1
       },
       {
         "nome": "ato20_1.3.0_x64_en-US.msi",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.3.0/ato20_1.3.0_x64_en-US.msi",
-        "bytes": 21656180
+        "bytes": 21656180,
+        "downloads": 0
       }
     ]
   },
@@ -251,27 +283,32 @@ export const RELEASES: Release[] = [
       {
         "nome": "ato20-1.2.0-1.x86_64.rpm",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.2.0/ato20-1.2.0-1.x86_64.rpm",
-        "bytes": 23132544
+        "bytes": 23132544,
+        "downloads": 6
       },
       {
         "nome": "ato20_1.2.0_amd64.AppImage",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.2.0/ato20_1.2.0_amd64.AppImage",
-        "bytes": 111307256
+        "bytes": 111307256,
+        "downloads": 5
       },
       {
         "nome": "ato20_1.2.0_amd64.deb",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.2.0/ato20_1.2.0_amd64.deb",
-        "bytes": 23212978
+        "bytes": 23212978,
+        "downloads": 5
       },
       {
         "nome": "ato20_1.2.0_x64-setup.exe",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.2.0/ato20_1.2.0_x64-setup.exe",
-        "bytes": 18127537
+        "bytes": 18127537,
+        "downloads": 7
       },
       {
         "nome": "ato20_1.2.0_x64_en-US.msi",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.2.0/ato20_1.2.0_x64_en-US.msi",
-        "bytes": 21545588
+        "bytes": 21545588,
+        "downloads": 5
       }
     ]
   },
@@ -287,27 +324,32 @@ export const RELEASES: Release[] = [
       {
         "nome": "ato20-1.1.0-1.x86_64.rpm",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.1.0/ato20-1.1.0-1.x86_64.rpm",
-        "bytes": 16304430
+        "bytes": 16304430,
+        "downloads": 0
       },
       {
         "nome": "ato20_1.1.0_amd64.AppImage",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.1.0/ato20_1.1.0_amd64.AppImage",
-        "bytes": 104450552
+        "bytes": 104450552,
+        "downloads": 4
       },
       {
         "nome": "ato20_1.1.0_amd64.deb",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.1.0/ato20_1.1.0_amd64.deb",
-        "bytes": 16380042
+        "bytes": 16380042,
+        "downloads": 0
       },
       {
         "nome": "ato20_1.1.0_x64-setup.exe",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.1.0/ato20_1.1.0_x64-setup.exe",
-        "bytes": 11311702
+        "bytes": 11311702,
+        "downloads": 2
       },
       {
         "nome": "ato20_1.1.0_x64_en-US.msi",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.1.0/ato20_1.1.0_x64_en-US.msi",
-        "bytes": 14707062
+        "bytes": 14707062,
+        "downloads": 0
       }
     ]
   },
@@ -323,27 +365,32 @@ export const RELEASES: Release[] = [
       {
         "nome": "ato20-1.0.0-1.x86_64.rpm",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.0.0/ato20-1.0.0-1.x86_64.rpm",
-        "bytes": 16162212
+        "bytes": 16162212,
+        "downloads": 0
       },
       {
         "nome": "ato20_1.0.0_amd64.AppImage",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.0.0/ato20_1.0.0_amd64.AppImage",
-        "bytes": 104307192
+        "bytes": 104307192,
+        "downloads": 5
       },
       {
         "nome": "ato20_1.0.0_amd64.deb",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.0.0/ato20_1.0.0_amd64.deb",
-        "bytes": 16224986
+        "bytes": 16224986,
+        "downloads": 0
       },
       {
         "nome": "ato20_1.0.0_x64-setup.exe",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.0.0/ato20_1.0.0_x64-setup.exe",
-        "bytes": 11196943
+        "bytes": 11196943,
+        "downloads": 2
       },
       {
         "nome": "ato20_1.0.0_x64_en-US.msi",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.0.0/ato20_1.0.0_x64_en-US.msi",
-        "bytes": 14541446
+        "bytes": 14541446,
+        "downloads": 0
       }
     ]
   },
@@ -359,27 +406,32 @@ export const RELEASES: Release[] = [
       {
         "nome": "ato20-0.7.2-1.x86_64.rpm",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.7.2/ato20-0.7.2-1.x86_64.rpm",
-        "bytes": 15744216
+        "bytes": 15744216,
+        "downloads": 0
       },
       {
         "nome": "ato20_0.7.2_amd64.AppImage",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.7.2/ato20_0.7.2_amd64.AppImage",
-        "bytes": 103913976
+        "bytes": 103913976,
+        "downloads": 5
       },
       {
         "nome": "ato20_0.7.2_amd64.deb",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.7.2/ato20_0.7.2_amd64.deb",
-        "bytes": 15818914
+        "bytes": 15818914,
+        "downloads": 1
       },
       {
         "nome": "ato20_0.7.2_x64-setup.exe",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.7.2/ato20_0.7.2_x64-setup.exe",
-        "bytes": 10816493
+        "bytes": 10816493,
+        "downloads": 1
       },
       {
         "nome": "ato20_0.7.2_x64_en-US.msi",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.7.2/ato20_0.7.2_x64_en-US.msi",
-        "bytes": 14059592
+        "bytes": 14059592,
+        "downloads": 0
       }
     ]
   },
@@ -395,27 +447,32 @@ export const RELEASES: Release[] = [
       {
         "nome": "ato20-0.7.1-1.x86_64.rpm",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.7.1/ato20-0.7.1-1.x86_64.rpm",
-        "bytes": 15742820
+        "bytes": 15742820,
+        "downloads": 0
       },
       {
         "nome": "ato20_0.7.1_amd64.AppImage",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.7.1/ato20_0.7.1_amd64.AppImage",
-        "bytes": 103909880
+        "bytes": 103909880,
+        "downloads": 3
       },
       {
         "nome": "ato20_0.7.1_amd64.deb",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.7.1/ato20_0.7.1_amd64.deb",
-        "bytes": 15818224
+        "bytes": 15818224,
+        "downloads": 0
       },
       {
         "nome": "ato20_0.7.1_x64-setup.exe",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.7.1/ato20_0.7.1_x64-setup.exe",
-        "bytes": 10816848
+        "bytes": 10816848,
+        "downloads": 1
       },
       {
         "nome": "ato20_0.7.1_x64_en-US.msi",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.7.1/ato20_0.7.1_x64_en-US.msi",
-        "bytes": 14026824
+        "bytes": 14026824,
+        "downloads": 0
       }
     ]
   },
@@ -431,27 +488,32 @@ export const RELEASES: Release[] = [
       {
         "nome": "ato20-0.7.0-1.x86_64.rpm",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.7.0/ato20-0.7.0-1.x86_64.rpm",
-        "bytes": 15742242
+        "bytes": 15742242,
+        "downloads": 0
       },
       {
         "nome": "ato20_0.7.0_amd64.AppImage",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.7.0/ato20_0.7.0_amd64.AppImage",
-        "bytes": 103909880
+        "bytes": 103909880,
+        "downloads": 3
       },
       {
         "nome": "ato20_0.7.0_amd64.deb",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.7.0/ato20_0.7.0_amd64.deb",
-        "bytes": 15816864
+        "bytes": 15816864,
+        "downloads": 0
       },
       {
         "nome": "ato20_0.7.0_x64-setup.exe",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.7.0/ato20_0.7.0_x64-setup.exe",
-        "bytes": 10813364
+        "bytes": 10813364,
+        "downloads": 2
       },
       {
         "nome": "ato20_0.7.0_x64_en-US.msi",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.7.0/ato20_0.7.0_x64_en-US.msi",
-        "bytes": 14063688
+        "bytes": 14063688,
+        "downloads": 0
       }
     ]
   },
@@ -467,27 +529,32 @@ export const RELEASES: Release[] = [
       {
         "nome": "ato20-0.6.0-1.x86_64.rpm",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.6.0/ato20-0.6.0-1.x86_64.rpm",
-        "bytes": 15653466
+        "bytes": 15653466,
+        "downloads": 0
       },
       {
         "nome": "ato20_0.6.0_amd64.AppImage",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.6.0/ato20_0.6.0_amd64.AppImage",
-        "bytes": 103815672
+        "bytes": 103815672,
+        "downloads": 1
       },
       {
         "nome": "ato20_0.6.0_amd64.deb",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.6.0/ato20_0.6.0_amd64.deb",
-        "bytes": 15727574
+        "bytes": 15727574,
+        "downloads": 0
       },
       {
         "nome": "ato20_0.6.0_x64-setup.exe",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.6.0/ato20_0.6.0_x64-setup.exe",
-        "bytes": 10728493
+        "bytes": 10728493,
+        "downloads": 0
       },
       {
         "nome": "ato20_0.6.0_x64_en-US.msi",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.6.0/ato20_0.6.0_x64_en-US.msi",
-        "bytes": 13961288
+        "bytes": 13961288,
+        "downloads": 0
       }
     ]
   },
@@ -503,27 +570,32 @@ export const RELEASES: Release[] = [
       {
         "nome": "ato20-0.5.0-1.x86_64.rpm",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.5.0/ato20-0.5.0-1.x86_64.rpm",
-        "bytes": 15610629
+        "bytes": 15610629,
+        "downloads": 0
       },
       {
         "nome": "ato20_0.5.0_amd64.AppImage",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.5.0/ato20_0.5.0_amd64.AppImage",
-        "bytes": 103778808
+        "bytes": 103778808,
+        "downloads": 1
       },
       {
         "nome": "ato20_0.5.0_amd64.deb",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.5.0/ato20_0.5.0_amd64.deb",
-        "bytes": 15684972
+        "bytes": 15684972,
+        "downloads": 0
       },
       {
         "nome": "ato20_0.5.0_x64-setup.exe",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.5.0/ato20_0.5.0_x64-setup.exe",
-        "bytes": 10699316
+        "bytes": 10699316,
+        "downloads": 0
       },
       {
         "nome": "ato20_0.5.0_x64_en-US.msi",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.5.0/ato20_0.5.0_x64_en-US.msi",
-        "bytes": 13903944
+        "bytes": 13903944,
+        "downloads": 0
       }
     ]
   },
@@ -539,27 +611,32 @@ export const RELEASES: Release[] = [
       {
         "nome": "ato20-0.4.0-1.x86_64.rpm",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.4.0/ato20-0.4.0-1.x86_64.rpm",
-        "bytes": 15549402
+        "bytes": 15549402,
+        "downloads": 0
       },
       {
         "nome": "ato20_0.4.0_amd64.AppImage",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.4.0/ato20_0.4.0_amd64.AppImage",
-        "bytes": 103729656
+        "bytes": 103729656,
+        "downloads": 1
       },
       {
         "nome": "ato20_0.4.0_amd64.deb",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.4.0/ato20_0.4.0_amd64.deb",
-        "bytes": 15623590
+        "bytes": 15623590,
+        "downloads": 0
       },
       {
         "nome": "ato20_0.4.0_x64-setup.exe",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.4.0/ato20_0.4.0_x64-setup.exe",
-        "bytes": 10664436
+        "bytes": 10664436,
+        "downloads": 0
       },
       {
         "nome": "ato20_0.4.0_x64_en-US.msi",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.4.0/ato20_0.4.0_x64_en-US.msi",
-        "bytes": 13867080
+        "bytes": 13867080,
+        "downloads": 0
       }
     ]
   },
@@ -575,27 +652,32 @@ export const RELEASES: Release[] = [
       {
         "nome": "ato20-0.3.0-1.x86_64.rpm",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.3.0/ato20-0.3.0-1.x86_64.rpm",
-        "bytes": 15495387
+        "bytes": 15495387,
+        "downloads": 0
       },
       {
         "nome": "ato20_0.3.0_amd64.AppImage",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.3.0/ato20_0.3.0_amd64.AppImage",
-        "bytes": 103688696
+        "bytes": 103688696,
+        "downloads": 1
       },
       {
         "nome": "ato20_0.3.0_amd64.deb",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.3.0/ato20_0.3.0_amd64.deb",
-        "bytes": 15570432
+        "bytes": 15570432,
+        "downloads": 0
       },
       {
         "nome": "ato20_0.3.0_x64-setup.exe",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.3.0/ato20_0.3.0_x64-setup.exe",
-        "bytes": 10615822
+        "bytes": 10615822,
+        "downloads": 0
       },
       {
         "nome": "ato20_0.3.0_x64_en-US.msi",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.3.0/ato20_0.3.0_x64_en-US.msi",
-        "bytes": 13809736
+        "bytes": 13809736,
+        "downloads": 0
       }
     ]
   },
@@ -611,27 +693,32 @@ export const RELEASES: Release[] = [
       {
         "nome": "ato20-0.2.0-1.x86_64.rpm",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.2.0/ato20-0.2.0-1.x86_64.rpm",
-        "bytes": 15468899
+        "bytes": 15468899,
+        "downloads": 0
       },
       {
         "nome": "ato20_0.2.0_amd64.AppImage",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.2.0/ato20_0.2.0_amd64.AppImage",
-        "bytes": 103668216
+        "bytes": 103668216,
+        "downloads": 1
       },
       {
         "nome": "ato20_0.2.0_amd64.deb",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.2.0/ato20_0.2.0_amd64.deb",
-        "bytes": 15543868
+        "bytes": 15543868,
+        "downloads": 0
       },
       {
         "nome": "ato20_0.2.0_x64-setup.exe",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.2.0/ato20_0.2.0_x64-setup.exe",
-        "bytes": 10586613
+        "bytes": 10586613,
+        "downloads": 0
       },
       {
         "nome": "ato20_0.2.0_x64_en-US.msi",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.2.0/ato20_0.2.0_x64_en-US.msi",
-        "bytes": 13756488
+        "bytes": 13756488,
+        "downloads": 0
       }
     ]
   },
@@ -647,27 +734,32 @@ export const RELEASES: Release[] = [
       {
         "nome": "ato20-0.1.4-1.x86_64.rpm",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.1.4/ato20-0.1.4-1.x86_64.rpm",
-        "bytes": 15351316
+        "bytes": 15351316,
+        "downloads": 0
       },
       {
         "nome": "ato20_0.1.4_amd64.AppImage",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.1.4/ato20_0.1.4_amd64.AppImage",
-        "bytes": 102951416
+        "bytes": 102951416,
+        "downloads": 0
       },
       {
         "nome": "ato20_0.1.4_amd64.deb",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.1.4/ato20_0.1.4_amd64.deb",
-        "bytes": 15426240
+        "bytes": 15426240,
+        "downloads": 0
       },
       {
         "nome": "ato20_0.1.4_x64-setup.exe",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.1.4/ato20_0.1.4_x64-setup.exe",
-        "bytes": 10409277
+        "bytes": 10409277,
+        "downloads": 1
       },
       {
         "nome": "ato20_0.1.4_x64_en-US.msi",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.1.4/ato20_0.1.4_x64_en-US.msi",
-        "bytes": 13649990
+        "bytes": 13649990,
+        "downloads": 0
       }
     ]
   },
@@ -683,27 +775,32 @@ export const RELEASES: Release[] = [
       {
         "nome": "ato20-0.1.3-1.x86_64.rpm",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.1.3/ato20-0.1.3-1.x86_64.rpm",
-        "bytes": 15350661
+        "bytes": 15350661,
+        "downloads": 0
       },
       {
         "nome": "ato20_0.1.3_amd64.AppImage",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.1.3/ato20_0.1.3_amd64.AppImage",
-        "bytes": 102947320
+        "bytes": 102947320,
+        "downloads": 0
       },
       {
         "nome": "ato20_0.1.3_amd64.deb",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.1.3/ato20_0.1.3_amd64.deb",
-        "bytes": 15425232
+        "bytes": 15425232,
+        "downloads": 0
       },
       {
         "nome": "ato20_0.1.3_x64-setup.exe",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.1.3/ato20_0.1.3_x64-setup.exe",
-        "bytes": 10410686
+        "bytes": 10410686,
+        "downloads": 2
       },
       {
         "nome": "ato20_0.1.3_x64_en-US.msi",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.1.3/ato20_0.1.3_x64_en-US.msi",
-        "bytes": 13645894
+        "bytes": 13645894,
+        "downloads": 0
       }
     ]
   },
@@ -719,27 +816,32 @@ export const RELEASES: Release[] = [
       {
         "nome": "ato20-0.1.2-1.x86_64.rpm",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.1.2/ato20-0.1.2-1.x86_64.rpm",
-        "bytes": 15358716
+        "bytes": 15358716,
+        "downloads": 0
       },
       {
         "nome": "ato20_0.1.2_amd64.AppImage",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.1.2/ato20_0.1.2_amd64.AppImage",
-        "bytes": 102951416
+        "bytes": 102951416,
+        "downloads": 0
       },
       {
         "nome": "ato20_0.1.2_amd64.deb",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.1.2/ato20_0.1.2_amd64.deb",
-        "bytes": 15433386
+        "bytes": 15433386,
+        "downloads": 0
       },
       {
         "nome": "ato20_0.1.2_x64-setup.exe",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.1.2/ato20_0.1.2_x64-setup.exe",
-        "bytes": 10475134
+        "bytes": 10475134,
+        "downloads": 0
       },
       {
         "nome": "ato20_0.1.2_x64_en-US.msi",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.1.2/ato20_0.1.2_x64_en-US.msi",
-        "bytes": 13662278
+        "bytes": 13662278,
+        "downloads": 0
       }
     ]
   },
@@ -755,27 +857,32 @@ export const RELEASES: Release[] = [
       {
         "nome": "ato20-0.1.1-1.x86_64.rpm",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.1.1/ato20-0.1.1-1.x86_64.rpm",
-        "bytes": 15359063
+        "bytes": 15359063,
+        "downloads": 0
       },
       {
         "nome": "ato20_0.1.1_amd64.AppImage",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.1.1/ato20_0.1.1_amd64.AppImage",
-        "bytes": 102955512
+        "bytes": 102955512,
+        "downloads": 0
       },
       {
         "nome": "ato20_0.1.1_amd64.deb",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.1.1/ato20_0.1.1_amd64.deb",
-        "bytes": 15434230
+        "bytes": 15434230,
+        "downloads": 0
       },
       {
         "nome": "ato20_0.1.1_x64-setup.exe",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.1.1/ato20_0.1.1_x64-setup.exe",
-        "bytes": 10474614
+        "bytes": 10474614,
+        "downloads": 0
       },
       {
         "nome": "ato20_0.1.1_x64_en-US.msi",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.1.1/ato20_0.1.1_x64_en-US.msi",
-        "bytes": 13666374
+        "bytes": 13666374,
+        "downloads": 0
       }
     ]
   },
@@ -791,27 +898,32 @@ export const RELEASES: Release[] = [
       {
         "nome": "ato20-0.1.0-1.x86_64.rpm",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.1.0/ato20-0.1.0-1.x86_64.rpm",
-        "bytes": 15371333
+        "bytes": 15371333,
+        "downloads": 0
       },
       {
         "nome": "ato20_0.1.0_amd64.AppImage",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.1.0/ato20_0.1.0_amd64.AppImage",
-        "bytes": 102984184
+        "bytes": 102984184,
+        "downloads": 2
       },
       {
         "nome": "ato20_0.1.0_amd64.deb",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.1.0/ato20_0.1.0_amd64.deb",
-        "bytes": 15446296
+        "bytes": 15446296,
+        "downloads": 0
       },
       {
         "nome": "ato20_0.1.0_x64-setup.exe",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.1.0/ato20_0.1.0_x64-setup.exe",
-        "bytes": 10479069
+        "bytes": 10479069,
+        "downloads": 0
       },
       {
         "nome": "ato20_0.1.0_x64_en-US.msi",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.1.0/ato20_0.1.0_x64_en-US.msi",
-        "bytes": 13680283
+        "bytes": 13680283,
+        "downloads": 0
       }
     ]
   },
@@ -827,27 +939,32 @@ export const RELEASES: Release[] = [
       {
         "nome": "ato20-0.0.6-1.x86_64.rpm",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.0.6-alpha/ato20-0.0.6-1.x86_64.rpm",
-        "bytes": 15255775
+        "bytes": 15255775,
+        "downloads": 1
       },
       {
         "nome": "ato20_0.0.6_amd64.AppImage",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.0.6-alpha/ato20_0.0.6_amd64.AppImage",
-        "bytes": 102865400
+        "bytes": 102865400,
+        "downloads": 5
       },
       {
         "nome": "ato20_0.0.6_amd64.deb",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.0.6-alpha/ato20_0.0.6_amd64.deb",
-        "bytes": 15328252
+        "bytes": 15328252,
+        "downloads": 1
       },
       {
         "nome": "ato20_0.0.6_x64-setup.exe",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.0.6-alpha/ato20_0.0.6_x64-setup.exe",
-        "bytes": 10374324
+        "bytes": 10374324,
+        "downloads": 3
       },
       {
         "nome": "ato20_0.0.6_x64_en-US.msi",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.0.6-alpha/ato20_0.0.6_x64_en-US.msi",
-        "bytes": 13577883
+        "bytes": 13577883,
+        "downloads": 1
       }
     ]
   },
@@ -863,27 +980,32 @@ export const RELEASES: Release[] = [
       {
         "nome": "ato20-0.0.5-1.x86_64.rpm",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.0.5-alpha/ato20-0.0.5-1.x86_64.rpm",
-        "bytes": 15219336
+        "bytes": 15219336,
+        "downloads": 1
       },
       {
         "nome": "ato20_0.0.5_amd64.AppImage",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.0.5-alpha/ato20_0.0.5_amd64.AppImage",
-        "bytes": 102803960
+        "bytes": 102803960,
+        "downloads": 2
       },
       {
         "nome": "ato20_0.0.5_amd64.deb",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.0.5-alpha/ato20_0.0.5_amd64.deb",
-        "bytes": 15290796
+        "bytes": 15290796,
+        "downloads": 1
       },
       {
         "nome": "ato20_0.0.5_x64-setup.exe",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.0.5-alpha/ato20_0.0.5_x64-setup.exe",
-        "bytes": 10300290
+        "bytes": 10300290,
+        "downloads": 1
       },
       {
         "nome": "ato20_0.0.5_x64_en-US.msi",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.0.5-alpha/ato20_0.0.5_x64_en-US.msi",
-        "bytes": 13541019
+        "bytes": 13541019,
+        "downloads": 1
       }
     ]
   },
@@ -899,27 +1021,32 @@ export const RELEASES: Release[] = [
       {
         "nome": "ato20-0.0.4-1.x86_64.rpm",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.0.4-alpha/ato20-0.0.4-1.x86_64.rpm",
-        "bytes": 15218901
+        "bytes": 15218901,
+        "downloads": 0
       },
       {
         "nome": "ato20_0.0.4_amd64.AppImage",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.0.4-alpha/ato20_0.0.4_amd64.AppImage",
-        "bytes": 102812152
+        "bytes": 102812152,
+        "downloads": 2
       },
       {
         "nome": "ato20_0.0.4_amd64.deb",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.0.4-alpha/ato20_0.0.4_amd64.deb",
-        "bytes": 15289770
+        "bytes": 15289770,
+        "downloads": 0
       },
       {
         "nome": "ato20_0.0.4_x64-setup.exe",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.0.4-alpha/ato20_0.0.4_x64-setup.exe",
-        "bytes": 10309775
+        "bytes": 10309775,
+        "downloads": 0
       },
       {
         "nome": "ato20_0.0.4_x64_en-US.msi",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.0.4-alpha/ato20_0.0.4_x64_en-US.msi",
-        "bytes": 13545115
+        "bytes": 13545115,
+        "downloads": 0
       }
     ]
   },
@@ -935,30 +1062,38 @@ export const RELEASES: Release[] = [
       {
         "nome": "ato20-0.0.3-1.x86_64.rpm",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.0.3-alpha/ato20-0.0.3-1.x86_64.rpm",
-        "bytes": 15275169
+        "bytes": 15275169,
+        "downloads": 0
       },
       {
         "nome": "ato20_0.0.3_amd64.AppImage",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.0.3-alpha/ato20_0.0.3_amd64.AppImage",
-        "bytes": 102861304
+        "bytes": 102861304,
+        "downloads": 1
       },
       {
         "nome": "ato20_0.0.3_amd64.deb",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.0.3-alpha/ato20_0.0.3_amd64.deb",
-        "bytes": 15348876
+        "bytes": 15348876,
+        "downloads": 0
       },
       {
         "nome": "ato20_0.0.3_x64-setup.exe",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.0.3-alpha/ato20_0.0.3_x64-setup.exe",
-        "bytes": 10393708
+        "bytes": 10393708,
+        "downloads": 0
       },
       {
         "nome": "ato20_0.0.3_x64_en-US.msi",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.0.3-alpha/ato20_0.0.3_x64_en-US.msi",
-        "bytes": 13633479
+        "bytes": 13633479,
+        "downloads": 0
       }
     ]
   }
 ];
 
 export const ULTIMA_RELEASE: Release | undefined = RELEASES[0];
+
+/** A soma dos downloads de todas as releases, sem as assinaturas e o manifesto. */
+export const DOWNLOADS = 97;

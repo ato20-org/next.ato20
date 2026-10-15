@@ -5,9 +5,10 @@ import { Heart, MapPin, TriangleAlert } from "lucide-react";
 import { Download } from "@/components/download";
 import { MarcaAscii } from "@/components/marca-ascii";
 import { MarcaKofi } from "@/components/marcas";
+import { formatarDownloads } from "@/lib/formatos";
 import type { Idioma } from "@/lib/idioma";
 import { AUTOR_URL, KOFI_URL } from "@/lib/projeto";
-import { ULTIMA_RELEASE } from "@/lib/releases";
+import { DOWNLOADS, ULTIMA_RELEASE } from "@/lib/releases";
 
 const pt = {
   rotulo: "pronto pra jogar?",
@@ -128,6 +129,12 @@ export function Fechamento({ idioma }: { idioma: Idioma }) {
           <>
             <span className="text-border">·</span>
             <span>{ULTIMA_RELEASE.tag}</span>
+          </>
+        ) : null}
+        {DOWNLOADS > 0 ? (
+          <>
+            <span className="text-border">·</span>
+            <span>{formatarDownloads(DOWNLOADS, idioma)}</span>
           </>
         ) : null}
       </p>

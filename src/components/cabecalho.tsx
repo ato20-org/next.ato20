@@ -2,13 +2,25 @@ import Image from "next/image";
 import Link from "next/link";
 
 import marca from "@/assets/marca-ato20.png";
-import { MarcaGithub } from "@/components/marcas";
+import { MarcaGithub, MarcaKofi } from "@/components/marcas";
 import { caminho, IDIOMAS, NOME_CURTO, type Idioma, type Rota } from "@/lib/idioma";
-import { REPO_URL } from "@/lib/projeto";
+import { KOFI_URL, REPO_URL } from "@/lib/projeto";
 
-const pt = { plugins: "plugins", releases: "releases", trocar: "Read in English" };
+const pt = {
+  plugins: "plugins",
+  releases: "releases",
+  apoie: "apoie",
+  apoieNoKofi: "Apoie no Ko-fi",
+  trocar: "Read in English",
+};
 
-const en: typeof pt = { plugins: "plugins", releases: "releases", trocar: "Ler em português" };
+const en: typeof pt = {
+  plugins: "plugins",
+  releases: "releases",
+  apoie: "support",
+  apoieNoKofi: "Support on Ko-fi",
+  trocar: "Ler em português",
+};
 
 const TEXTO = { pt, en };
 
@@ -18,6 +30,9 @@ const TEXTO = { pt, en };
  * A marca é link pra home em todas as páginas, inclusive na própria home: uma
  * marca que às vezes leva pra algum lugar e às vezes não é pior do que uma que
  * sempre leva.
+ *
+ * O Ko-fi fica aqui além do fecho: quem quer apoiar não precisa rolar a página
+ * inteira para achar onde.
  *
  * A troca de idioma leva à MESMA página no outro idioma, e não à home dele:
  * quem estava lendo as releases quer as releases. Os dois códigos à vista, o
@@ -37,7 +52,9 @@ export function Cabecalho({ idioma, rota }: { idioma: Idioma; rota: Rota }) {
         </span>
       </Link>
 
-      <nav className="flex items-center gap-5 font-mono text-xs text-muted-foreground">
+      {/* `gap-2.5` no celular: com o Ko-fi, os cinco itens no `gap-5` encostavam
+          no nome ATO20 numa tela de 360px. */}
+      <nav className="flex items-center gap-2.5 font-mono text-xs text-muted-foreground sm:gap-5">
         <Link
           href={caminho(idioma, "/plugins")}
           className="transition-colors hover:text-foreground"
@@ -61,6 +78,16 @@ export function Cabecalho({ idioma, rota }: { idioma: Idioma; rota: Rota }) {
           {/* No celular, só a marca: com plugins, releases e os dois idiomas,
               a palavra empurrava o menu para cima do nome ATO20. */}
           <span className="hidden sm:inline">github</span>
+        </a>
+        <a
+          href={KOFI_URL}
+          target="_blank"
+          rel="noreferrer"
+          aria-label={t.apoieNoKofi}
+          className="inline-flex items-center gap-2 transition-colors hover:text-foreground"
+        >
+          <MarcaKofi className="size-4" />
+          <span className="hidden sm:inline">{t.apoie}</span>
         </a>
         {/* `<a>` e não `<Link>`: cada idioma tem o seu root layout, e a troca
             entre eles é uma carga de página inteira de qualquer jeito. */}

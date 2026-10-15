@@ -33,3 +33,13 @@ export function formatarData(iso: string, idioma: Idioma): string {
     timeZone: "America/Sao_Paulo",
   }).format(new Date(iso));
 }
+
+/**
+ * O total de downloads, com o separador de milhar de cada idioma: 1.234 em
+ * português, 1,234 em inglês. "downloads" é a mesma palavra nos dois.
+ */
+export function formatarDownloads(total: number, idioma: Idioma): string {
+  const numero = new Intl.NumberFormat(LANG[idioma]).format(total);
+
+  return `${numero} ${total === 1 ? "download" : "downloads"}`;
+}

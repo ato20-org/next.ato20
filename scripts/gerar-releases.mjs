@@ -9,7 +9,12 @@
  *
  * Os `.sig` e o `latest.json` ficam de fora: o primeiro é a assinatura que o
  * atualizador do Tauri confere, o segundo é o manifesto que ele lê. Nenhum dos
- * dois é arquivo que alguém baixa na mão.
+ * dois é arquivo que alguém baixa na mão -- e o atualizador os baixa a cada
+ * abertura do aplicativo, então contá-los inflaria os downloads.
+ *
+ * Os downloads também congelam no commit, e por isso andam a cada release, e
+ * não a cada visita. Contam o pacote baixado pelo atualizador, porque ele é o
+ * mesmo arquivo do botão.
  *
  * Enquanto o repositório do aplicativo for privado, a API anônima devolve 404,
  * então o script pega o token do `gh` que já está logado na máquina. Quando o
@@ -22,7 +27,9 @@ import { execFileSync } from "node:child_process";
 import { writeFileSync } from "node:fs";
 
 const REPOSITORIO = "ato20-org/ato20";
-const API = `https://api.github.com/repos/${REPOSITORIO}/releases?per_page=30`;
+// 100 é o teto da API por página. Passando disso, a soma dos downloads começa a
+// perder as releases mais velhas, e aí é hora de paginar.
+const API = `https://api.github.com/repos/${REPOSITORIO}/releases?per_page=100`;
 const DESTINO = "src/lib/releases.ts";
 
 /** Arquivos que existem pro atualizador, e não pra quem baixa. */
@@ -92,8 +99,13 @@ const releases = (await resposta.json())
         nome: arquivo.name,
         url: arquivo.browser_download_url,
         bytes: arquivo.size,
+        downloads: arquivo.download_count,
       })),
   }));
+
+const downloads = releases
+  .flatMap((release) => release.arquivos)
+  .reduce((soma, arquivo) => soma + arquivo.downloads, 0);
 
 const conteudo = `// GERADO por scripts/gerar-releases.mjs a partir da API do GitHub.
 // Não edite na mão: rode \`pnpm gerar:releases\`.
@@ -102,6 +114,8 @@ export type ArquivoDeRelease = {
   nome: string;
   url: string;
   bytes: number;
+  /** Quantas vezes o GitHub entregou este arquivo, até o momento da geração. */
+  downloads: number;
 };
 
 export type Release = {
@@ -122,10 +136,13 @@ export type Release = {
 export const RELEASES: Release[] = ${JSON.stringify(releases, null, 2)};
 
 export const ULTIMA_RELEASE: Release | undefined = RELEASES[0];
+
+/** A soma dos downloads de todas as releases, sem as assinaturas e o manifesto. */
+export const DOWNLOADS = ${downloads};
 `;
 
 writeFileSync(DESTINO, conteudo);
 
 console.log(
-  `${DESTINO}: ${releases.length} release(s), ${releases[0]?.tag ?? "nenhuma"} é a mais nova.`,
+  `${DESTINO}: ${releases.length} release(s), ${releases[0]?.tag ?? "nenhuma"} é a mais nova, ${downloads} downloads.`,
 );
