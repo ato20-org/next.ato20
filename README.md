@@ -28,7 +28,7 @@ Aplicativo de desktop. Sem servidor, sem conta, sem login — uma campanha é um
 disco, e quem serve as telas dos jogadores é um daemon que roda dentro do próprio aplicativo,
 na rede local.
 
-**Open source e gratuito** — uma contribuição para a comunidade de RPG.
+**Gratuito** — uma contribuição para a comunidade de RPG.
 
 ## Três telas
 
@@ -60,4 +60,5 @@ ninguém instala nada além do mestre.
 
 ## Licença
 
-[MIT](LICENSE). Use, modifique e distribua.
+Esta landing page é [MIT](LICENSE): use, modifique e distribua. O aplicativo tem licença
+própria, a PolyForm Perimeter — ver a [licença do ATO20](https://github.com/ato20-org/ato20#licença).
