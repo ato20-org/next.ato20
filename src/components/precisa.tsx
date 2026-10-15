@@ -11,7 +11,7 @@ const pt = {
       Sem assinatura.
     </>
   ),
-  lead: "Quem serve a janela do espectador e os celulares é o próprio aplicativo, na rede da sua casa.",
+  lead: "Quem serve a janela do espectador e os celulares é o próprio aplicativo, na rede da sua casa. Quem joga de longe entra por uma VPN de jogo ou por um link, e a mesa continua no seu computador.",
   naoPrecisaDe: "não precisa de",
   naoPrecisa: [
     "conta",
@@ -25,7 +25,7 @@ const pt = {
     "um computador pro mestre, com Linux ou Windows",
     "uma tela pra janela do espectador: TV, monitor, projetor ou outro notebook",
     "o celular de quem joga, se quiser ficha, dado e chat na mão",
-    "todo mundo na mesma rede",
+    "todo mundo na mesma rede, ou o Tailscale no computador do mestre pra quem joga de longe",
   ],
 };
 
@@ -38,7 +38,7 @@ const en: typeof pt = {
       No subscription.
     </>
   ),
-  lead: "The app itself serves the spectator window and the phones, on your home network.",
+  lead: "The app itself serves the spectator window and the phones, on your home network. Players far away join through a gaming VPN or a link, and the table stays on your computer.",
   naoPrecisaDe: "you don't need",
   naoPrecisa: [
     "an account",
@@ -52,7 +52,7 @@ const en: typeof pt = {
     "a computer for the GM, running Linux or Windows",
     "a screen for the spectator window: a TV, monitor, projector or another laptop",
     "the players' phones, if they want sheets, dice and chat in hand",
-    "everyone on the same network",
+    "everyone on the same network, or Tailscale on the GM's computer for players far away",
   ],
 };
 
@@ -68,8 +68,9 @@ const TEXTO = { pt, en };
  *
  * A "internet durante a sessão" é verdade medida, não aproximação: o espectador e
  * os celulares recebem tudo do daemon na rede de casa, e o aplicativo embute as
- * próprias fontes. O que usa internet é opcional — o aviso de versão nova e o
- * retrato ao vivo.
+ * próprias fontes. O que usa internet é opcional — o aviso de versão nova, o
+ * retrato ao vivo e, desde a 1.7.0, a mesa para quem joga de longe, pelo Funnel
+ * do Tailscale ou por uma VPN de jogo. A mesa da sala continua sem internet.
  */
 export function Precisa({ idioma }: { idioma: Idioma }) {
   const t = TEXTO[idioma];

@@ -43,7 +43,7 @@ const pt = {
   fechar: "Fechar",
   celular: "Celular",
   celularLinha: (previsao: string) =>
-    `Quem joga entra pelo navegador do celular, sem instalar nada: é o aplicativo do mestre que serve a tela, na rede da casa. O mestre no Android e no iOS está ${previsao}.`,
+    `Quem joga entra pelo navegador do celular, sem instalar nada: é o aplicativo do mestre que serve a tela, na rede da casa ou por um link pra quem está longe. O mestre no Android e no iOS está ${previsao}.`,
   todas: "todas as versões, com o que mudou em cada uma",
 };
 
@@ -59,7 +59,7 @@ const en: typeof pt = {
   fechar: "Close",
   celular: "Phone",
   celularLinha: (previsao) =>
-    `Players join from their phone's browser, with nothing to install: the GM's app serves the screen over the home network. The GM app for Android and iOS is ${previsao}.`,
+    `Players join from their phone's browser, with nothing to install: the GM's app serves the screen, over the home network or through a link for players far away. The GM app for Android and iOS is ${previsao}.`,
   todas: "every version, with what changed in each one",
 };
 
