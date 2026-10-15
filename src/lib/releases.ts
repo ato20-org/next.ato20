@@ -26,6 +26,47 @@ export type Release = {
 /** Da mais nova pra mais velha, que é como a API devolve. */
 export const RELEASES: Release[] = [
   {
+    "tag": "v1.8.0",
+    "nome": "ATO20 v1.8.0",
+    "publicadaEm": "2026-10-15T14:05:32Z",
+    "prerelease": false,
+    "pagina": "https://github.com/ato20-org/ato20/releases/tag/v1.8.0",
+    "notas": "## Novidades\n\n- **A aba Sobre, nas Configurações.** Em Configurações → Sobre ficam a versão, o site, o código e onde falar com o projeto: e-mail, X e Instagram. O e-mail tem um botão de copiar ao lado.\n- **O ATO20 diz que é gratuito, e onde apoiar.** No pé da tela de campanhas, o ATO20 avisa que é gratuito e mostra o site, para quem pagou por ele achar o original. Embaixo vem o Ko-fi, para quem quiser apoiar o projeto. O Ko-fi também está no O que mudou, ao lado das releases no GitHub, e na aba Sobre.\n- **Uma licença nova: a PolyForm Perimeter.** O ATO20 continua gratuito, e o código continua aberto para ler, estudar e modificar. O que a licença nova proíbe é oferecer outro produto que concorra com o ATO20. Mestrar mesa paga e escrever ou vender plugin continuam liberados, a documentação de plugins segue MIT, e as versões até a 1.7.0 continuam MIT.",
+    "notasEn": "## What's new\n\n- **An About tab in Settings.** Settings → About has the version, the website, the code and where to reach the project: email, X and Instagram. The email has a copy button next to it.\n- **ATO20 says it's free, and where to support it.** At the bottom of the campaign screen, ATO20 says it's free and shows the website, so anyone who paid for it can find the original. Below that is Ko-fi, for anyone who'd like to support the project. Ko-fi is also in What's new, next to the GitHub releases, and in the About tab.\n- **A new license: PolyForm Perimeter.** ATO20 is still free, and the code is still open to read, study and modify. What the new license forbids is offering another product that competes with ATO20. Running paid games and writing or selling plugins are still allowed, the plugin documentation stays MIT, and versions up to 1.7.0 remain MIT.",
+    "arquivos": [
+      {
+        "nome": "ato20-1.8.0-1.x86_64.rpm",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.8.0/ato20-1.8.0-1.x86_64.rpm",
+        "bytes": 24474501,
+        "downloads": 0
+      },
+      {
+        "nome": "ato20_1.8.0_amd64.AppImage",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.8.0/ato20_1.8.0_amd64.AppImage",
+        "bytes": 112503288,
+        "downloads": 0
+      },
+      {
+        "nome": "ato20_1.8.0_amd64.deb",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.8.0/ato20_1.8.0_amd64.deb",
+        "bytes": 24555778,
+        "downloads": 0
+      },
+      {
+        "nome": "ato20_1.8.0_x64-setup.exe",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.8.0/ato20_1.8.0_x64-setup.exe",
+        "bytes": 19166614,
+        "downloads": 0
+      },
+      {
+        "nome": "ato20_1.8.0_x64_en-US.msi",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.8.0/ato20_1.8.0_x64_en-US.msi",
+        "bytes": 22852316,
+        "downloads": 0
+      }
+    ]
+  },
+  {
     "tag": "v1.7.0",
     "nome": "ATO20 v1.7.0",
     "publicadaEm": "2026-10-15T01:24:18Z",
@@ -56,7 +97,7 @@ export const RELEASES: Release[] = [
         "nome": "ato20_1.7.0_x64-setup.exe",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.7.0/ato20_1.7.0_x64-setup.exe",
         "bytes": 19134097,
-        "downloads": 0
+        "downloads": 1
       },
       {
         "nome": "ato20_1.7.0_x64_en-US.msi",
@@ -1096,4 +1137,4 @@ export const RELEASES: Release[] = [
 export const ULTIMA_RELEASE: Release | undefined = RELEASES[0];
 
 /** A soma dos downloads de todas as releases, sem as assinaturas e o manifesto. */
-export const DOWNLOADS = 97;
+export const DOWNLOADS = 98;
