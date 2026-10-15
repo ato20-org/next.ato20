@@ -24,6 +24,42 @@ export type Release = {
 /** Da mais nova pra mais velha, que é como a API devolve. */
 export const RELEASES: Release[] = [
   {
+    "tag": "v1.7.0",
+    "nome": "ATO20 v1.7.0",
+    "publicadaEm": "2026-10-15T01:24:18Z",
+    "prerelease": false,
+    "pagina": "https://github.com/ato20-org/ato20/releases/tag/v1.7.0",
+    "notas": "## Novidades\n\n- **A mesa pela internet, sem o jogador instalar nada.** Com o Tailscale no computador do mestre, o convite ganha a opção Internet. Um botão abre a mesa num endereço https, e o jogador entra pelo navegador do celular, de qualquer lugar. A mesa fecha quando você clica em Fechar ou sai do ATO20, e o botão Entrar na mesa mostra um globo enquanto ela está aberta. Quem chega pela internet não lê os sussurros nem mexe como mestre, e quem erra o código dez vezes espera dez minutos.\n- **O convite pela VPN de jogo.** Com o Tailscale, o ZeroTier, o Hamachi ou o Radmin ligado, o convite mostra a rede dele ao lado da rede local, e o QR leva o endereço dela. A VPN ligada com o ATO20 aberto aparece sem reiniciar, e a escolha fica gravada no computador. Um endereço seu, como um nome do MagicDNS ou um túnel, entra em Outro endereço.\n\n## Correções\n\n- **O convite da mesa em inglês.** Com o aplicativo em inglês, o convite e a escolha de rede nos Ajustes apareciam em português.\n- **O convite numa rede sem gateway.** Numa rede local sem saída nenhuma, como a de uma LAN party com IP fixo, o convite dizia Sem rede. Agora ele acha o endereço pela placa de rede do computador.",
+    "notasEn": "## What's new\n\n- **The table over the internet, with nothing for players to install.** With Tailscale on the GM's computer, the invite gets an Internet option. A button opens the table at an https address, and players join from their phone's browser, from anywhere. The table closes when you click Close or leave ATO20, and the Join the table button shows a globe while it's open. Whoever comes in over the internet can't read whispers or act as the GM, and anyone who gets the code wrong ten times waits ten minutes.\n- **The invite over a gaming VPN.** With Tailscale, ZeroTier, Hamachi or Radmin on, the invite shows its network next to the local one, and the QR code carries its address. A VPN turned on with ATO20 open shows up without restarting, and the choice is saved on the computer. An address of your own, like a MagicDNS name or a tunnel, goes in Other address.\n\n## Fixes\n\n- **The table invite in English.** With the app in English, the invite and the network choice in Options showed up in Portuguese.\n- **The invite on a network without a gateway.** On a local network with no way out, like a LAN party with fixed IPs, the invite said No network. Now it finds the address from the computer's network card.",
+    "arquivos": [
+      {
+        "nome": "ato20-1.7.0-1.x86_64.rpm",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.7.0/ato20-1.7.0-1.x86_64.rpm",
+        "bytes": 24463562
+      },
+      {
+        "nome": "ato20_1.7.0_amd64.AppImage",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.7.0/ato20_1.7.0_amd64.AppImage",
+        "bytes": 112503288
+      },
+      {
+        "nome": "ato20_1.7.0_amd64.deb",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.7.0/ato20_1.7.0_amd64.deb",
+        "bytes": 24543994
+      },
+      {
+        "nome": "ato20_1.7.0_x64-setup.exe",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.7.0/ato20_1.7.0_x64-setup.exe",
+        "bytes": 19134097
+      },
+      {
+        "nome": "ato20_1.7.0_x64_en-US.msi",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.7.0/ato20_1.7.0_x64_en-US.msi",
+        "bytes": 22852316
+      }
+    ]
+  },
+  {
     "tag": "v1.6.0",
     "nome": "ATO20 v1.6.0",
     "publicadaEm": "2026-10-14T21:01:08Z",
