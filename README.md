@@ -21,7 +21,7 @@ Este repositório é a **landing page**. O aplicativo mora em [`ato20`](https://
 ## O que é o ATO20
 
 Ferramenta para desenvolver suas histórias e controlar suas cenas de RPG de mesa. Feita para
-mesas **presenciais ou em LAN**: o mestre monta a próxima cena no notebook enquanto a mesa
+mesas **em LAN, com suporte a VPN**: o mestre monta a próxima cena no notebook enquanto a mesa
 continua vendo a atual na TV, e cada jogador acompanha pelo próprio celular.
 
 Aplicativo de desktop. Sem servidor, sem conta, sem login — uma campanha é uma pasta no seu

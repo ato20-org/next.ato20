@@ -11,7 +11,7 @@ const pt = {
   subtitulo: "Tudo pra mestrar, num lugar só.",
   rotulo: "a sua IDE para seu RPG de mesa",
   sessao:
-    "O VTT local pra RPG presencial. Prepare a próxima cena enquanto a mesa vê a atual, com a câmera na janela do espectador e cada jogador no próprio celular.",
+    "O VTT local pra RPG em LAN, com suporte a VPN. Prepare a próxima cena enquanto a mesa vê a atual, com a câmera na janela do espectador e cada jogador no próprio celular.",
   campanha:
     "Quadros, notas, personagens e arquivos: a campanha inteira mora numa pasta que é sua. E o resto fica do seu jeito, com temas, plugins e configurações.",
   sem: ["sem conta", "sem servidor", "sem assinatura"],
@@ -22,7 +22,7 @@ const en: typeof pt = {
   subtitulo: "Everything you need to GM, in one place.",
   rotulo: "your IDE for tabletop RPGs",
   sessao:
-    "The local VTT for in-person RPGs. Prep the next scene while the table watches the current one, with the camera on the spectator window and every player on their own phone.",
+    "The local VTT for RPG over LAN, with VPN support. Prep the next scene while the table watches the current one, with the camera on the spectator window and every player on their own phone.",
   campanha:
     "Boards, notes, characters and files: the whole campaign lives in a folder that's yours. And everything else works your way, with themes, plugins and settings.",
   sem: ["no account", "no server", "no subscription"],
