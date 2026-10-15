@@ -1,5 +1,6 @@
 import { Cortinas } from "@/components/cortinas";
 import { Enquadramento } from "@/components/enquadramento";
+import { Contribuidores } from "@/components/contribuidores";
 import { Fechamento } from "@/components/fechamento";
 import { Fluxo } from "@/components/fluxo";
 import { Hero } from "@/components/hero";
@@ -46,6 +47,7 @@ export function Inicio({ idioma }: { idioma: Idioma }) {
         <Visoes idioma={idioma} />
         <Precisa idioma={idioma} />
         <Mesa idioma={idioma} />
+        <Contribuidores idioma={idioma} />
         <Fechamento idioma={idioma} />
       </main>
     </>
