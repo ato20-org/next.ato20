@@ -27,6 +27,7 @@ const pt = {
       quiser dar uma força, tem o {kofi}.
     </>
   ),
+  gratuito: "gratuito",
   feitoNoBrasil: "feito no Brasil",
   apoie: "apoie no ko-fi",
 };
@@ -47,6 +48,7 @@ const en: typeof pt = {
       you&apos;d like to help out, there&apos;s {kofi}.
     </>
   ),
+  gratuito: "free",
   feitoNoBrasil: "made in Brazil",
   apoie: "support on ko-fi",
 };
@@ -103,7 +105,7 @@ export function Fechamento({ idioma }: { idioma: Idioma }) {
       <p className="mt-20 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 border-t border-border pt-8 font-mono text-xs text-muted-foreground">
         <span className="flex items-center gap-2">
           <Heart className="size-3.5 shrink-0" strokeWidth={1.75} />
-          open source
+          {t.gratuito}
         </span>
         <span className="text-border">·</span>
         <span className="flex items-center gap-2">
