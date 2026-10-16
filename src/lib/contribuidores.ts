@@ -16,12 +16,12 @@ export const CONTRIBUIDORES: Contribuidor[] = [
     "nome": "valb-mig",
     "perfil": "https://github.com/valb-mig",
     "avatar": "https://avatars.githubusercontent.com/u/102031404?v=4",
-    "commits": 1039
+    "commits": 1066
   },
   {
     "nome": "xoykor",
     "perfil": "https://github.com/xoykor",
     "avatar": "https://avatars.githubusercontent.com/u/138058470?v=4",
-    "commits": 2
+    "commits": 3
   }
 ];
