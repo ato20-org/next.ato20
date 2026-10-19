@@ -13,7 +13,7 @@
       "icone": "/plugins/obs/icone.svg",
       "capa": "/plugins/obs/capa.webp",
       "executaCodigo": true,
-      "apiVersao": 8,
+      "apiVersao": 7,
       "tags": ["obs", "live"]
     },
     {
@@ -35,8 +35,8 @@
       "id": "tormenta20",
       "nome": "Tormenta20",
       "descricao": {
-        "pt-BR": "Ensina o ATO20 a ler a ficha editável do Tormenta20 e criar o personagem a partir dela: atributos, PV e PM, perícias, habilidades, ataques e equipamento.",
-        "en": "Teaches ATO20 to read the fillable Tormenta20 sheet and build the character from it: attributes, HP and MP, skills, abilities, attacks and gear."
+        "pt-BR": "Tormenta20 no ATO20: a campanha nasce com FOR, DES, CON, INT, SAB e CAR, PV e PM, a ficha nos detalhes e as condições do jogo. E a ficha editável em PDF vira personagem, com perícias, habilidades, ataques e equipamento.",
+        "en": "Tormenta20 in ATO20: the campaign starts with FOR, DES, CON, INT, SAB and CAR, HP and MP, the sheet as details and the game's conditions. And the fillable sheet PDF becomes a character, with skills, abilities, attacks and gear."
       },
       "autor": "ato20-org",
       "repositorio": "https://github.com/ato20-org/ato20.tormenta20.plugin",
@@ -44,7 +44,7 @@
       "capa": "/plugins/tormenta20/capa.png",
       "executaCodigo": false,
       "apiVersao": 10,
-      "tags": ["tormenta20", "ficha", "pdf"]
+      "tags": ["tormenta20", "sistema", "ficha", "pdf"]
     }
   ]
 }
