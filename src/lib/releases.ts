@@ -26,6 +26,47 @@ export type Release = {
 /** Da mais nova pra mais velha, que é como a API devolve. */
 export const RELEASES: Release[] = [
   {
+    "tag": "v1.10.0",
+    "nome": "ATO20 v1.10.0",
+    "publicadaEm": "2026-10-19T13:39:12Z",
+    "prerelease": false,
+    "pagina": "https://github.com/ato20-org/ato20/releases/tag/v1.10.0",
+    "notas": "## Novidades\n\n- **O clima na mesa: chuva, tempestade, neve, neblina, cinzas e brasas.** O ambiente cobre a cena inteira, por cima da tela da mesa, e não anda nem amplia com a câmera. Nas Configurações do mapa se escolhe o ambiente, a intensidade e o vento. No Compêndio, a aba Ambiente, dentro de Efeitos, traz os seis prontos e cria outros, com as camadas que caem, o véu e o relâmpago, e o card tem Pôr nesta cena. Mexer num ambiente do Compêndio muda a chuva da tela da mesa na hora. Você vê o clima na metade e sem relâmpago, e ele some enquanto você arrasta alguma coisa.\n- **As janelas do Mestre saem do ATO20, para o segundo monitor.** A ficha, o Compêndio, o chat, as Rolagens, a Mesa: arraste o cabeçalho de uma janela, ou a aba de uma atracada, para fora do ATO20 e solte, ou use o ↗ do cabeçalho. Ela vira uma janela do sistema e funciona como dentro, e o que se abre a partir dela abre solto também. O ↙ traz de volta, e a próxima abre no mesmo lugar e no mesmo tamanho. Os atalhos, como desfazer, ainda só valem na janela principal.\n- **Uma IA deste computador pode mexer na campanha aberta.** Em Configurações, IA, a opção Deixar uma IA mexer nas campanhas liga o MCP: um programa como o Claude Code ou o Cursor passa a criar notas, cenas, personagens e itens, pôr tokens no mapa, dar itens e ler e escrever no fio da mesa, e o que ele faz aparece na hora. Ele não apaga nada, não põe cena no ar e não rola dado. Vem desligado, só entra quem tem o token, e só deste computador. A tela mostra o comando do Claude Code pronto para copiar.",
+    "notasEn": "## What's new\n\n- **Weather on the table: rain, storm, snow, fog, ash and embers.** Weather covers the whole scene, over the spectator window, and doesn't move or zoom with the camera. Map settings pick the weather, its intensity and the wind. In the Compendium, the Weather tab under Effects brings the six ready-made ones and creates new ones, with falling layers, a veil and lightning, and each card has Put in this scene. Changing a weather in the Compendium changes the rain in the spectator window right away. You see it at half strength and without lightning, and it hides while you drag something.\n- **GM windows can leave ATO20 for a second monitor.** The sheet, the Compendium, the chat, Rolls, the Table: drag a window's header, or a docked tab, outside ATO20 and drop it, or use the ↗ in the header. It becomes a system window that works just like inside, and whatever opens from it opens detached too. The ↙ brings it back, and the next one opens in the same place and size. Shortcuts, like undo, still only work in the main window.\n- **An AI on this computer can work on the open campaign.** In Settings, AI, Let an AI work on your campaigns turns MCP on: a program like Claude Code or Cursor can create notes, scenes, characters and items, place tokens on the map, give items, and read and write in the table chat, and what it does shows up right away. It deletes nothing, puts no scene On air and rolls no dice. It starts off, only programs with the token get in, and only from this computer. The screen shows the Claude Code command ready to copy.",
+    "arquivos": [
+      {
+        "nome": "ato20-1.10.0-1.x86_64.rpm",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.10.0/ato20-1.10.0-1.x86_64.rpm",
+        "bytes": 26437413,
+        "downloads": 0
+      },
+      {
+        "nome": "ato20_1.10.0_amd64.AppImage",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.10.0/ato20_1.10.0_amd64.AppImage",
+        "bytes": 114412024,
+        "downloads": 0
+      },
+      {
+        "nome": "ato20_1.10.0_amd64.deb",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.10.0/ato20_1.10.0_amd64.deb",
+        "bytes": 26513784,
+        "downloads": 0
+      },
+      {
+        "nome": "ato20_1.10.0_x64-setup.exe",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.10.0/ato20_1.10.0_x64-setup.exe",
+        "bytes": 20987420,
+        "downloads": 0
+      },
+      {
+        "nome": "ato20_1.10.0_x64_en-US.msi",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.10.0/ato20_1.10.0_x64_en-US.msi",
+        "bytes": 24894221,
+        "downloads": 0
+      }
+    ]
+  },
+  {
     "tag": "v1.9.0",
     "nome": "ATO20 v1.9.0",
     "publicadaEm": "2026-10-16T18:58:39Z",
@@ -44,7 +85,7 @@ export const RELEASES: Release[] = [
         "nome": "ato20_1.9.0_amd64.AppImage",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.9.0/ato20_1.9.0_amd64.AppImage",
         "bytes": 112806392,
-        "downloads": 0
+        "downloads": 2
       },
       {
         "nome": "ato20_1.9.0_amd64.deb",
@@ -56,7 +97,7 @@ export const RELEASES: Release[] = [
         "nome": "ato20_1.9.0_x64-setup.exe",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.9.0/ato20_1.9.0_x64-setup.exe",
         "bytes": 19408704,
-        "downloads": 0
+        "downloads": 1
       },
       {
         "nome": "ato20_1.9.0_x64_en-US.msi",
@@ -1178,4 +1219,4 @@ export const RELEASES: Release[] = [
 export const ULTIMA_RELEASE: Release | undefined = RELEASES[0];
 
 /** A soma dos downloads de todas as releases, sem as assinaturas e o manifesto. */
-export const DOWNLOADS = 98;
+export const DOWNLOADS = 101;
