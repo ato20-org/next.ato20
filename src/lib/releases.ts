@@ -26,6 +26,47 @@ export type Release = {
 /** Da mais nova pra mais velha, que é como a API devolve. */
 export const RELEASES: Release[] = [
   {
+    "tag": "v1.11.0",
+    "nome": "ATO20 v1.11.0",
+    "publicadaEm": "2026-10-26T19:50:43Z",
+    "prerelease": false,
+    "pagina": "https://github.com/ato20-org/ato20/releases/tag/v1.11.0",
+    "notas": "## Novidades\n\n- **A janela Histórico: tudo o que aconteceu na campanha, sessão por sessão.** Ela guarda, com a hora, a cena que foi ao ar, os combates e as rodadas, a vida e as condições que mudaram, os itens dados, tirados ou postos no mapa, os efeitos disparados e o que a mesa viu, com o chat e as rolagens no meio. As sessões antigas ficam fechadas mostrando só os marcos, que você escreve no pé da janela e edita no próprio lugar. Tem busca e filtro por tipo e por personagem, e só você vê. Névoa, porta, item no mapa e efeito só contam na cena que está no ar.\n- **Plugins trazem monstros, itens e rituais prontos para o Compêndio.** Um plugin de sistema, como o de Ordem Paranormal, pode trazer fichas prontas para o Bestiário, itens prontos (armas, munição, proteção, o que cura) e abas próprias, como a de Rituais. Cada coleção aparece como uma pasta com a cor e o emblema do plugin. A ficha e o item do plugin abrem só para ler: Trazer para a campanha copia para o Compêndio, e soltar o card no mapa põe em jogo. O verbete de uma aba, como um ritual, vai para a ficha de um personagem pelo Dar a. A ficha do bestiário pode vir com mais de uma aparência, trocada no submenu Aparências.\n- **As contas entre chaves leem a ficha: {1d20+FOR}, {AGId20>+5}, {1d20+@Luta}.** A sigla de um atributo da ficha vale o número dele na hora de rolar, somada ou como quantidade de dados, e com @ a conta lê também um detalhe de número, como Luta. O saquinho e o chat dizem quanto cada um valia naquela rolagem. Um atributo também pode ser um dado, como a AGI d8: o desenho rola, e o texto se edita no próprio círculo, inclusive com conta, como d4+20-@NEX.\n- **No celular, a conta no texto de um detalhe vira o botão de rolar.** \"Soco {1d4}\" mostra o d4 no lugar das chaves, e o toque rola. Na busca do celular, o que rola ganha o botão rolar, e tocar no resto leva até o detalhe na ficha.\n- **{9m} e {3°} no texto da ficha põem a régua no mapa.** Como o {1d20} rola, {9m} cria uma régua reta de 9 metros e {3°} um círculo de 3 metros de raio, saindo do token do dono da ficha. A régua selecionada ganha os botões de forma, de trava e de apagar: travada, a ponta gira sem mudar o tamanho. A forma e a cor ficam no painel do canto de baixo.\n- **O olho no token mostra o que ele vê.** Um olho no gizmo do token cobre o que as paredes e as portas escondem dele, com o escuro do mapa como a mesa vê. Só você vê, e vale enquanto o token está selecionado.\n- **Cada som das macros pode ganhar uma tecla.** No painel de som, em Pads, Macros, clique no selo da linha e aperte a combinação: letras, números e F1 a F12, com Ctrl, Alt e Shift. A tecla que já é de um atalho é recusada com o nome do dono, e a nova aparece em Configurações, Teclado.\n- **No 2.5D, o item largado na mesa flutua e brilha.** O item da campanha posto em pé no mapa balança no ar e lampeja de tempos em tempos, para o grupo achar o que dá para apanhar. Na sua tela só o selecionado anima, e quem pediu menos movimento no sistema vê o item parado no ar.\n- **Arquivos: apagar uma pasta com tudo o que há dentro.** Apagar pasta, ao lado de Desfazer pasta, apaga os quadros, as notas e os arquivos dela e das subpastas, depois de dizer o que vai junto. O arquivo usado num mapa que fica não se apaga: sobe para a pasta de cima.\n- **As janelas de Rolagens e Chat não abrem mais sozinhas.** Antes, a rolagem ou a mensagem de um jogador abria a janela por cima do mapa. O contador da bandeja de Rolagens e o ponto de não lidas do Chat continuam avisando.\n\n## Correções\n\n- **A tela da mesa e o celular não congelam mais quando a conexão cai.** Eles percebem a queda e reconectam sozinhos, com um aviso por cima da última cena enquanto isso. Se você reabre o ATO20 sem campanha, o aviso diz que a mesa fechou, e a tela volta sozinha quando a campanha abre.\n- **Na tela da mesa, o token não dá mais a volta inteira ao girar, e a sombra anda junto com ele.**\n- **Nos dados 3D, nenhuma face fica mais transparente, e o número não escapa do dado.** Os dados também ganharam mais luz, e o número do d4 e da moeda não some mais na face mais clara.\n- **A ficha trazida de um plugin vai para o mapa sem precisar reabrir o ATO20.**",
+    "notasEn": "## What's new\n\n- **The History window: everything that happened in the campaign, session by session.** With the time, it keeps the scene that went On air, fights and rounds, health and conditions that changed, items given, taken or placed on the map, fired effects and what the table saw, with the chat and rolls in between. Older sessions stay closed showing only the milestones, which you write at the bottom of the window and edit in place. It has search and filters by type and by character, and only you see it. Fog, doors, items on the map and effects only count in the scene that is On air.\n- **Plugins bring ready-made monsters, items and rituals to the Compendium.** A game system plugin, like the Ordem Paranormal one, can bring ready-made sheets to the Bestiary, ready-made items (weapons, ammo, protection, healing) and tabs of its own, like Rituals. Each collection shows up as a folder with the plugin's color and emblem. Plugin sheets and items open read-only: Bring to the campaign copies them into the Compendium, and dropping the card on the map puts it in play. An entry from a plugin tab, like a ritual, goes into a character's sheet with Give to. A bestiary sheet can come with more than one appearance, switched in the Appearances submenu.\n- **Rolls in braces read the sheet: {1d20+STR}, {AGId20>+5}, {1d20+@Fight}.** An attribute's abbreviation from the sheet counts as its number when rolling, added in or as the number of dice, and with @ the roll also reads a number detail, like Fight. The Dice bag and the chat show what each one was worth on that roll. An attribute can also be a die, like an AGI d8: the drawing rolls, and the text is edited right in the circle, formulas included, like d4+20-@NEX.\n- **On the phone, a roll written in a detail's text becomes a roll button.** \"Punch {1d4}\" shows the d4 in place of the braces, and a tap rolls it. In the phone's search, results that roll get a roll button, and tapping the rest takes you to the detail on the sheet.\n- **{9m} and {3°} in a sheet's text place the ruler on the map.** Just as {1d20} rolls, {9m} creates a 9-meter straight ruler and {3°} a circle with a 3-meter radius, starting from the token of the sheet's owner. A selected ruler gets shape, lock and delete buttons: locked, the tip turns without changing the size. Shape and color are in the panel at the bottom corner.\n- **The eye on a token shows what it sees.** An eye on the token's gizmo covers whatever walls and doors hide from it, with the map's darkness as the table sees it. Only you see this, and it lasts while the token is selected.\n- **Each sound in Macros can get a key.** In the sound panel, under Pads, Macros, click the line's badge and press the combination: letters, numbers and F1 to F12, with Ctrl, Alt and Shift. A key already taken by a shortcut is refused with the owner's name, and the new one shows up in Settings, Keyboard.\n- **In 2.5D, an item dropped on the table floats and glints.** A campaign item standing on the map bobs in the air and glints every few seconds, so the party finds what can be picked up. On your screen only the selected one animates, and anyone who asked the system for reduced motion sees the item still in the air.\n- **Files: delete a folder with everything in it.** Delete folder, next to Dissolve folder, deletes its boards, notes and files, subfolders included, after telling you what goes with it. A file used by a map that stays isn't deleted: it moves up to the parent folder.\n- **The Rolls and Chat windows no longer open on their own.** Before, a player's roll or message opened the window over the map. The Rolls tray counter and the Chat unread dot still let you know.\n\n## Fixes\n\n- **The spectator window and phones no longer freeze when the connection drops.** They notice the drop and reconnect on their own, with a notice over the last scene meanwhile. If you reopen ATO20 without a campaign, the notice says the table is closed, and the screen comes back on its own when the campaign opens.\n- **In the spectator window, a turning token no longer spins all the way around, and its shadow moves with it.**\n- **On the 3D dice, no face turns transparent anymore, and the number stays inside the die.** The dice also got brighter, and the number on the d4 and the coin no longer fades on the brightest face.\n- **A sheet brought from a plugin goes onto the map without reopening ATO20.**",
+    "arquivos": [
+      {
+        "nome": "ato20-1.11.0-1.x86_64.rpm",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.11.0/ato20-1.11.0-1.x86_64.rpm",
+        "bytes": 26863419,
+        "downloads": 0
+      },
+      {
+        "nome": "ato20_1.11.0_amd64.AppImage",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.11.0/ato20_1.11.0_amd64.AppImage",
+        "bytes": 114776568,
+        "downloads": 0
+      },
+      {
+        "nome": "ato20_1.11.0_amd64.deb",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.11.0/ato20_1.11.0_amd64.deb",
+        "bytes": 26937442,
+        "downloads": 0
+      },
+      {
+        "nome": "ato20_1.11.0_x64-setup.exe",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.11.0/ato20_1.11.0_x64-setup.exe",
+        "bytes": 21304966,
+        "downloads": 0
+      },
+      {
+        "nome": "ato20_1.11.0_x64_en-US.msi",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.11.0/ato20_1.11.0_x64_en-US.msi",
+        "bytes": 25320205,
+        "downloads": 0
+      }
+    ]
+  },
+  {
     "tag": "v1.10.0",
     "nome": "ATO20 v1.10.0",
     "publicadaEm": "2026-10-19T13:39:12Z",
@@ -44,7 +85,7 @@ export const RELEASES: Release[] = [
         "nome": "ato20_1.10.0_amd64.AppImage",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.10.0/ato20_1.10.0_amd64.AppImage",
         "bytes": 114412024,
-        "downloads": 0
+        "downloads": 2
       },
       {
         "nome": "ato20_1.10.0_amd64.deb",
@@ -249,7 +290,7 @@ export const RELEASES: Release[] = [
         "nome": "ato20_1.5.1_amd64.AppImage",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.5.1/ato20_1.5.1_amd64.AppImage",
         "bytes": 112237048,
-        "downloads": 2
+        "downloads": 3
       },
       {
         "nome": "ato20_1.5.1_amd64.deb",
@@ -331,7 +372,7 @@ export const RELEASES: Release[] = [
         "nome": "ato20_1.4.0_amd64.AppImage",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.4.0/ato20_1.4.0_amd64.AppImage",
         "bytes": 112134648,
-        "downloads": 3
+        "downloads": 4
       },
       {
         "nome": "ato20_1.4.0_amd64.deb",
@@ -495,7 +536,7 @@ export const RELEASES: Release[] = [
         "nome": "ato20_1.0.0_amd64.AppImage",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.0.0/ato20_1.0.0_amd64.AppImage",
         "bytes": 104307192,
-        "downloads": 5
+        "downloads": 6
       },
       {
         "nome": "ato20_1.0.0_amd64.deb",
@@ -741,7 +782,7 @@ export const RELEASES: Release[] = [
         "nome": "ato20_0.4.0_amd64.AppImage",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.4.0/ato20_0.4.0_amd64.AppImage",
         "bytes": 103729656,
-        "downloads": 1
+        "downloads": 2
       },
       {
         "nome": "ato20_0.4.0_amd64.deb",
@@ -1151,7 +1192,7 @@ export const RELEASES: Release[] = [
         "nome": "ato20_0.0.4_amd64.AppImage",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.0.4-alpha/ato20_0.0.4_amd64.AppImage",
         "bytes": 102812152,
-        "downloads": 2
+        "downloads": 3
       },
       {
         "nome": "ato20_0.0.4_amd64.deb",
@@ -1192,7 +1233,7 @@ export const RELEASES: Release[] = [
         "nome": "ato20_0.0.3_amd64.AppImage",
         "url": "https://github.com/ato20-org/ato20/releases/download/v0.0.3-alpha/ato20_0.0.3_amd64.AppImage",
         "bytes": 102861304,
-        "downloads": 1
+        "downloads": 2
       },
       {
         "nome": "ato20_0.0.3_amd64.deb",
@@ -1219,4 +1260,4 @@ export const RELEASES: Release[] = [
 export const ULTIMA_RELEASE: Release | undefined = RELEASES[0];
 
 /** A soma dos downloads de todas as releases, sem as assinaturas e o manifesto. */
-export const DOWNLOADS = 101;
+export const DOWNLOADS = 109;
