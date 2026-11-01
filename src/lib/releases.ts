@@ -26,6 +26,47 @@ export type Release = {
 /** Da mais nova pra mais velha, que é como a API devolve. */
 export const RELEASES: Release[] = [
   {
+    "tag": "v1.12.0",
+    "nome": "ATO20 v1.12.0",
+    "publicadaEm": "2026-11-01T18:48:32Z",
+    "prerelease": false,
+    "pagina": "https://github.com/ato20-org/ato20/releases/tag/v1.12.0",
+    "notas": "## Novidades\n\n- **A trilha e o ambiente tocam do YouTube.** Em Sons, o menu de importar ganhou Do YouTube: ele aceita o link de um vídeo ou de uma playlist inteira, um som por vídeo. O ATO20 testa cada vídeo antes de pôr no acervo e deixa de fora, com o motivo, o que o dono não deixa tocar fora do YouTube. O trecho que toca se escolhe num slider de duas pontas, e a janela do espectador e os celulares tocam junto. Os sons de disparo continuam só com arquivo, porque precisam tocar na hora.\n- **O tom do mapa vale para todo mundo.** O brilho, o contraste, a saturação e o matiz das Configurações do mapa, agora em Tom do mapa, aparecem também no celular dos jogadores e no seu mapa, sem precisar abrir a Janela Mesa para conferir. A calibração da TV, na Configuração da campanha, continua só na janela do espectador.\n- **Você vê quem está movendo um token pelo celular.** Enquanto um jogador arrasta o token dele, o token ganha o anel azul e o nome de quem move. E o token que você está arrastando não pode ser pego por um jogador ao mesmo tempo: antes, os dois puxavam de um lado para o outro.\n- **No celular, tirar um dado da mesa é arrastá-lo para o pé da tela.** Com um dado na mão, aparece uma faixa embaixo, e soltar nela tira o dado. Enquanto houver dado na tela, Limpar todos os dados fica logo abaixo da faixa de cima, e o Limpar do saquinho subiu para o cabeçalho dele.\n- **A tela do jogador ficou mais clara.** A entrada mostra o nome da mesa e avisa que o nome pedido é o do jogador, não o do personagem. Com o celular deitado, a barra lateral muda de largura arrastando a divisa, e o aparelho lembra. Os medidores da ficha ocupam a coluna inteira, a Mochila vazia abre o item novo com um toque, e Sair da mesa avisa que as notas do caderno não voltam.\n- **As condições do Compêndio aparecem no botão direito do token.** O botão direito do token e o + da ficha mostram as condições do cardápio e, depois delas, as do Compêndio. Toda aba vazia do Compêndio tem Usar sugestões, que traz as de fábrica. Condições e efeitos agora se criam e se ajustam só no Compêndio: a aba Efeitos saiu da Configuração da campanha, e o painel do Disparo leva direto para lá.\n- **O convite diz quem entra por cada rede, e clicar no código da campanha copia.** Em Convidar, quem consegue entrar por cada caminho aparece logo abaixo da escolha, e o link ganhou o botão Copiar link.\n- **A barra da janela ficou mais enxuta, com a cena no meio exato.** Um nome de campanha comprido não empurra mais o nome da cena. E arrastar uma janela para fora do ATO20 acende a beirada por onde ela vai sair.\n\n## Correções\n\n- **No celular, o aviso de sair da mesa sumia assim que abria.**\n- **Filtrar na paleta (Ctrl+K) deixava um contorno sobrando em cima do mapa.**",
+    "notasEn": "## What's new\n\n- **Music and ambience play from YouTube.** In Sounds, the import menu gained From YouTube: it takes a link to a video or to a whole playlist, one sound per video. ATO20 tests each video before adding it and leaves out, with the reason, the ones whose owner doesn't allow playing outside YouTube. You pick the part that plays on a two-handle slider, and the spectator window and the phones play along. Sound cues still use files only, because they need to play right away.\n- **The map tone is for everyone.** Brightness, contrast, saturation and hue in the Map settings, now under Map tone, also show on the players' phones and on your own map, with no need to open the Table window to check. The TV calibration, in Campaign settings, stays on the spectator window only.\n- **You see who is moving a token from their phone.** While a player drags their token, it gets the blue ring and the name of who is moving it. And a token you are dragging can't be grabbed by a player at the same time: before, both of you pulled it back and forth.\n- **On the phone, dragging a die to the bottom of the screen takes it off the table.** With a die in hand, a strip shows up at the bottom, and dropping it there takes the die away. While there are dice on screen, Clear all dice sits right below the top bar, and the Dice bag's Clear moved up to its header.\n- **The player's screen got clearer.** The entry screen shows the table's name and explains that the name it asks for is the player's, not the character's. With the phone sideways, the side bar changes width by dragging its edge, and the device remembers it. The sheet's meters fill the whole column, an empty Backpack opens a new item with a tap, and Leave the table warns that the notebook's notes don't come back.\n- **The Compendium's conditions show up when you right-click a token.** Right-clicking a token and the sheet's + show the campaign's conditions and, after them, the Compendium's. Every empty Compendium tab has Use suggestions, which brings in the built-in ones. Conditions and effects are now created and tuned only in the Compendium: the Effects tab left Campaign settings, and the Shot panel takes you straight there.\n- **The invite says who can join on each network, and clicking the campaign code copies it.** In Invite, who can join by each route shows up right below the choice, and the link got a Copy link button.\n- **The window bar got leaner, with the scene in the exact middle.** A long campaign name no longer pushes the scene name aside. And dragging a window out of ATO20 lights up the edge it is leaving through.\n\n## Fixes\n\n- **On the phone, the leave-the-table dialog vanished as soon as it opened.**\n- **Filtering in the palette (Ctrl+K) left a stray outline over the map.**",
+    "arquivos": [
+      {
+        "nome": "ato20-1.12.0-1.x86_64.rpm",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.12.0/ato20-1.12.0-1.x86_64.rpm",
+        "bytes": 26950483,
+        "downloads": 0
+      },
+      {
+        "nome": "ato20_1.12.0_amd64.AppImage",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.12.0/ato20_1.12.0_amd64.AppImage",
+        "bytes": 114850296,
+        "downloads": 0
+      },
+      {
+        "nome": "ato20_1.12.0_amd64.deb",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.12.0/ato20_1.12.0_amd64.deb",
+        "bytes": 27027736,
+        "downloads": 0
+      },
+      {
+        "nome": "ato20_1.12.0_x64-setup.exe",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.12.0/ato20_1.12.0_x64-setup.exe",
+        "bytes": 21360507,
+        "downloads": 0
+      },
+      {
+        "nome": "ato20_1.12.0_x64_en-US.msi",
+        "url": "https://github.com/ato20-org/ato20/releases/download/v1.12.0/ato20_1.12.0_x64_en-US.msi",
+        "bytes": 25390575,
+        "downloads": 0
+      }
+    ]
+  },
+  {
     "tag": "v1.11.0",
     "nome": "ATO20 v1.11.0",
     "publicadaEm": "2026-10-26T19:50:43Z",
@@ -44,7 +85,7 @@ export const RELEASES: Release[] = [
         "nome": "ato20_1.11.0_amd64.AppImage",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.11.0/ato20_1.11.0_amd64.AppImage",
         "bytes": 114776568,
-        "downloads": 0
+        "downloads": 4
       },
       {
         "nome": "ato20_1.11.0_amd64.deb",
@@ -56,7 +97,7 @@ export const RELEASES: Release[] = [
         "nome": "ato20_1.11.0_x64-setup.exe",
         "url": "https://github.com/ato20-org/ato20/releases/download/v1.11.0/ato20_1.11.0_x64-setup.exe",
         "bytes": 21304966,
-        "downloads": 0
+        "downloads": 1
       },
       {
         "nome": "ato20_1.11.0_x64_en-US.msi",
@@ -1260,4 +1301,4 @@ export const RELEASES: Release[] = [
 export const ULTIMA_RELEASE: Release | undefined = RELEASES[0];
 
 /** A soma dos downloads de todas as releases, sem as assinaturas e o manifesto. */
-export const DOWNLOADS = 109;
+export const DOWNLOADS = 114;
